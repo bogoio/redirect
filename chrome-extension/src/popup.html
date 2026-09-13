@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <title>Pega Video</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <header>
+      <h1>Pega Vídeo</h1>
+      <div class="actions">
+        <button id="rescan" class="ghost" type="button" title="Procurar de novo">Reescanear</button>
+        <button id="clear" class="ghost" type="button" title="Esquecer o que foi detectado nesta aba">Limpar</button>
+      </div>
+    </header>
+
+    <p id="status" class="status"></p>
+    <ul id="list" class="list"></ul>
+
+    <template id="item-template">
+      <li class="item">
+        <div class="row">
+          <span class="badge"></span>
+          <span class="meta"></span>
+        </div>
+        <p class="title"></p>
+        <p class="url"></p>
+        <div class="row buttons">
+          <button class="primary download" type="button">Baixar</button>
+          <button class="ghost copy" type="button">Copiar URL</button>
+          <button class="ghost ffmpeg" type="button" title="Copiar linha de comando do ffmpeg">ffmpeg</button>
+        </div>
+        <div class="progress" hidden><div class="bar"></div></div>
+        <p class="note" hidden></p>
+      </li>
+    </template>
+
+    <footer>
+      Não funciona com vídeos protegidos por DRM (Widevine, PlayReady, FairPlay).
+    </footer>
+
+    <script src="popup.js" type="module"></script>
+  </body>
+</html>
