@@ -13,6 +13,10 @@ Requisitos:
 Uso:
   python thumbs_iguais.py "D:\\Videos" "E:\\Outros"
   python thumbs_iguais.py C:\\ --tolerancia 4 --posicao 0.05 --saida relatorio.txt
+
+No Windows, ao final abre a pasta "resultado_thumbs" com atalhos para os
+vídeos repetidos, nomeados "G0001 - ...", "G0002 - ...". Use a exibição
+Ícones grandes para comparar as thumbs. Os vídeos originais não são mexidos.
 """
 import argparse
 import os
@@ -107,6 +111,8 @@ def main():
                     help="ponto do vídeo usado como thumb, 0 a 1 (padrão 0.10)")
     ap.add_argument("--threads", type=int, default=os.cpu_count() or 4)
     ap.add_argument("--saida", help="salvar relatório num arquivo .txt")
+    ap.add_argument("--pasta-resultado", default="resultado_thumbs",
+                    help="pasta onde ficam os atalhos agrupados (Windows)")
     args = ap.parse_args()
 
     videos = list(listar_videos(args.pastas))
@@ -136,6 +142,39 @@ def main():
         with open(args.saida, "w", encoding="utf-8") as f:
             f.write(texto)
         print(f"Relatório salvo em {args.saida}")
+
+    if grupos and os.name == "nt":
+        criar_atalhos(grupos, os.path.abspath(args.pasta_resultado))
+
+
+def criar_atalhos(grupos, pasta):
+    """Cria uma pasta com atalhos para os vídeos, nomeados por grupo, para
+    ver no Explorer como uma busca (exibição em Ícones grandes)."""
+    os.makedirs(pasta, exist_ok=True)
+    for nome in os.listdir(pasta):
+        if nome.lower().endswith(".lnk"):
+            os.remove(os.path.join(pasta, nome))
+
+    def ps(s):
+        return "'" + s.replace("'", "''") + "'"
+
+    linhas = ["$sh = New-Object -ComObject WScript.Shell"]
+    for k, g in enumerate(grupos, 1):
+        for n, c in enumerate(sorted(g), 1):
+            nome = f"G{k:04d}-{n} - {os.path.basename(c)}"[:150] + ".lnk"
+            linhas.append(f"$l = $sh.CreateShortcut({ps(os.path.join(pasta, nome))})")
+            linhas.append(f"$l.TargetPath = {ps(c)}")
+            linhas.append("$l.Save()")
+
+    script = os.path.join(pasta, "_criar_atalhos.ps1")
+    with open(script, "w", encoding="utf-8-sig") as f:
+        f.write("\n".join(linhas))
+    print("Criando atalhos...")
+    subprocess.run(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass",
+                    "-File", script])
+    os.remove(script)
+    print(f"Pronto. Abrindo {pasta}")
+    os.startfile(pasta)
 
 
 if __name__ == "__main__":
