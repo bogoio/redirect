@@ -17,8 +17,13 @@ Uso:
 No Windows, ao final abre a pasta "resultado_thumbs" com atalhos para os
 vídeos repetidos, nomeados "G0001 - ...", "G0002 - ...". Use a exibição
 Ícones grandes para comparar as thumbs. Os vídeos originais não são mexidos.
+
+As thumbs processadas ficam salvas em "thumbs_cache.json". Se o script for
+interrompido, na próxima vez continua de onde parou; vídeos já vistos só são
+reprocessados se mudarem de tamanho ou data.
 """
 import argparse
+import json
 import os
 import subprocess
 import sys
@@ -63,7 +68,7 @@ def extrair_frame(caminho, posicao):
 
 def dhash(img, tamanho=8):
     img = img.convert("L").resize((tamanho + 1, tamanho), Image.LANCZOS)
-    px = list(img.getdata())
+    px = img.tobytes()
     bits = 0
     for y in range(tamanho):
         for x in range(tamanho):
@@ -102,6 +107,21 @@ def agrupar(hashes, tolerancia):
     return [g for g in grupos.values() if len(g) > 1]
 
 
+def carregar_cache(arquivo):
+    try:
+        with open(arquivo, encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return {}
+
+
+def salvar_cache(arquivo, cache):
+    tmp = arquivo + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(cache, f)
+    os.replace(tmp, arquivo)
+
+
 def main():
     ap = argparse.ArgumentParser(description="Busca vídeos com thumbnails iguais.")
     ap.add_argument("pastas", nargs="+", help="pastas a varrer (recursivo)")
@@ -111,6 +131,8 @@ def main():
                     help="ponto do vídeo usado como thumb, 0 a 1 (padrão 0.10)")
     ap.add_argument("--threads", type=int, default=os.cpu_count() or 4)
     ap.add_argument("--saida", help="salvar relatório num arquivo .txt")
+    ap.add_argument("--cache", default="thumbs_cache.json",
+                    help="arquivo onde as thumbs já processadas ficam salvas")
     ap.add_argument("--pasta-resultado", default="resultado_thumbs",
                     help="pasta onde ficam os atalhos agrupados (Windows)")
     args = ap.parse_args()
@@ -118,13 +140,39 @@ def main():
     videos = list(listar_videos(args.pastas))
     print(f"{len(videos)} vídeos encontrados. Extraindo thumbs...")
 
-    hashes = []
-    with ThreadPoolExecutor(args.threads) as ex:
-        for n, (caminho, h) in enumerate(
-                ex.map(lambda v: processar(v, args.posicao), videos), 1):
-            if h is not None:
-                hashes.append((caminho, h))
-            print(f"\r  {n}/{len(videos)}", end="", flush=True)
+    cache = carregar_cache(args.cache)
+
+    def chave(v):
+        st = os.stat(v)
+        return f"{st.st_size}|{int(st.st_mtime)}|{args.posicao}"
+
+    hashes, faltam = [], []
+    for v in videos:
+        try:
+            k = chave(v)
+        except OSError:
+            continue
+        item = cache.get(v)
+        if item and item[0] == k:
+            if item[1] is not None:
+                hashes.append((v, item[1]))
+        else:
+            faltam.append((v, k))
+    print(f"{len(videos) - len(faltam)} já processados antes, "
+          f"{len(faltam)} para processar.")
+
+    try:
+        with ThreadPoolExecutor(args.threads) as ex:
+            res = ex.map(lambda vk: (vk[1], *processar(vk[0], args.posicao)), faltam)
+            for n, (k, caminho, h) in enumerate(res, 1):
+                cache[caminho] = [k, h]
+                if h is not None:
+                    hashes.append((caminho, h))
+                print(f"\r  {n}/{len(faltam)}", end="", flush=True)
+                if n % 50 == 0:
+                    salvar_cache(args.cache, cache)
+    finally:
+        salvar_cache(args.cache, cache)
     print()
 
     grupos = agrupar(hashes, args.tolerancia)
