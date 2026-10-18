@@ -210,9 +210,10 @@ def criar_atalhos(grupos, pasta):
     for k, g in enumerate(grupos, 1):
         for n, c in enumerate(sorted(g), 1):
             nome = f"G{k:04d}-{n} - {os.path.basename(c)}"[:150] + ".lnk"
-            linhas.append(f"$l = $sh.CreateShortcut({ps(os.path.join(pasta, nome))})")
-            linhas.append(f"$l.TargetPath = {ps(c)}")
-            linhas.append("$l.Save()")
+            linhas.append(
+                f"try {{ $l = $sh.CreateShortcut({ps(os.path.join(pasta, nome))}); "
+                f"$l.TargetPath = {ps(c)}; $l.Save() }} "
+                f"catch {{ Write-Host ('ERRO: ' + $_.Exception.Message + ' -> ' + {ps(c)}) }}")
 
     script = os.path.join(pasta, "_criar_atalhos.ps1")
     with open(script, "w", encoding="utf-8-sig") as f:
@@ -220,8 +221,13 @@ def criar_atalhos(grupos, pasta):
     print("Criando atalhos...")
     subprocess.run(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass",
                     "-File", script])
+    criados = sum(n.lower().endswith(".lnk") for n in os.listdir(pasta))
+    total = sum(len(g) for g in grupos)
+    if criados == 0:
+        print(f"Nenhum atalho foi criado. O script do PowerShell ficou em {script}")
+        return
     os.remove(script)
-    print(f"Pronto. Abrindo {pasta}")
+    print(f"{criados} de {total} atalhos criados. Abrindo {pasta}")
     os.startfile(pasta)
 
 
