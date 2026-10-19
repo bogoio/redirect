@@ -203,30 +203,37 @@ def criar_atalhos(grupos, pasta):
         if nome.lower().endswith(".lnk"):
             os.remove(os.path.join(pasta, nome))
 
-    def ps(s):
-        return "'" + s.replace("'", "''") + "'"
-
-    linhas = ["$sh = New-Object -ComObject WScript.Shell"]
-    for k, g in enumerate(grupos, 1):
-        for n, c in enumerate(sorted(g), 1):
-            nome = f"G{k:04d}-{n} - {os.path.basename(c)}"[:150] + ".lnk"
-            linhas.append(
-                f"try {{ $l = $sh.CreateShortcut({ps(os.path.join(pasta, nome))}); "
-                f"$l.TargetPath = {ps(c)}; $l.Save() }} "
-                f"catch {{ Write-Host ('ERRO: ' + $_.Exception.Message + ' -> ' + {ps(c)}) }}")
+    # A lista vai num arquivo à parte para que nomes com aspas, apóstrofos
+    # ou outros caracteres especiais não quebrem o script do PowerShell.
+    lista = os.path.join(pasta, "_atalhos.txt")
+    with open(lista, "w", encoding="utf-8") as f:
+        for k, g in enumerate(grupos, 1):
+            for n, c in enumerate(sorted(g), 1):
+                nome = f"G{k:04d}-{n} - {os.path.basename(c)}"[:150] + ".lnk"
+                f.write(f"{os.path.join(pasta, nome)}\t{c}\n")
 
     script = os.path.join(pasta, "_criar_atalhos.ps1")
     with open(script, "w", encoding="utf-8-sig") as f:
-        f.write("\n".join(linhas))
+        f.write("""$ErrorActionPreference = 'Continue'
+$sh = New-Object -ComObject WScript.Shell
+foreach ($linha in [IO.File]::ReadAllLines($args[0], [Text.Encoding]::UTF8)) {
+    $p = $linha.Split("`t")
+    if ($p.Count -lt 2) { continue }
+    try { $l = $sh.CreateShortcut($p[0]); $l.TargetPath = $p[1]; $l.Save() }
+    catch { Write-Host ('ERRO: ' + $_.Exception.Message + ' -> ' + $p[1]) }
+}
+""")
     print("Criando atalhos...")
-    subprocess.run(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass",
-                    "-File", script])
+    r = subprocess.run(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass",
+                        "-File", script, lista])
     criados = sum(n.lower().endswith(".lnk") for n in os.listdir(pasta))
     total = sum(len(g) for g in grupos)
     if criados == 0:
-        print(f"Nenhum atalho foi criado. O script do PowerShell ficou em {script}")
+        print(f"Nenhum atalho foi criado (PowerShell saiu com código "
+              f"{r.returncode}). Arquivos de diagnóstico em {pasta}")
         return
     os.remove(script)
+    os.remove(lista)
     print(f"{criados} de {total} atalhos criados. Abrindo {pasta}")
     os.startfile(pasta)
 
