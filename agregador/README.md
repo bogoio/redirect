@@ -54,3 +54,14 @@ Depois rode `python model.py` de novo.
 ## Cenário de malícia estrutural
 
 Fatores que as pesquisas não medem ficam em `estrutural.csv` (`efeito` em pontos da participação do Flávio, `dp` = incerteza do fator, `lado` = direita ou governo). O modelo aplica sobre o cenário A quatro combinações (`CENARIOS_ESTRUTURAIS` em `model.py`): neutro, equilibrado, direita forte (direita ×1,5, governo ×0,5) e governo forte (o inverso). Cada cenário desloca a média pela soma dos efeitos e soma a incerteza dos fatores ao erro total. Saída: `output/cenarios_estruturais.csv`. Os efeitos são julgamento, não dado: edite o CSV para testar outras leituras.
+
+## Estudo de comparecimento (`comparecimento.py`)
+
+Estima se o comparecimento cresce mais do 1º para o 2º turno onde o PT é forte, e quanto isso deslocaria a participação do Flávio em 2026.
+
+1. Baixe de https://dadosabertos.tse.jus.br, para 2014, 2018, 2022 e 2026, os arquivos `detalhe_votacao_munzona_AAAA.zip` e `votacao_candidato_munzona_AAAA.zip`, e coloque em `agregador/dados_tse/` (pasta ignorada pelo git).
+2. Rode `python comparecimento.py`.
+
+Método: regressão por município, ponderada pelo eleitorado, da variação do comparecimento (2º - 1º turno) contra voto do PT no 1º turno, abstenção no 1º turno, tamanho do município, região e efeito de ano. Os novos eleitores previstos votam como o próprio município votou no 1º turno. Inclui backtest (ajusta sem um ano e prevê esse ano). O script imprime uma linha pronta para substituir `comparecimento_nordeste` em `estrutural.csv`.
+
+Limitação: os novos eleitores do 2º turno podem votar diferente da média do município; o resultado deve ser lido como deslocamento mínimo esperado.
