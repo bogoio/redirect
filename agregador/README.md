@@ -50,3 +50,7 @@ Depois rode `python model.py` de novo.
 - O peso de desempenho é muito agressivo: com erro de casa perto de zero, Veritá/Gerp/Futura/Vox ficam com ~95% do peso e os institutos tradicionais com ~1% cada. Por isso o cenário B e o cenário "só top-4" quase não diferem do A. Um único 1º turno é uma amostra pequena para medir qualidade de instituto.
 - Dados de confiança `baixa`: Vox Brasil recente (data e n supostos), PoderData/Aya e BTG/Nexus (datas aproximadas, n imputado).
 - O dp do erro de eleição (2,0) é premissa externa e é o fator que mais mexe em P.
+
+## Cenário de malícia estrutural
+
+Fatores que as pesquisas não medem ficam em `estrutural.csv` (`efeito` em pontos da participação do Flávio, `dp` = incerteza do fator, `lado` = direita ou governo). O modelo aplica sobre o cenário A quatro combinações (`CENARIOS_ESTRUTURAIS` em `model.py`): neutro, equilibrado, direita forte (direita ×1,5, governo ×0,5) e governo forte (o inverso). Cada cenário desloca a média pela soma dos efeitos e soma a incerteza dos fatores ao erro total. Saída: `output/cenarios_estruturais.csv`. Os efeitos são julgamento, não dado: edite o CSV para testar outras leituras.

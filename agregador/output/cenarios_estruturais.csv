@@ -1,0 +1,5 @@
+cenario,desvio,sd_extra,media,ic80_inf,ic80_sup,p_flavio
+neutro,0.0,0.0,51.66,48.88,54.41,0.791
+equilibrado,0.4,1.03,52.06,49.04,55.09,0.819
+direita_forte,1.5,1.19,53.16,50.08,56.25,0.905
+governo_forte,-0.7,1.13,50.96,47.92,54.0,0.671

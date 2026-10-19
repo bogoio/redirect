@@ -66,10 +66,11 @@ def weigh(r2, r1, hoje, meia_vida, cenario):
     return d
 
 
-def simulate(d, sd_eleicao, rng):
-    media = (d.peso_norm * d.estimativa).sum()
-    disp = np.sqrt((d.peso_norm * (d.estimativa - media) ** 2).sum())
-    sd_total = np.hypot(sd_eleicao, disp)
+def simulate(d, sd_eleicao, rng, desvio=0.0, sd_extra=0.0):
+    media_pesq = (d.peso_norm * d.estimativa).sum()
+    disp = np.sqrt((d.peso_norm * (d.estimativa - media_pesq) ** 2).sum())
+    media = media_pesq + desvio
+    sd_total = np.sqrt(sd_eleicao ** 2 + disp ** 2 + sd_extra ** 2)
     t = rng.standard_t(DF_T, N_SIM) / np.sqrt(DF_T / (DF_T - 2))  # t com dp = 1
     sims = media + sd_total * t
     q = np.percentile(sims, [2.5, 10, 50, 90, 97.5])
@@ -85,6 +86,30 @@ def run(hoje, sd_eleicao, meia_vida, cenario, verita, so_top4, rng):
         r2 = r2[r2.instituto.isin(TOP4)]
     d = weigh(r2, r1, hoje, meia_vida, cenario)
     return d, simulate(d, sd_eleicao, rng), r1
+
+
+# Multiplicadores de cada lado da "malícia estrutural" (efeitos em estrutural.csv)
+CENARIOS_ESTRUTURAIS = {
+    "neutro": dict(direita=0.0, governo=0.0),
+    "equilibrado": dict(direita=1.0, governo=1.0),
+    "direita_forte": dict(direita=1.5, governo=0.5),
+    "governo_forte": dict(direita=0.5, governo=1.5),
+}
+
+
+def estrutural(d, rng):
+    """Desloca a média pelos fatores estruturais e soma a incerteza deles."""
+    f = pd.read_csv(BASE / "estrutural.csv")
+    linhas = []
+    for nome, mult in CENARIOS_ESTRUTURAIS.items():
+        m = f.lado.map(mult)
+        desvio = (f.efeito * m).sum()
+        sd_extra = np.sqrt(((f.dp * m) ** 2).sum())
+        res = simulate(d, DEFAULTS["sd_eleicao"], rng, desvio, sd_extra)
+        linhas.append(dict(cenario=nome, desvio=round(desvio, 2), sd_extra=round(sd_extra, 2),
+                           media=round(res["media"], 2), ic80_inf=round(res["ic80"][0], 2),
+                           ic80_sup=round(res["ic80"][1], 2), p_flavio=round(res["p_flavio"], 3)))
+    return pd.DataFrame(linhas)
 
 
 def check_inputs(r1, r2):
@@ -139,10 +164,12 @@ def main():
         cols = ["instituto", "meio_campo", "n", "n_imputado", "share", "house_error", "estimativa",
                 "idade_dias", "peso_desempenho", "peso_recencia", "peso_amostra", "peso",
                 "peso_norm", "contribuicao", "confianca_dado", "observacao"]
-        d.sort_values("peso_norm", ascending=False)[cols].round(4).assign(meio_campo=lambda x: x.meio_campo.dt.date).to_csv(
+        d.sort_values("peso_norm", ascending=False)[cols].assign(meio_campo=lambda x: x.meio_campo.dt.date).round(4).to_csv(
             OUT / f"pesquisas_cenario_{cen}.csv", index=False)
         if cen == "A":
             plot(d, res, OUT / "grafico_pesquisas.png")
+            estr = estrutural(d, rng)
+            estr.to_csv(OUT / "cenarios_estruturais.csv", index=False)
 
     # Grade de sensibilidade
     linhas = []
@@ -182,6 +209,8 @@ def main():
         f"P(Flávio vence): A = {a['p_flavio']:.1%} | B = {b['p_flavio']:.1%}; na grade varia de {sens.p_flavio.min():.1%} a {sens.p_flavio.max():.1%}.",
         f"Premissa que mais mexe (variando uma de cada vez): {mais} (amplitude de {amp[mais]:.1%} em P); "
         + ", ".join(f"{k} {v:.1%}" for k, v in amp.items() if k != mais) + ".",
+        "Malícia estrutural (sobre A): " + " | ".join(
+            f"{r.cenario} {r.media:.2f}% / P {r.p_flavio:.1%}" for r in estr.itertuples()) + ".",
     ]
     (OUT / "resumo.txt").write_text("\n".join(resumo) + "\n", encoding="utf-8")
     print(f"Data de referência: {hoje.date()}")
