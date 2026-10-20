@@ -170,6 +170,13 @@ def main():
         deslocamento(alvo, prever(alvo, beta, anos, v)), 3)) for k, v in cenarios.items()])
     res.to_csv(OUT / "comparecimento_2026.csv", index=False)
 
+    # Previsão por município (nível médio dos anos)
+    mun = alvo[["CD_MUNICIPIO", "SG_UF", "regiao", "QT_APTOS_1", "taxa_1", "pt_r1"]].copy()
+    mun["delta_previsto"] = prever(alvo, beta, anos)
+    mun["comparecimento_r2_previsto"] = mun.taxa_1 + mun.delta_previsto
+    mun.round(4).sort_values("QT_APTOS_1", ascending=False).to_csv(
+        OUT / "comparecimento_municipios_2026.csv", index=False)
+
     central = res.loc[res.cenario == "media", "deslocamento_flavio"].item()
     erro_bt = (bt.deslocamento_previsto - bt.deslocamento_observado).abs().mean()
     dp = float(np.hypot(res.deslocamento_flavio.std(ddof=0), erro_bt))
@@ -178,7 +185,7 @@ def main():
     print("Backtest:\n" + bt.to_string(index=False))
     print("Cenários 2026:\n" + res.to_string(index=False))
     print(f"\nSugestão para estrutural.csv (substitui comparecimento_nordeste):\n"
-          f"comparecimento_estimado,governo,{central:.2f},{dp:.2f},"
+          f"comparecimento_estimado,{'direita' if central > 0 else 'governo'},{central:.2f},{dp:.2f},"
           f"estimado por comparecimento.py (média dos níveis {anos[0]}-{anos[-1]})")
 
 
