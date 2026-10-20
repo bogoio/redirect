@@ -1,6 +1,6 @@
-Estimativa central (A, bruto): 51.56% para Flávio na participação bipartidária; com ajuste de casa (B): 51.57%.
-Intervalo A: 80% 48.88-54.23 | 95% 46.88-56.20 (dp total 2.35, dispersão entre pesquisas 1.23).
-Intervalo B: 80% 48.83-54.28 | 95% 46.82-56.31.
-P(Flávio vence): A = 78.5% | B = 78.1%; na grade varia de 67.7% a 85.7%.
-Premissa que mais mexe (variando uma de cada vez): sd_eleicao (amplitude de 7.8% em P); meia_vida 2.1%, cenario 0.6%, verita 0.0%, amostra 2.5%, pesos 0.5%.
-Malícia estrutural (sobre A): neutro 51.56% / P 78.5% | equilibrado 52.40% / P 86.3% | direita_forte 53.32% / P 91.9% | governo_forte 51.48% / P 76.3%.
+Estimativa central (A, bruto): 51.08% para Flávio na participação bipartidária; com ajuste de casa (B): 51.20%.
+Intervalo A: 80% 48.52-53.62 | 95% 46.61-55.51 (dp total 2.24, dispersão entre pesquisas 1.01).
+Intervalo B: 80% 48.59-53.79 | 95% 46.67-55.72.
+P(Flávio vence): A = 71.8% | B = 73.4%; na grade varia de 59.9% a 80.0%.
+Premissa que mais mexe (variando uma de cada vez): sd_eleicao (amplitude de 7.7% em P); meia_vida 1.6%, cenario 1.3%, verita 0.0%, amostra 3.8%, pesos 1.5%.
+Malícia estrutural (sobre A): neutro 51.08% / P 71.8% | equilibrado 51.92% / P 82.3% | direita_forte 52.84% / P 89.7% | governo_forte 51.00% / P 69.6%.

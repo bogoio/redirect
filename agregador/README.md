@@ -19,6 +19,8 @@ Saídas em `output/`:
 
 ## Acrescentar uma pesquisa nova
 
+`python atualizar_r2.py <wikitext>` reconstrói `polls_r2.csv` inteiro a partir da Wikipedia (instruções no topo do script). Para acrescentar à mão:
+
 Adicione uma linha em `polls_r2.csv`:
 
 ```
@@ -30,7 +32,6 @@ Quaest,2026-10-20,2026-10-22,2000,47,45,totais,8,alta,
 - `base`: `validos` ou `totais`. A conversão é sempre `flavio / (flavio + lula)`, então os não válidos não alteram a participação bipartidária; `nao_validos` é só registro.
 - `n` vazio: o modelo usa a mediana dos demais.
 - Sem data de campo: use a data de divulgação menos 2 dias em início e fim, marque `confianca_dado` como `media`/`baixa` e explique em `observacao`.
-- Atualize `esperado_r2` em `check_inputs()` (conferência de quantidade de linhas).
 
 Depois rode `python model.py` de novo.
 

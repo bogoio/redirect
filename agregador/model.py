@@ -138,8 +138,7 @@ def estrutural(d, rng):
 
 def check_inputs(r1, r2):
     """Confere os números de entrada contra a lista do pedido."""
-    esperado_r2 = 17
-    assert len(r2) == esperado_r2, f"esperava {esperado_r2} pesquisas de 2º turno, achei {len(r2)}"
+    assert len(r2) > 0 and r2.share.between(30, 70).all(), "polls_r2.csv vazio ou com valor fora de faixa"
     assert abs(R1_SHARE - 51.01) < 0.01
     v = r1[r1.instituto == "Veritá"].iloc[0]
     assert (v.flavio, v.lula) == (47, 45)

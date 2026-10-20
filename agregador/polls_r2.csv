@@ -1,18 +1,31 @@
 instituto,campo_inicio,campo_fim,n,flavio,lula,base,nao_validos,confianca_dado,observacao
-Veritá,2026-10-12,2026-10-16,15554,51.1,48.9,validos,,alta,
-Veritá,2026-09-26,2026-10-02,40500,51.56,48.44,validos,,media,campo anterior ao 1º turno
-Gerp,2026-10-14,2026-10-14,2400,50,45,totais,5,media,presencial; divulgada 16/out (campo = divulgação - 2)
-Gerp,2026-10-08,2026-10-12,2400,55,45,validos,,alta,telefone; campo 08 09 e 12/out
-Futura,2026-10-07,2026-10-10,2000,51.8,48.2,validos,,alta,
-Futura,2026-10-14,2026-10-14,,50.8,49.2,validos,,media,divulgada 16/out (campo = divulgação - 2); n desconhecido
-Vox Brasil,2026-10-05,2026-10-07,2100,49.13,50.86,validos,,alta,
-Vox Brasil,2026-10-15,2026-10-15,,45.2,44.7,totais,,baixa,rodada mais recente; data e n a confirmar (data supondo divulgação 17/out)
-Datafolha,2026-10-06,2026-10-06,,52,48,validos,,media,divulgada 08/out (campo = divulgação - 2); n desconhecido
-Datafolha,2026-10-13,2026-10-15,2520,51,49,validos,,alta,
-Quaest,2026-10-10,2026-10-13,2154,46,44,totais,,alta,
-PoderData,2026-10-08,2026-10-08,,53,47,validos,,baixa,PoderData/Aya; data aproximada (~08/out); n desconhecido
-PoderData,2026-10-13,2026-10-15,,51,49,validos,,baixa,PoderData/Aya; data aproximada (~13-15/out); n desconhecido
-AtlasIntel,2026-10-03,2026-10-08,5026,52.8,47.2,validos,,alta,
-Ipespe,2026-10-06,2026-10-08,1500,52.7,47.3,validos,,alta,sem pesquisa de 1º turno
-BTG/Nexus,2026-10-13,2026-10-13,,52,48,validos,,baixa,data aproximada (~13/out); n desconhecido
-DataTrends,2026-10-07,2026-10-09,2000,53.1,46.9,validos,,alta,sem pesquisa de 1º turno
+IFP,2026-10-16,2026-10-20,3000,40.95,39.65,totais,19.4,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+Real Time Big Data,2026-10-15,2026-10-19,2000,47.0,44.0,totais,9.0,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+Alfa Inteligência,2026-10-15,2026-10-19,2700,48.8,45.9,totais,5.3,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+PoderData,2026-10-16,2026-10-18,3000,52.0,48.0,validos,,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+BTG/Nexus,2026-10-16,2026-10-18,2000,46.5,45.9,totais,7.6,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+AtlasIntel,2026-10-13,2026-10-18,4998,49.8,47.6,totais,2.6,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+Futura,2026-10-16,2026-10-17,2000,50.4,49.6,validos,,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+DataTrends,2026-10-15,2026-10-17,2000,51.5,48.5,validos,,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+Vox Brasil,2026-10-15,2026-10-17,2100,44.6,46.4,totais,8.9,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+Ranking,2026-10-14,2026-10-16,2100,49.6,50.4,validos,,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+Gerp,2026-10-14,2026-10-16,2400,50.0,45.0,totais,5.0,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+Veritá,2026-10-12,2026-10-16,15554,51.1,48.9,validos,,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+CNT/MDA,2026-10-13,2026-10-15,2014,46.8,45.9,totais,7.3,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+Datafolha,2026-10-13,2026-10-15,2520,47.0,45.0,totais,8.0,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+PoderData,2026-10-13,2026-10-15,3000,50.0,50.0,validos,,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+Ipespe,2026-10-13,2026-10-15,1500,48.0,46.0,totais,6.0,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+Futura,2026-10-14,2026-10-15,2000,49.0,47.5,totais,3.6,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+Indexa,2026-10-13,2026-10-14,2000,44.0,42.0,totais,14.0,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+Palver,2026-10-10,2026-10-13,5000,50.0,49.0,totais,1.0,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+Quaest,2026-10-10,2026-10-13,2154,46.0,44.0,totais,10.0,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+PoderData,2026-10-10,2026-10-12,3000,51.0,49.0,validos,,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+BTG/Nexus,2026-10-10,2026-10-12,2000,48.0,45.0,totais,7.0,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+Gerp,2026-10-08,2026-10-12,2400,53.0,44.0,totais,4.0,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+Futura,2026-10-07,2026-10-10,2000,50.0,46.6,totais,3.4,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+DataTrends,2026-10-07,2026-10-09,2000,53.1,46.9,validos,,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+Ipespe,2026-10-06,2026-10-08,1500,52.7,47.3,validos,,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+Datafolha,2026-10-06,2026-10-08,2520,49.0,45.0,totais,6.0,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+AtlasIntel,2026-10-03,2026-10-08,5026,51.1,45.7,totais,3.2,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+Vox Brasil,2026-10-05,2026-10-07,2100,42.7,44.2,totais,13.1,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
+PoderData,2026-10-05,2026-10-07,3000,53.0,47.0,validos,,alta,"fonte: Wikipedia (pt), tabela de 2º turno"
