@@ -1,5 +1,5 @@
 """Monta a tabela de pesquisas de véspera (2014, 2018, 2022) a partir do wikitext da
-Wikipedia e calcula o erro de cada instituto contra o resultado oficial.
+Wikipedia (pt para 2014/2018/2022; tabelas de "Pesquisas de opinião para a eleição presidencial") e calcula o erro de cada instituto contra o resultado oficial.
 
 Uso:  python -I extrair.py <pasta_com_wikitext>
 Saída: pesquisas_vespera.csv (nesta pasta).
@@ -25,10 +25,10 @@ ELEICAO = {(2014, 1): date(2014, 10, 5), (2014, 2): date(2014, 10, 26),
 TABELAS = {
     (2014, 1): ("pt_2014_t1.txt", (1, 10**6), None, (2, 1, None, 4, 6)),
     (2014, 2): ("pt_2014_t2.txt", (1, 10**6), None, (2, 1, None, 4, 5)),
-    (2018, 1): ("en_2018.txt", (11, 626), (13, 14), (0, 1, 2, 3, 10)),
-    (2018, 2): ("en_2018.txt", (4687, 4861), (6,), (0, 1, 2, 3, 4)),
-    (2022, 1): ("en_2022.txt", (117, 867), (10,), (0, 1, 2, 4, 3)),
-    (2022, 2): ("en_2022.txt", (1977, 2322), (7,), (0, 1, 2, 4, 3)),
+    (2018, 1): ("ptp_2018.txt", (151, 4510), (15,), (1, 0, 2, 4, 12)),
+    (2018, 2): ("ptp_2018.txt", (4545, 4784), (7,), (1, 0, 2, 4, 5)),
+    (2022, 1): ("ptp_2022.txt", (653, 2565), (18,), (0, 1, 2, 5, 4)),
+    (2022, 2): ("ptp_2022.txt", (4213, 4755), (6,), (0, 1, 2, 4, 3)),
 }
 MESES = {"jan": 1, "fev": 2, "feb": 2, "mar": 3, "abr": 4, "apr": 4, "mai": 5, "may": 5,
          "jun": 6, "jul": 7, "ago": 8, "aug": 8, "set": 9, "sep": 9, "out": 10, "oct": 10,
@@ -38,7 +38,7 @@ NOMES = [("ibope", "Ibope/Ipec"), ("ipec", "Ibope/Ipec"), ("datafolha", "Datafol
          ("mda", "CNT/MDA"), ("real ?time", "Real Time Big Data"), ("ipespe", "Ipespe"),
          ("paran", "Paraná Pesquisas"), ("vox populi", "Vox Populi"), ("verit", "Veritá"),
          ("futura", "Futura"), ("gerp", "Gerp"), ("sensus", "Sensus"), ("ideia", "Ideia"),
-         ("btg|nexus|fsb", "BTG/Nexus"), ("brasmarket", "Brasmarket"), ("mdb", None)]
+         ("btg|nexus|fsb", "BTG/Nexus"), ("brasmarket", "Brasmarket"), ("ifp", "IFP"), ("amostra", "Amostra"), ("equil", "Equilíbrio Brasil")]
 
 
 def instituto(s):
@@ -51,6 +51,9 @@ def instituto(s):
 
 def fim_campo(s, ano):
     s = s.lower()
+    anos = re.findall(r"\b(20\d\d)\b", s)
+    if anos and int(anos[-1]) != ano:
+        return None
     meses = [MESES[m[:3]] for m in re.findall(r"[a-zç]{3,}", s) if m[:3] in MESES]
     dias = [int(d) for d in re.findall(r"\b(\d{1,2})\b", s)]
     if not meses or not dias:
@@ -66,12 +69,23 @@ def num(s):
     return float(m.group(1)) if m else None
 
 
+def expandir_template(texto):
+    """{{Pesquisa eleitoral | ||45|49|6}} -> uma célula por número."""
+    def rep(m):
+        vals = [v.strip() for v in m.group(1).split("|") if v.strip()]
+        return "\n".join(f"| {v}%" for v in vals)
+    texto = re.sub(r"\{\{[^{}]*/meta/cor\}\}", "", texto)  # cor do líder dentro do template
+    return re.sub(r"\{\{Pesquisa eleitoral\s*\|([^{}]*)\}\}", rep, texto)
+
+
 def extrair(pasta, chave):
     arq, (a, b), tam, (ii, idt, inn, ipt, iadv) = TABELAS[chave]
     ano, turno = chave
     out = []
-    for r in linhas((pasta / arq).read_text(encoding="utf-8"), a, b):
-        if (tam and len(r) not in tam) or len(r) <= max(ipt, iadv, ii) or r[ii].startswith("Result") or not r[ipt].strip().endswith("%"):
+    seg = "\n".join((pasta / arq).read_text(encoding="utf-8").splitlines()[a - 1:b])
+    seg = re.sub(r"\{\{Pesquisa eleitoral\s*\n\|", "{{Pesquisa eleitoral |", seg)
+    for r in linhas(expandir_template(seg), 1, 10**7):
+        if (tam and len(r) not in tam) or len(r) <= max(ipt, iadv, ii) or r[ii].startswith("Result") or "%" not in r[ipt]:
             continue
         fim = fim_campo(r[idt], ano)
         if fim is None or not (0 <= (ELEICAO[chave] - fim).days <= 10):

@@ -68,7 +68,7 @@ Limitação: os novos eleitores do 2º turno podem votar diferente da média do 
 
 ## Histórico dos institutos (`historico/`)
 
-`historico/pesquisas_vespera.csv`: última pesquisa de cada instituto nos 10 dias antes de cada turno de 2014, 2018 e 2022 (46 pesquisas), extraída do wikitext da Wikipedia por `historico/extrair.py` (`python -I historico/extrair.py <pasta_com_wikitext>`), com o erro na participação do adversário do PT contra o resultado do TSE. A Wikipedia não lista todos os institutos (faltam, por exemplo, PoderData, Futura e Gerp no 1º turno de 2022).
+`historico/pesquisas_vespera.csv`: última pesquisa de cada instituto nos 10 dias antes de cada turno de 2014, 2018 e 2022 (54 pesquisas, 19 institutos), extraída do wikitext da Wikipedia em português por `historico/extrair.py` (`python -I historico/extrair.py <pasta_com_wikitext>`), com o erro na participação do adversário do PT contra o resultado do TSE. Em 2014 a Wikipedia só lista Ibope, Datafolha, Vox Populi e CNT/MDA, sem tamanho de amostra.
 
 Com `historico=True` (padrão), `model.py` usa esse histórico mais o 1º turno de 2026: viés do instituto = média dos erros encolhida para 0, desempenho = erro quadrático médio encolhido para o geral (`K_ENCOLHIMENTO` = 2 pseudo-observações). Instituto sem histórico recebe o erro geral. A grade de sensibilidade compara com o critério antigo (`pesos = so_r1_2026`).
 
