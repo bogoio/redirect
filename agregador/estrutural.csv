@@ -3,4 +3,4 @@ voto_envergonhado,direita,0.5,0.5,eleitor de direita esconde o voto do pesquisad
 alinhamento_direita,direita,0.4,0.4,Caiado/Zema/Renan Santos fecham com Flávio de forma organizada
 igrejas_redes,direita,0.4,0.4,mobilização por igrejas e redes não captada nas pesquisas
 maquina_governo,governo,-0.5,0.5,máquina federal e programas sociais
-comparecimento_nordeste,governo,-0.4,0.5,governadores e prefeitos aliados levando eleitor às urnas
+comparecimento_estimado,direita,0.04,0.01,estimado por comparecimento.py (média dos níveis 2014-2022)
