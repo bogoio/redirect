@@ -65,3 +65,13 @@ Estima se o comparecimento cresce mais do 1º para o 2º turno onde o PT é fort
 Método: regressão por município, ponderada pelo eleitorado, da variação do comparecimento (2º - 1º turno) contra voto do PT no 1º turno, abstenção no 1º turno, tamanho do município, região e efeito de ano. Os novos eleitores previstos votam como o próprio município votou no 1º turno. Inclui backtest (ajusta sem um ano e prevê esse ano). O script imprime uma linha pronta para substituir `comparecimento_nordeste` em `estrutural.csv`.
 
 Limitação: os novos eleitores do 2º turno podem votar diferente da média do município; o resultado deve ser lido como deslocamento mínimo esperado.
+
+## Histórico dos institutos (`historico/`)
+
+`historico/pesquisas_vespera.csv`: última pesquisa de cada instituto nos 10 dias antes de cada turno de 2014, 2018 e 2022 (46 pesquisas), extraída do wikitext da Wikipedia por `historico/extrair.py` (`python -I historico/extrair.py <pasta_com_wikitext>`), com o erro na participação do adversário do PT contra o resultado do TSE. A Wikipedia não lista todos os institutos (faltam, por exemplo, PoderData, Futura e Gerp no 1º turno de 2022).
+
+Com `historico=True` (padrão), `model.py` usa esse histórico mais o 1º turno de 2026: viés do instituto = média dos erros encolhida para 0, desempenho = erro quadrático médio encolhido para o geral (`K_ENCOLHIMENTO` = 2 pseudo-observações). Instituto sem histórico recebe o erro geral. A grade de sensibilidade compara com o critério antigo (`pesos = so_r1_2026`).
+
+## Transferência de votos (`transferencia.py`)
+
+Regressão ecológica por município (2014-2022): fração dos votos de cada eliminado do 1º turno que foi para o adversário do PT, aplicada aos eliminados de 2026. Os coeficientes por candidato são instáveis (falácia ecológica); vale o agregado.

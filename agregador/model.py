@@ -20,7 +20,10 @@ OUT = BASE / "output"
 R1_FLAVIO, R1_LULA = 47.03, 45.16
 R1_SHARE = 100 * R1_FLAVIO / (R1_FLAVIO + R1_LULA)  # ~51,01
 
-DEFAULTS = dict(sd_eleicao=2.0, meia_vida=4.0, cenario="A", verita="padrao", so_top4=False)
+DEFAULTS = dict(sd_eleicao=2.0, meia_vida=4.0, cenario="A", verita="padrao", so_top4=False,
+                historico=True)
+# Pseudo-observações que puxam o erro de cada instituto para a média geral (histórico)
+K_ENCOLHIMENTO = 2
 TOP4 = ["Veritá", "Gerp", "Futura", "Vox Brasil"]
 N_SIM = 100_000
 DF_T = 5
@@ -40,6 +43,21 @@ def house_errors(verita="padrao"):
     return r1
 
 
+def erros_historicos(r1):
+    """Erro de cada instituto somando as pesquisas de véspera de 2014-2022
+    (historico/pesquisas_vespera.csv) ao 1º turno de 2026. Viés = média encolhida
+    para 0; desempenho = erro quadrático médio encolhido para o geral."""
+    h = pd.read_csv(BASE / "historico" / "pesquisas_vespera.csv")[["instituto", "erro"]]
+    e = pd.concat([h, r1[["instituto", "house_error"]].rename(columns={"house_error": "erro"})])
+    rms_geral = np.sqrt((e.erro ** 2).mean())
+    g = e.groupby("instituto").erro
+    n = g.count()
+    vies = g.sum() / (n + K_ENCOLHIMENTO)
+    rms = np.sqrt(((e.erro ** 2).groupby(e.instituto).sum() + K_ENCOLHIMENTO * rms_geral ** 2)
+                  / (n + K_ENCOLHIMENTO))
+    return pd.DataFrame({"n_eleicoes": n, "vies": vies, "rms": rms}), rms_geral
+
+
 def load_r2():
     r2 = pd.read_csv(BASE / "polls_r2.csv", parse_dates=["campo_inicio", "campo_fim"])
     r2["share"] = share(r2.flavio, r2.lula)
@@ -49,14 +67,20 @@ def load_r2():
     return r2
 
 
-def weigh(r2, r1, hoje, meia_vida, cenario):
+def weigh(r2, r1, hoje, meia_vida, cenario, historico=False):
     he = r1.set_index("instituto").house_error
     he_default = r1.loc[r1.tradicional == 1, "house_error"].median()
     d = r2.copy()
     d["tem_r1"] = d.instituto.isin(he.index)
-    d["house_error"] = d.instituto.map(he).fillna(he_default)
     d["idade_dias"] = (hoje - d.meio_campo).dt.total_seconds() / 86400
-    d["peso_desempenho"] = 1 / (d.house_error ** 2 + 0.5 ** 2)
+    if historico:
+        hist, rms_geral = erros_historicos(r1)
+        d["house_error"] = d.instituto.map(hist.vies).fillna(0.0)
+        erro_tipico = d.instituto.map(hist.rms).fillna(rms_geral)
+    else:
+        d["house_error"] = d.instituto.map(he).fillna(he_default)
+        erro_tipico = d.house_error.abs()
+    d["peso_desempenho"] = 1 / (erro_tipico ** 2 + 0.5 ** 2)
     d["peso_recencia"] = np.exp(-np.log(2) * d.idade_dias / meia_vida)
     d["peso_amostra"] = np.sqrt(np.minimum(d.n, 5000) / 1000)
     d["peso"] = d.peso_desempenho * d.peso_recencia * d.peso_amostra
@@ -79,12 +103,12 @@ def simulate(d, sd_eleicao, rng, desvio=0.0, sd_extra=0.0):
                 ic80=(q[1], q[3]), ic95=(q[0], q[4]), sims=sims)
 
 
-def run(hoje, sd_eleicao, meia_vida, cenario, verita, so_top4, rng):
+def run(hoje, sd_eleicao, meia_vida, cenario, verita, so_top4, rng, historico=True):
     r1 = house_errors(verita)
     r2 = load_r2()
     if so_top4:
         r2 = r2[r2.instituto.isin(TOP4)]
-    d = weigh(r2, r1, hoje, meia_vida, cenario)
+    d = weigh(r2, r1, hoje, meia_vida, cenario, historico)
     return d, simulate(d, sd_eleicao, rng), r1
 
 
@@ -173,23 +197,26 @@ def main():
 
     # Grade de sensibilidade
     linhas = []
-    grade = itertools.product([1.5, 2.0, 2.5], [3, 4, 7], "AB", ["padrao", "alternativa"], [False, True])
-    for sd, mv, cen, ver, top4 in grade:
-        _, res, _ = run(hoje, sd, mv, cen, ver, top4, rng)
+    grade = itertools.product([1.5, 2.0, 2.5], [3, 4, 7], "AB", ["padrao", "alternativa"],
+                              [False, True], [True, False])
+    for sd, mv, cen, ver, top4, hist in grade:
+        _, res, _ = run(hoje, sd, mv, cen, ver, top4, rng, hist)
         linhas.append(dict(sd_eleicao=sd, meia_vida=mv, cenario=cen, verita=ver,
                            amostra="só top-4" if top4 else "todas",
+                           pesos="historico" if hist else "so_r1_2026",
                            media=round(res["media"], 2), p_flavio=round(res["p_flavio"], 3)))
     sens = pd.DataFrame(linhas)
     sens.to_csv(OUT / "sensibilidade_longa.csv", index=False)
-    piv = sens.pivot_table(index=["amostra", "cenario", "verita", "meia_vida"],
+    piv = sens.pivot_table(index=["pesos", "amostra", "cenario", "verita", "meia_vida"],
                            columns="sd_eleicao", values="p_flavio")
     piv.to_csv(OUT / "sensibilidade_grade.csv")
 
     # Qual premissa mexe mais: amplitude de P ao variar cada fator, demais no padrão
     base = sens[(sens.sd_eleicao == 2.0) & (sens.meia_vida == 4) & (sens.cenario == "A")
-                & (sens.verita == "padrao") & (sens.amostra == "todas")]
+                & (sens.verita == "padrao") & (sens.amostra == "todas") & (sens.pesos == "historico")]
     fatores = {"sd_eleicao": [1.5, 2.0, 2.5], "meia_vida": [3, 4, 7], "cenario": ["A", "B"],
-               "verita": ["padrao", "alternativa"], "amostra": ["todas", "só top-4"]}
+               "verita": ["padrao", "alternativa"], "amostra": ["todas", "só top-4"],
+               "pesos": ["historico", "so_r1_2026"]}
     padrao = base.iloc[0]
     amp = {}
     for f, vals in fatores.items():
