@@ -12,6 +12,9 @@ pip install requests pandas numpy matplotlib
 python coleta.py --amostra 200   # amostra + esquema real dos dados
 python coleta.py --so-lista      # só a lista de mercados (metadados)
 python coleta.py                 # coleta completa: lista + históricos (retoma do cache)
+# como foi feito aqui (lista inteira, históricos por faixa, 8 ou 4 downloads simultâneos):
+python coleta.py --sem-listar --volume-min 100000 --paralelo 8
+python coleta.py --sem-listar --volume-max 100000 --amostra-baixo 10000 --paralelo 4
 python analise.py                # gera output/
 ```
 
@@ -42,7 +45,7 @@ Cache em `cache/` (fora do git): `cache/mercados/pagina_NNNNNN.json` (100 mercad
 
 **Faixas**: 50-60, 60-70, 70-80, 80-85, 85-90, 90-95 e 95-99 (preço acima de 99% fica de fora). Em cada faixa: casos, acerto, preço médio, intervalo de Wilson a 95% e diferença acerto - preço em pontos percentuais.
 
-**Cortes**: volume (abaixo de 100 mil, 100 mil a 1 milhão, 1 a 10 milhões, acima de 10 milhões de dólares), prazo (24 h, 3, 7 e 30 dias), categoria e período (momento do evento antes de 2024 ou de 2024 em diante).
+**Cortes**: volume (abaixo de 100 mil, 100 mil a 1 milhão, 1 a 10 milhões, acima de 10 milhões de dólares), prazo (24 h, 3, 7 e 30 dias), categoria, período (momento do evento antes de 2024 ou de 2024 em diante) e atividade prévia (horas com mudança de preço nos 7 dias antes do instantâneo: 0-10, 11-40, 41-100, mais de 100). A atividade prévia existe porque o volume da API é o total final: ver Limitações.
 
 **Categoria "política"**: o mercado tem uma tag entre Politics, Elections, Election, U.S. Politics, Global Elections, World Elections, US Election, Geopolitics, Trump, Biden, Congress e Senate, **ou** a pergunta contém uma destas palavras: election, elected, president, presidential, senate, governor, prime minister, parliament, congress, nominee, nomination, primary, vote, mayor, chancellor, trump, biden, harris, democrat, republican, minister, referendum, cabinet. O resto é "outros".
 
@@ -68,5 +71,6 @@ Cache em `cache/` (fora do git): `cache/mercados/pagina_NNNNNN.json` (100 mercad
 - **Dependência entre mercados**: a versão "favorito por evento" reduz o problema, mas cada evento ainda entra até 4 vezes (um por prazo) quando os prazos são somados. Eventos diferentes também podem ser correlacionados (vários mercados sobre a mesma eleição em eventos separados). Os intervalos de confiança supõem independência e, por isso, são otimistas.
 - **Viés de seleção da plataforma**: só entram mercados que o Polymarket criou e que foram resolvidos. Mercados cancelados ou resolvidos como inválidos ficam de fora, e a mistura de temas (esporte, cripto, política) muda ao longo do tempo.
 - **Momento do evento** é uma heurística: um mercado que oscila perto de 98% sem que o fato tenha acontecido pode ter o momento marcado cedo demais.
-- **Volume** é o volume total do mercado (ou a soma do evento), não o volume no momento do instantâneo.
+- **Volume medido depois do fato**: a API só dá o volume total final. Mercados em que o favorito desaba atraem muito volume justamente por causa da surpresa, então cortar por volume final seleciona zebras nas faixas altas. O corte por atividade prévia (só dados até o instantâneo) é o teste mais limpo da hipótese 2.
+- **Cobertura**: a listagem tem 1.083.407 mercados encerrados (fim a partir de fev/2023, volume de pelo menos US$ 1 mil). Históricos baixados: todos acima de US$ 1 milhão; acima de US$ 100 mil, os 37.849 listados até a metade de 2026 (os de 2026 entre 100 mil e 1 milhão ficaram de fora por tempo de coleta); abaixo de US$ 100 mil, uma amostra aleatória de 10 mil (semente 2026).
 - **Preço do histórico** é o preço da série da CLOB (ponto médio/último negócio), não o preço executável com o spread.

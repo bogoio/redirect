@@ -101,11 +101,17 @@ def instantaneos(linhas):
     for m in linhas:
         ev_ts = momento_evento(m["t"], m["p"], m["fim"])
         for nome, dias in PRAZOS.items():
-            px = preco_em(m["t"], m["p"], ev_ts - dias * 86400)
+            inst = ev_ts - dias * 86400
+            px = preco_em(m["t"], m["p"], inst)
             if not np.isnan(px):
+                # Atividade antes do instante (proxy de liquidez sem olhar o futuro): horas
+                # com mudança de preço nos 7 dias anteriores
+                j = (m["t"] > inst - 7 * 86400) & (m["t"] <= inst)
+                atividade = int((np.diff(m["p"][j]) != 0).sum()) if j.sum() > 1 else 0
                 reg.append(dict(id=m["id"], question=m["question"], evento=m["evento"], neg_risk=m["neg_risk"],
                                 volume=m["volume"], categoria=m["categoria"], yes_venceu=m["yes_venceu"],
-                                prazo=nome, momento=pd.to_datetime(ev_ts, unit="s"), p_yes=px))
+                                prazo=nome, momento=pd.to_datetime(ev_ts, unit="s"), p_yes=px,
+                                atividade=atividade))
     return pd.DataFrame(reg)
 
 
@@ -214,10 +220,13 @@ def main():
     for d in (todos, ev):
         d["volume_faixa"] = pd.cut(d.volume, VOLUMES, labels=ROT_VOL, right=False)
         d["periodo"] = np.where(d.momento.dt.year < 2024, "antes de 2024", "2024 em diante")
+        d["atividade_faixa"] = pd.cut(d.atividade, [-1, 10, 40, 100, 10**6],
+                                      labels=["0-10 h", "11-40 h", "41-100 h", ">100 h"])
 
     geral = tabela_faixas(pd.concat([todos, ev]), ["versao"])
     geral.to_csv(OUT / "calibracao_geral.csv", index=False)
-    cortes = {"volume": "volume_faixa", "prazo": "prazo", "categoria": "categoria", "periodo": "periodo"}
+    cortes = {"volume": "volume_faixa", "prazo": "prazo", "categoria": "categoria", "periodo": "periodo",
+              "atividade": "atividade_faixa"}
     tabs = {}
     for nome, col in cortes.items():
         tabs[nome] = tabela_faixas(ev, [col])
@@ -247,6 +256,8 @@ def main():
 
     curva(tabs["volume"], "volume_faixa", "Calibração por volume (favorito por evento)", OUT / "curva_volume.png")
     curva(tabs["prazo"], "prazo", "Calibração por prazo antes do evento", OUT / "curva_prazo.png")
+    curva(tabs["atividade"], "atividade_faixa", "Por atividade nos 7 dias antes (horas com negócio)",
+          OUT / "curva_atividade.png")
     curva(tabs["categoria"], "categoria", "Política x outros", OUT / "curva_categoria.png")
     curva(geral, "versao", "Todos os contratos x favorito por evento", OUT / "curva_geral.png")
 
