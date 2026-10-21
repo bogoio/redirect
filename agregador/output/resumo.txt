@@ -4,4 +4,4 @@ Intervalo B: 80% 48.56-53.73 | 95% 46.65-55.66.
 P(Flávio vence): A = 73.1% | B = 72.9%; na grade varia de 67.0% a 84.8%.
 Premissa que mais mexe (variando uma de cada vez): sd_eleicao (amplitude de 7.9% em P); meia_vida 0.1%, cenario 0.5%, verita 0.1%, amostra 2.6%, pesos 4.5%.
 Malícia estrutural (sobre A): neutro 51.15% / P 73.1% | equilibrado 51.99% / P 83.0% | direita_forte 52.91% / P 90.2% | governo_forte 51.07% / P 70.8%.
-Mercado (Polymarket, 2026-10-21): preço 78.3% -> calibrado 73.3% (IC95 63.4%-81.4%, 71 eventos); média modelo A + mercado calibrado = 73.2%.
+Mercado (Polymarket + Kalshi, 2026-10-21): preço 78.4% -> calibrado 73.3% (IC95 63.4%-81.4%, 71 eventos); média modelo A + mercado calibrado = 73.2%.

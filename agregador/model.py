@@ -143,12 +143,15 @@ def estrutural(d, rng):
 
 
 def mercado():
-    """Última linha de mercado.csv: preço de mercado e a probabilidade calibrada pelo
-    histórico de mercados resolvidos (pasta calibracao/)."""
+    """Linha mais recente de cada fonte em mercado.csv (preço de mercado e probabilidade
+    calibrada pelo histórico de mercados resolvidos, pasta calibracao/), com a média delas."""
     arq = BASE / "mercado.csv"
     if not arq.exists():
         return None
-    return pd.read_csv(arq).iloc[-1]
+    m = pd.read_csv(arq).groupby("fonte").tail(1)
+    media = m[["preco", "p_calibrada", "ic95_inf", "ic95_sup"]].mean()
+    return pd.Series({**media, "fonte": " + ".join(m.fonte), "data": m.data.max(),
+                      "eventos": int(m.eventos.max())})
 
 
 def check_inputs(r1, r2):
