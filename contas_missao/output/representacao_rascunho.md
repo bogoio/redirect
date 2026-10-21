@@ -5,11 +5,11 @@
 > representação acusatória.
 >
 > Antes de protocolar:
-> 1. **Resultado (DataJud):** contas de Alex aprovadas com ressalvas (16/10/2025, com cumprimento de sentença
->    posterior) e de Felippe aprovadas (19/11/2024). Ler o acórdão de Alex para saber o motivo das ressalvas e o
->    valor cobrado. Antes constava aqui: consultar o resultado do julgamento das contas de Alex Macedo
->    de Souza e de Felippe Lourenço Oliveira Coelho (eleição de 2022). Se as contas foram desaprovadas, o
->    acórdão é a prova principal e muda o enquadramento.
+> 1. **Resultado:** as contas de Alex foram aprovadas com ressalvas e determinação. O acórdão do TRE-SP de
+>    15/10/2025 (PCE 0605945-18.2022.6.26.0000) mandou recolher R$ 52.109,00 ao Tesouro, incluindo o aluguel de
+>    R$ 30 mil com FEFC a Cristiano da Silva Lourenço, que não foi comprovado. As contas de Felippe foram
+>    aprovadas. O acórdão já transitou em julgado; o pedido ao MPE deve partir dele, não pedir novo exame das
+>    contas.
 > 2. Artigos da Res. TSE 23.607/2019 conferidos no texto oficial em 21/10/2026 (`res_23607_artigos.md`).
 > 3. Verificar prazos: a representação do art. 30-A da Lei 9.504/97 tem prazo de 15 dias após a diplomação
 >    e já está esgotada para 2022. Resta a apuração de eventual ilícito penal eleitoral, a critério do MPE.
@@ -53,6 +53,12 @@ indicados no Anexo I.
    Lourenço a título de "aluguel de imóvel para comitê político". A despesa foi contratada em 16/08/2022 e
    paga em 23/08/2022. O documento comprobatório informado é do tipo "Outro", com o número "CONTRATO". O
    recebedor foi candidato a vereador em Embu das Artes/SP em 2020, conforme a base de candidaturas do TSE.
+   No julgamento das contas (PCE 0605945-18.2022.6.26.0000, acórdão de 15/10/2025, transitado em julgado em
+   24/10/2025), o TRE-SP considerou essa despesa sem comprovação da contratação. Ela foi incluída no
+   recolhimento de R$ 52.109,00 ao Tesouro determinado com base no art. 79, §§ 1º e 2º, da Res. TSE 23.607/2019.
+   O acórdão descreve a despesa como "locação de bem móvel", e a base do TSE como aluguel de imóvel. Depois do
+   trânsito, o processo passou a cumprimento de sentença, e o DataJud registra "Execução frustrada" em
+   21/07/2026.
 
 4. A campanha de Alex Macedo fez **161 pagamentos a pessoas físicas**, que somam R$ 445.179,00 (61% da
    despesa). Desses contratos, 56 foram celebrados em 18/08/2022, e há valores repetidos (R$ 1.500,00 em 31
@@ -72,16 +78,17 @@ do art. 19, § 7º, da Res. TSE 23.607/2019.
 
 A matéria que se submete a Vossa Excelência é a **efetiva execução dos gastos** pagos com recursos públicos
 (FEFC), à luz do art. 60 da mesma Resolução. Esse dispositivo exige comprovação idônea e autoriza a exigência
-de documentação complementar quando houver dúvida sobre a execução do objeto.
+de elementos probatórios adicionais da efetiva prestação dos serviços (§ 3º, redação vigente em 2022).
 
 ## III. Dos pedidos de apuração
 
 Requer-se, a critério do Ministério Público Eleitoral:
 
-a) a juntada do resultado do julgamento das prestações de contas de 2022 dos candidatos referidos nos itens 1
-   e 5, e das peças técnicas correspondentes;
+a) a juntada do acórdão e das peças técnicas da PCE 0605945-18.2022.6.26.0000, e a verificação de se o
+   recolhimento de R$ 52.109,00 foi feito ou está em cobrança pela União;
 
-b) a apuração da efetiva locação e utilização do imóvel referido no item 3, com verificação da propriedade
+b) a apuração da efetiva locação e utilização do bem referido no item 3, já considerada sem comprovação
+   pelo TRE-SP, com verificação da propriedade
    do bem, do contrato e do endereço do comitê, considerando que a despesa foi paga com FEFC;
 
 c) a apuração da efetiva prestação dos serviços pagos a pessoas físicas descritos no item 4, por

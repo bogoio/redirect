@@ -158,9 +158,9 @@ Estadual do PP. Não há repasse do Missão nem de candidatos do Missão para Be
 | Item | Regra | Conclusão |
 |---|---|---|
 | Doações de Kim, Renato, Guto, Amanda e Beraldo a Alex e Felippe (2022) | Res. TSE 23.607/2019, art. 17, § 2º (FEFC) e art. 19, § 7º (Fundo Partidário): vedam repasse a candidato de partido não coligado. | **Não se aplica.** Todos eram do mesmo partido, e a fonte registrada é "Outros Recursos", com doador originário pessoa física. A doação entre candidatos do mesmo partido com recursos próprios da campanha é permitida. |
-| R$ 30.000 de FEFC por aluguel a Cristiano da Silva Lourenço | Res. 23.607, art. 60 (comprovação de gastos por documento fiscal idôneo ou outro meio idôneo de prova) | **Depende do julgamento.** Os dados mostram a despesa e o documento informado ("CONTRATO"), mas não se a locação foi comprovada. Ser ex-candidato de outro partido não torna o pagamento ilegal. |
+| R$ 30.000 de FEFC por aluguel a Cristiano da Silva Lourenço | Res. 23.607, arts. 60 e 79, §§ 1º e 2º | **Irregular, segundo o TRE-SP.** O acórdão lista a "locação de bem móvel" de Cristiano da Silva Lourenço (R$ 30.000,00) entre os gastos com FEFC sem documento que comprove a contratação, e o valor entra no recolhimento de R$ 52.109,00. |
 | Pagamento de R$ 112.000 à mãe de Felippe | (pagamento a parente) | **Não existe nos dados.** Não há pagamento a "Silene" nem a nenhum fornecedor com sobrenome "Lourenço" nas despesas de Felippe, e nenhum fornecedor dele soma R$ 112 mil. |
-| Contas de Alex "reprovadas" | Res. 23.607, art. 74 | **Incorreta.** Segundo o DataJud (CNJ), o TRE-SP julgou o processo 0605945-18.2022.6.26.0000 em 15-16/10/2025, com movimento **"Contas Aprovadas com Ressalvas"** e trânsito em julgado em 24/10/2025. Depois o processo passou à classe "Cumprimento de sentença", com "Execução frustrada" em 21/07/2026. Isso indica cobrança de algum valor fixado no julgamento, provavelmente recolhimento ao Tesouro, mas a decisão em si não foi lida. |
+| Contas de Alex "reprovadas" | Res. 23.607, art. 74 | **Incorreta quanto ao resultado.** As contas foram aprovadas com ressalvas (acórdão de 15/10/2025). Porém o TRE-SP considerou irregulares R$ 67.134,00 (9,13% das despesas) e mandou devolver R$ 52.109,00 ao Tesouro. |
 
 ---
 
@@ -200,7 +200,7 @@ Estadual do PP. Não há repasse do Missão nem de candidatos do Missão para Be
 | Amanda → Alex R$ 36.000 | **R$ 36.600,00** | Confirmada com valor diferente |
 | Guto → Alex R$ 36.000 | **R$ 36.600,00** | Confirmada com valor diferente |
 | Total ~R$ 539.999,99 | R$ 540.000,00 | Confirmada |
-| Contas de Alex reprovadas por não comprovar aluguel | Aprovadas com ressalvas (16/10/2025), trânsito em 24/10/2025, seguido de cumprimento de sentença. O motivo das ressalvas e o valor cobrado não estão nos metadados. | **Incorreta** quanto à reprovação |
+| Contas de Alex reprovadas por não comprovar aluguel | Aprovadas com ressalvas. O aluguel de R$ 30 mil não foi comprovado e está no valor a devolver. | **Parcialmente correta.** O aluguel não foi comprovado, mas as contas não foram reprovadas. |
 | Pulverização em pagamentos pequenos a PF | 161 pagamentos a PF, 61% do gasto, mediana de R$ 1.500 | **Confirmada** (fato, não ilícito) |
 | R$ 30.000 do fundo eleitoral a "Cristiano da Silva", ligado a candidatura em Embu das Artes | R$ 30.000 de FEFC a Cristiano da Silva Lourenço, candidato a vereador em Embu das Artes em 2020 (CPF) e homônimo em 2024 | **Confirmada** |
 | Felipe Lourenço de Oliveira, dep. estadual, 712 votos | Felippe Lourenço Oliveira Coelho, 712 votos (2022) | **Confirmada** (nome diferente) |
@@ -212,18 +212,38 @@ Estadual do PP. Não há repasse do Missão nem de candidatos do Missão para Be
 
 ---
 
-## Julgamento das contas de 2022 (DataJud/CNJ, consultado em 21/10/2026)
+## Julgamento das contas de 2022
 
-| Candidato | Processo (TRE-SP) | Resultado | Trânsito em julgado | Depois |
-|---|---|---|---|---|
-| Alex Macedo | 0605945-18.2022.6.26.0000 | **Aprovadas com ressalvas** (16/10/2025) | 24/10/2025 | Classe mudou para "Cumprimento de sentença"; "Execução frustrada" em 21/07/2026; último despacho em 03/08/2026 |
-| Felippe Lourenço | 0607025-17.2022.6.26.0000 | **Aprovadas** (19/11/2024) | 28/11/2024 | Baixa definitiva |
+| Candidato | Processo (TRE-SP) | Resultado | Trânsito em julgado |
+|---|---|---|---|
+| Alex Macedo | 0605945-18.2022.6.26.0000 | **Aprovadas com ressalvas e determinação** (acórdão de 15/10/2025, unânime, rel. Encinas Manfré), com recolhimento de **R$ 52.109,00** ao Tesouro | 24/10/2025 |
+| Felippe Lourenço | 0607025-17.2022.6.26.0000 | **Aprovadas** (19/11/2024, DataJud) | 28/11/2024, baixa definitiva |
 
-No caso de Alex, o julgamento veio depois da retificadora de 03/06/2025 e do parecer de 15/08/2025, e o processo
-foi incluído em pauta em 06/10/2025. O cumprimento de sentença indica que o acórdão mandou pagar algum valor
-(o normal seria recolher ao Tesouro recursos de FEFC com gasto irregular), mas não li o acórdão e não sei o
-valor nem o motivo. Alguns complementos do DataJud são claramente erros de cadastro e foram ignorados, como
-"Requisição de tratamento psiquiátrico" e "TJSC". Movimentos completos em `julgamento_movimentos.csv`.
+### Acórdão de Alex Macedo (lido em 21/10/2026 a partir do PDF fornecido pelo usuário)
+
+- **Pareceres:** a área técnica do TRE-SP (CCEP) opinou pela desaprovação, com recolhimento de R$ 53.309,00
+  (art. 79, § 1º) e de R$ 15.025,00 (art. 32, § 2º). A Procuradoria Regional Eleitoral também opinou pela
+  desaprovação. O tribunal não acolheu o parecer da PRE.
+- **Gastos com FEFC sem comprovação da contratação (art. 79, §§ 1º e 2º):**
+  - pessoal: 16 prestadores, R$ 8.173,00 no total;
+  - **locação de bem móvel: Cristiano da Silva Lourenço, R$ 30.000,00**, além de outros dois fornecedores
+    (R$ 7.150,00 e R$ 3.000,00);
+  - materiais de expediente: R$ 1.350,00.
+  O voto soma esses itens em R$ 48.673,00. A soma das parcelas citadas dá R$ 49.673,00. A diferença de
+  R$ 1.000 está no próprio acórdão e não foi resolvida aqui.
+- **Despesa sem natureza eleitoral demonstrada (art. 35):** M & A Fuji Material Elétrico, R$ 1.236,00. Com ela,
+  a ementa chega a R$ 49.909,00 em gastos de FEFC irregulares.
+- **Pagamento acima do contratado,** sem termo aditivo, a quatro prestadores: R$ 2.200,00 a recolher.
+- **Contrato sem valor da remuneração** (R$ 6.200,00): falha formal, gera só ressalva.
+- **Dívida de campanha não assumida pelo partido** (art. 33): R$ 15.025,00. É irregular, mas, segundo o
+  tribunal, não há base para mandar recolher.
+- **Por que não desaprovou:** as irregularidades somam R$ 67.134,00, ou 9,13% das despesas contratadas. Como
+  ficam abaixo de 10%, o tribunal aplicou proporcionalidade e razoabilidade.
+- **Determinação:** recolher R$ 52.109,00 (R$ 49.909 + R$ 2.200) ao Tesouro em até 5 dias úteis após o trânsito
+  em julgado, sob pena de remessa à União para cobrança. O DataJud registra depois "Cumprimento de sentença" e
+  "Execução frustrada" (21/07/2026). Isso é compatível com o valor não ter sido pago, mas o despacho não foi lido.
+
+Movimentos completos do DataJud em `julgamento_movimentos.csv`.
 
 ## Regras (Res. TSE 23.607/2019)
 

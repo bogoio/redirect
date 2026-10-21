@@ -29,12 +29,10 @@ python3 scripts/02_fluxos.py && python3 scripts/03_pulverizacao.py && python3 sc
 Somente dados publicados pelo TSE. CPFs são usados só internamente para cruzar bases e nunca aparecem nas saídas.
 
 ## Pendências
-- Julgamento (DataJud, 21/10/2026): Alex Macedo, contas **aprovadas com ressalvas** (16/10/2025) e depois
-  cumprimento de sentença; Felippe Lourenço, contas **aprovadas** (19/11/2024). Ver `output/relatorio.md`.
-- Falta ler o acórdão de Alex (motivo das ressalvas e valor cobrado). A `comunicaapi.pje.jus.br` bloqueia
-  acessos de fora do Brasil (geobloqueio do CloudFront), e a consulta pública do PJe tem um desafio anti-robô que
-  não deve ser contornado. O `dje-consulta.tse.jus.br` (tentado em 21/10/2026) só lista edições
-  do DJE do próprio TSE e exige captcha (`rest/diario/captcha` = true) para pesquisar. As intimações do TRE-SP
-  de 2025 saem no DJEN (CNJ), o mesmo sistema geobloqueado da comunicaapi. Falta obter o acórdão à mão.
+- Julgamento: Alex Macedo, contas **aprovadas com ressalvas**, com recolhimento de R$ 52.109,00, incluindo o
+  aluguel de R$ 30 mil a Cristiano da Silva Lourenço (acórdão de 15/10/2025, PDF fornecido pelo usuário, não
+  versionado); Felippe Lourenço, contas **aprovadas** (DataJud). Ver `output/relatorio.md`.
+- Falta ver o despacho de "Execução frustrada" (21/07/2026) no processo de Alex, para saber se o valor foi pago.
 - Res. 23.607: conferida no texto oficial (`output/res_23607_artigos.md`).
-- `www.tse.jus.br` e `divulgacandcontas.tse.jus.br` só funcionam por navegador (Playwright), não por curl.
+- `www.tse.jus.br` e `divulgacandcontas.tse.jus.br` só funcionam por navegador (Playwright). A comunicaapi/DJEN
+  bloqueia acessos de fora do Brasil, e a consulta pública do PJe e o DJE do TSE exigem captcha.
