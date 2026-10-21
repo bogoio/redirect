@@ -80,3 +80,11 @@ Regressão ecológica por município (2014-2022): fração dos votos de cada eli
 ## Mercado de previsão calibrado (`mercado.csv`)
 
 O preço do Polymarket entra como segunda estimativa, mas corrigido pela calibração histórica da plataforma (`calibracao/`): em vez do preço, usa a taxa com que favoritos de preço parecido, no mesmo prazo e em mercados de eleição, venceram de fato. Para atualizar, rode `python ../calibracao/calibrar_preco.py --preco <preço> --dias <dias até a eleição>` e acrescente uma linha. O resumo mostra a probabilidade do modelo A, a do mercado calibrado e a média simples das duas.
+
+## Projeção durante a apuração (`projecao.py`)
+
+Cruza cada zona já apurada no 2º turno com a mesma zona no 1º turno, mede o deslocamento ("swing") da participação do Flávio (por UF quando a UF tem pelo menos 5 zonas e 3% dos votos apurados; senão pela região; senão nacional) e aplica esse swing às zonas que faltam. Assim a projeção não depende da ordem em que as urnas chegam.
+
+- `python projecao.py --backtest`: simula a apuração de 2022 (1º -> 2º turno) em três ordens de chegada (Sul/Sudeste primeiro, aleatória, Nordeste primeiro). Saída em `output/projecao_backtest_2022.csv`. Com 1% das zonas, a projeção errou no máximo 0,45 ponto; o total parcial errou de 2 a 18 pontos.
+- `python projecao.py --parcial parcial.csv`: projeção ao vivo (`sg_uf,cd_municipio,nr_zona,flavio,lula`).
+- O intervalo de 90% vem de um bootstrap bayesiano das zonas e mede só o sorteio: não capta que as primeiras zonas podem diferir das demais. Na prática, some ±0,5 ponto.
