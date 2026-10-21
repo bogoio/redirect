@@ -1,7 +1,8 @@
-Estimativa central (A, bruto): 51.16% para Flávio na participação bipartidária; com ajuste de casa (B): 51.15%.
+Estimativa central (A, bruto): 51.16% para Flávio na participação bipartidária; com ajuste de casa (B): 51.16%.
 Intervalo A: 80% 48.60-53.70 | 95% 46.70-55.59 (dp total 2.24, dispersão entre pesquisas 1.01).
-Intervalo B: 80% 48.57-53.72 | 95% 46.67-55.64.
-P(Flávio vence): A = 73.3% | B = 72.9%; na grade varia de 66.8% a 85.4%.
-Premissa que mais mexe (variando uma de cada vez): sd_eleicao (amplitude de 7.9% em P); meia_vida 0.2%, cenario 0.6%, verita 0.0%, amostra 2.7%, pesos 4.6%.
+Intervalo B: 80% 48.58-53.73 | 95% 46.70-55.63.
+P(Flávio vence): A = 73.3% | B = 73.1%; na grade varia de 66.8% a 85.3%.
+Premissa que mais mexe (variando uma de cada vez): sd_eleicao (amplitude de 8.0% em P); meia_vida 0.4%, cenario 0.4%, verita 0.0%, amostra 2.4%, pesos 4.4%.
 Malícia estrutural (sobre A): neutro 51.16% / P 73.3% | equilibrado 52.00% / P 83.2% | direita_forte 52.92% / P 90.3% | governo_forte 51.08% / P 71.0%.
+Indecisos contra o governo (28% para Lula, mediana de 5.7% de indecisos): desvio +1.28 (faixa +2.56 a -0.06) -> 52.44% / P 88.2%.
 Mercado (Polymarket + Kalshi, 2026-10-21): preço 78.4% -> calibrado 73.3% (IC95 63.4%-81.4%, 71 eventos); média modelo A + mercado calibrado = 73.3%.

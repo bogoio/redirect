@@ -161,6 +161,36 @@ def mercado():
                       "eventos": int(m.eventos.max())})
 
 
+# Indecisos pendendo contra o governo (historico/testes_teoria.py): nos 2º turnos de 2014 e
+# 2022, a fração dos indecisos que foi para o presidente-candidato ficou entre 0,07 (todas as
+# pesquisas) e 0,28 (sem Gerp, Brasmarket e Veritá); proporcional seria 0,5. Evidência fraca
+# (t de 1,0 a 1,8), por isso é cenário e não base.
+FRACAO_INDECISOS_GOVERNO = 0.28
+FRACAO_INDECISOS_FAIXA = (0.07, 0.50)
+
+
+def indecisos(d, rng, fracao=FRACAO_INDECISOS_GOVERNO):
+    """Redistribui os indecisos (100 - Flávio - Lula nos votos totais) com `fracao` para Lula
+    (governo) e o resto para o Flávio, em vez da divisão proporcional. Pesquisa só em votos
+    válidos recebe a mediana de indecisos das pesquisas em votos totais."""
+    tot = d.base == "totais"
+    u = (100 - d.flavio - d.lula).where(tot)
+    u = u.fillna(u[tot].median()).clip(lower=0)
+    fl = np.where(tot, d.flavio, d.share)
+    lu = np.where(tot, d.lula, 100 - d.share)
+    escala = np.where(tot, 1.0, (100 - u) / 100)          # válidos -> votos totais equivalentes
+    fl, lu = fl * escala, lu * escala
+
+    def novo(f):
+        return 100 * (fl + (1 - f) * u) / (fl + lu + u)
+
+    desvio = float((d.peso_norm * (novo(fracao) - d.share)).sum())
+    lo, hi = [float((d.peso_norm * (novo(f) - d.share)).sum()) for f in FRACAO_INDECISOS_FAIXA]
+    sd_extra = abs(lo - hi) / (2 * 1.96)                  # incerteza da fração, como dp
+    res = simulate(d, DEFAULTS["sd_eleicao"], rng, desvio, sd_extra)
+    return dict(desvio=desvio, faixa=(hi, lo), u_mediano=float(u.median()), **res)
+
+
 def check_inputs(r1, r2):
     """Confere os números de entrada contra a lista do pedido."""
     assert len(r2) > 0 and r2.share.between(30, 70).all(), "polls_r2.csv vazio ou com valor fora de faixa"
@@ -218,6 +248,7 @@ def main():
             plot(d, res, OUT / "grafico_pesquisas.png")
             estr = estrutural(d, rng)
             estr.to_csv(OUT / "cenarios_estruturais.csv", index=False)
+            ind = indecisos(d, rng)
 
     # Grade de sensibilidade
     linhas = []
@@ -262,6 +293,9 @@ def main():
         + ", ".join(f"{k} {v:.1%}" for k, v in amp.items() if k != mais) + ".",
         "Malícia estrutural (sobre A): " + " | ".join(
             f"{r.cenario} {r.media:.2f}% / P {r.p_flavio:.1%}" for r in estr.itertuples()) + ".",
+        f"Indecisos contra o governo ({FRACAO_INDECISOS_GOVERNO:.0%} para Lula, mediana de {ind['u_mediano']:.1f}% "
+        f"de indecisos): desvio {ind['desvio']:+.2f} (faixa {ind['faixa'][1]:+.2f} a {ind['faixa'][0]:+.2f}) -> "
+        f"{ind['media']:.2f}% / P {ind['p_flavio']:.1%}.",
     ]
     m = mercado()
     if m is not None:
