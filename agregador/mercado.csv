@@ -1,2 +1,3 @@
 fonte,data,preco,p_calibrada,ic95_inf,ic95_sup,n,eventos,criterio
 Polymarket,2026-10-20,0.795,0.761,0.664,0.836,92,72,"mercados de eleição resolvidos, favorito entre 74,5% e 84,5%, 3 a 7 dias antes (calibracao/calibrar_preco.py)"
+Polymarket,2026-10-21,0.783,0.733,0.634,0.814,90,71,"mercados de eleição resolvidos, favorito entre 73,3% e 83,3%, 3 a 7 dias antes (calibracao/calibrar_preco.py)"
