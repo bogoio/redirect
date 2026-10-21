@@ -1,145 +1,145 @@
 sd_eleicao,meia_vida,cenario,verita,amostra,pesos,media,p_flavio
-1.5,3,A,padrao,todas,historico,51.15,0.777
-1.5,3,A,padrao,todas,so_r1_2026,51.49,0.823
-1.5,3,A,padrao,só top-4,historico,51.4,0.804
-1.5,3,A,padrao,só top-4,so_r1_2026,51.56,0.826
-1.5,3,A,alternativa,todas,historico,51.15,0.778
-1.5,3,A,alternativa,todas,so_r1_2026,51.62,0.835
-1.5,3,A,alternativa,só top-4,historico,51.4,0.804
-1.5,3,A,alternativa,só top-4,so_r1_2026,51.72,0.846
-1.5,3,B,padrao,todas,historico,51.13,0.773
-1.5,3,B,padrao,todas,so_r1_2026,51.49,0.82
-1.5,3,B,padrao,só top-4,historico,51.01,0.737
-1.5,3,B,padrao,só top-4,so_r1_2026,51.5,0.821
-1.5,3,B,alternativa,todas,historico,51.14,0.77
-1.5,3,B,alternativa,todas,so_r1_2026,51.67,0.842
-1.5,3,B,alternativa,só top-4,historico,51.02,0.74
-1.5,3,B,alternativa,só top-4,so_r1_2026,51.7,0.848
-1.5,4,A,padrao,todas,historico,51.15,0.776
-1.5,4,A,padrao,todas,so_r1_2026,51.5,0.82
-1.5,4,A,padrao,só top-4,historico,51.4,0.797
-1.5,4,A,padrao,só top-4,so_r1_2026,51.56,0.825
-1.5,4,A,alternativa,todas,historico,51.15,0.775
-1.5,4,A,alternativa,todas,so_r1_2026,51.63,0.833
-1.5,4,A,alternativa,só top-4,historico,51.4,0.799
-1.5,4,A,alternativa,só top-4,so_r1_2026,51.73,0.842
-1.5,4,B,padrao,todas,historico,51.16,0.773
-1.5,4,B,padrao,todas,so_r1_2026,51.51,0.821
-1.5,4,B,padrao,só top-4,historico,51.01,0.733
-1.5,4,B,padrao,só top-4,so_r1_2026,51.51,0.822
-1.5,4,B,alternativa,todas,historico,51.16,0.775
-1.5,4,B,alternativa,todas,so_r1_2026,51.69,0.843
-1.5,4,B,alternativa,só top-4,historico,51.02,0.735
-1.5,4,B,alternativa,só top-4,so_r1_2026,51.72,0.844
-1.5,7,A,padrao,todas,historico,51.19,0.776
-1.5,7,A,padrao,todas,so_r1_2026,51.51,0.816
-1.5,7,A,padrao,só top-4,historico,51.4,0.795
-1.5,7,A,padrao,só top-4,so_r1_2026,51.58,0.823
-1.5,7,A,alternativa,todas,historico,51.19,0.775
-1.5,7,A,alternativa,todas,so_r1_2026,51.65,0.829
-1.5,7,A,alternativa,só top-4,historico,51.4,0.795
-1.5,7,A,alternativa,só top-4,so_r1_2026,51.75,0.839
-1.5,7,B,padrao,todas,historico,51.21,0.777
-1.5,7,B,padrao,todas,so_r1_2026,51.54,0.82
-1.5,7,B,padrao,só top-4,historico,51.02,0.731
-1.5,7,B,padrao,só top-4,so_r1_2026,51.53,0.82
-1.5,7,B,alternativa,todas,historico,51.22,0.78
-1.5,7,B,alternativa,todas,so_r1_2026,51.72,0.841
-1.5,7,B,alternativa,só top-4,historico,51.03,0.733
-1.5,7,B,alternativa,só top-4,so_r1_2026,51.74,0.844
-2.0,3,A,padrao,todas,historico,51.15,0.733
-2.0,3,A,padrao,todas,so_r1_2026,51.49,0.782
-2.0,3,A,padrao,só top-4,historico,51.4,0.76
-2.0,3,A,padrao,só top-4,so_r1_2026,51.56,0.786
-2.0,3,A,alternativa,todas,historico,51.15,0.734
-2.0,3,A,alternativa,todas,so_r1_2026,51.62,0.794
-2.0,3,A,alternativa,só top-4,historico,51.4,0.763
-2.0,3,A,alternativa,só top-4,so_r1_2026,51.72,0.804
-2.0,3,B,padrao,todas,historico,51.13,0.73
-2.0,3,B,padrao,todas,so_r1_2026,51.49,0.778
-2.0,3,B,padrao,só top-4,historico,51.01,0.7
-2.0,3,B,padrao,só top-4,so_r1_2026,51.5,0.781
-2.0,3,B,alternativa,todas,historico,51.14,0.73
-2.0,3,B,alternativa,todas,so_r1_2026,51.67,0.8
-2.0,3,B,alternativa,só top-4,historico,51.02,0.702
-2.0,3,B,alternativa,só top-4,so_r1_2026,51.7,0.805
-2.0,4,A,padrao,todas,historico,51.15,0.733
-2.0,4,A,padrao,todas,so_r1_2026,51.5,0.778
-2.0,4,A,padrao,só top-4,historico,51.4,0.759
-2.0,4,A,padrao,só top-4,so_r1_2026,51.56,0.782
-2.0,4,A,alternativa,todas,historico,51.15,0.732
-2.0,4,A,alternativa,todas,so_r1_2026,51.63,0.793
-2.0,4,A,alternativa,só top-4,historico,51.4,0.761
-2.0,4,A,alternativa,só top-4,so_r1_2026,51.73,0.805
-2.0,4,B,padrao,todas,historico,51.16,0.728
-2.0,4,B,padrao,todas,so_r1_2026,51.51,0.778
-2.0,4,B,padrao,só top-4,historico,51.01,0.698
-2.0,4,B,padrao,só top-4,so_r1_2026,51.51,0.778
-2.0,4,B,alternativa,todas,historico,51.16,0.731
-2.0,4,B,alternativa,todas,so_r1_2026,51.69,0.799
-2.0,4,B,alternativa,só top-4,historico,51.02,0.698
-2.0,4,B,alternativa,só top-4,so_r1_2026,51.72,0.802
-2.0,7,A,padrao,todas,historico,51.19,0.734
-2.0,7,A,padrao,todas,so_r1_2026,51.51,0.776
-2.0,7,A,padrao,só top-4,historico,51.4,0.757
-2.0,7,A,padrao,só top-4,so_r1_2026,51.58,0.783
-2.0,7,A,alternativa,todas,historico,51.19,0.733
-2.0,7,A,alternativa,todas,so_r1_2026,51.65,0.792
-2.0,7,A,alternativa,só top-4,historico,51.4,0.755
-2.0,7,A,alternativa,só top-4,so_r1_2026,51.75,0.8
-2.0,7,B,padrao,todas,historico,51.21,0.736
-2.0,7,B,padrao,todas,so_r1_2026,51.54,0.782
-2.0,7,B,padrao,só top-4,historico,51.02,0.697
-2.0,7,B,padrao,só top-4,so_r1_2026,51.53,0.777
-2.0,7,B,alternativa,todas,historico,51.22,0.738
-2.0,7,B,alternativa,todas,so_r1_2026,51.72,0.803
-2.0,7,B,alternativa,só top-4,historico,51.03,0.697
-2.0,7,B,alternativa,só top-4,so_r1_2026,51.74,0.802
-2.5,3,A,padrao,todas,historico,51.15,0.697
-2.5,3,A,padrao,todas,so_r1_2026,51.49,0.743
-2.5,3,A,padrao,só top-4,historico,51.4,0.725
-2.5,3,A,padrao,só top-4,so_r1_2026,51.56,0.749
-2.5,3,A,alternativa,todas,historico,51.15,0.697
-2.5,3,A,alternativa,todas,so_r1_2026,51.62,0.758
-2.5,3,A,alternativa,só top-4,historico,51.4,0.728
-2.5,3,A,alternativa,só top-4,so_r1_2026,51.72,0.769
-2.5,3,B,padrao,todas,historico,51.13,0.696
-2.5,3,B,padrao,todas,so_r1_2026,51.49,0.742
-2.5,3,B,padrao,só top-4,historico,51.01,0.673
-2.5,3,B,padrao,só top-4,so_r1_2026,51.5,0.745
-2.5,3,B,alternativa,todas,historico,51.14,0.696
-2.5,3,B,alternativa,todas,so_r1_2026,51.67,0.763
-2.5,3,B,alternativa,só top-4,historico,51.02,0.673
-2.5,3,B,alternativa,só top-4,so_r1_2026,51.7,0.768
-2.5,4,A,padrao,todas,historico,51.15,0.697
-2.5,4,A,padrao,todas,so_r1_2026,51.5,0.741
-2.5,4,A,padrao,só top-4,historico,51.4,0.727
-2.5,4,A,padrao,só top-4,so_r1_2026,51.56,0.748
-2.5,4,A,alternativa,todas,historico,51.15,0.697
-2.5,4,A,alternativa,todas,so_r1_2026,51.63,0.755
-2.5,4,A,alternativa,só top-4,historico,51.4,0.726
-2.5,4,A,alternativa,só top-4,so_r1_2026,51.73,0.767
-2.5,4,B,padrao,todas,historico,51.16,0.697
-2.5,4,B,padrao,todas,so_r1_2026,51.51,0.741
-2.5,4,B,padrao,só top-4,historico,51.01,0.672
-2.5,4,B,padrao,só top-4,so_r1_2026,51.51,0.742
+1.5,3,A,padrao,todas,historico,51.16,0.781
+1.5,3,A,padrao,todas,so_r1_2026,51.51,0.829
+1.5,3,A,padrao,só top-4,historico,51.42,0.811
+1.5,3,A,padrao,só top-4,so_r1_2026,51.57,0.833
+1.5,3,A,alternativa,todas,historico,51.16,0.782
+1.5,3,A,alternativa,todas,so_r1_2026,51.63,0.841
+1.5,3,A,alternativa,só top-4,historico,51.42,0.811
+1.5,3,A,alternativa,só top-4,so_r1_2026,51.72,0.852
+1.5,3,B,padrao,todas,historico,51.14,0.776
+1.5,3,B,padrao,todas,so_r1_2026,51.51,0.827
+1.5,3,B,padrao,só top-4,historico,51.03,0.744
+1.5,3,B,padrao,só top-4,so_r1_2026,51.52,0.828
+1.5,3,B,alternativa,todas,historico,51.14,0.773
+1.5,3,B,alternativa,todas,so_r1_2026,51.67,0.847
+1.5,3,B,alternativa,só top-4,historico,51.04,0.747
+1.5,3,B,alternativa,só top-4,so_r1_2026,51.7,0.854
+1.5,4,A,padrao,todas,historico,51.16,0.778
+1.5,4,A,padrao,todas,so_r1_2026,51.49,0.823
+1.5,4,A,padrao,só top-4,historico,51.4,0.8
+1.5,4,A,padrao,só top-4,so_r1_2026,51.55,0.828
+1.5,4,A,alternativa,todas,historico,51.16,0.777
+1.5,4,A,alternativa,todas,so_r1_2026,51.62,0.836
+1.5,4,A,alternativa,só top-4,historico,51.4,0.802
+1.5,4,A,alternativa,só top-4,so_r1_2026,51.71,0.845
+1.5,4,B,padrao,todas,historico,51.15,0.774
+1.5,4,B,padrao,todas,so_r1_2026,51.5,0.824
+1.5,4,B,padrao,só top-4,historico,51.01,0.736
+1.5,4,B,padrao,só top-4,so_r1_2026,51.5,0.825
+1.5,4,B,alternativa,todas,historico,51.16,0.776
+1.5,4,B,alternativa,todas,so_r1_2026,51.67,0.846
+1.5,4,B,alternativa,só top-4,historico,51.02,0.739
+1.5,4,B,alternativa,só top-4,so_r1_2026,51.7,0.846
+1.5,7,A,padrao,todas,historico,51.18,0.776
+1.5,7,A,padrao,todas,so_r1_2026,51.49,0.816
+1.5,7,A,padrao,só top-4,historico,51.38,0.795
+1.5,7,A,padrao,só top-4,so_r1_2026,51.55,0.823
+1.5,7,A,alternativa,todas,historico,51.18,0.776
+1.5,7,A,alternativa,todas,so_r1_2026,51.62,0.829
+1.5,7,A,alternativa,só top-4,historico,51.38,0.796
+1.5,7,A,alternativa,só top-4,so_r1_2026,51.72,0.839
+1.5,7,B,padrao,todas,historico,51.2,0.777
+1.5,7,B,padrao,todas,so_r1_2026,51.51,0.82
+1.5,7,B,padrao,só top-4,historico,51.0,0.73
+1.5,7,B,padrao,só top-4,so_r1_2026,51.51,0.82
+1.5,7,B,alternativa,todas,historico,51.21,0.78
+1.5,7,B,alternativa,todas,so_r1_2026,51.69,0.841
+1.5,7,B,alternativa,só top-4,historico,51.01,0.732
+1.5,7,B,alternativa,só top-4,so_r1_2026,51.71,0.844
+2.0,3,A,padrao,todas,historico,51.16,0.736
+2.0,3,A,padrao,todas,so_r1_2026,51.51,0.787
+2.0,3,A,padrao,só top-4,historico,51.42,0.766
+2.0,3,A,padrao,só top-4,so_r1_2026,51.57,0.792
+2.0,3,A,alternativa,todas,historico,51.16,0.737
+2.0,3,A,alternativa,todas,so_r1_2026,51.63,0.799
+2.0,3,A,alternativa,só top-4,historico,51.42,0.769
+2.0,3,A,alternativa,só top-4,so_r1_2026,51.72,0.808
+2.0,3,B,padrao,todas,historico,51.14,0.732
+2.0,3,B,padrao,todas,so_r1_2026,51.51,0.782
+2.0,3,B,padrao,só top-4,historico,51.03,0.706
+2.0,3,B,padrao,só top-4,so_r1_2026,51.52,0.785
+2.0,3,B,alternativa,todas,historico,51.14,0.732
+2.0,3,B,alternativa,todas,so_r1_2026,51.67,0.804
+2.0,3,B,alternativa,só top-4,historico,51.04,0.707
+2.0,3,B,alternativa,só top-4,so_r1_2026,51.7,0.809
+2.0,4,A,padrao,todas,historico,51.16,0.734
+2.0,4,A,padrao,todas,so_r1_2026,51.49,0.78
+2.0,4,A,padrao,só top-4,historico,51.4,0.761
+2.0,4,A,padrao,só top-4,so_r1_2026,51.55,0.784
+2.0,4,A,alternativa,todas,historico,51.16,0.734
+2.0,4,A,alternativa,todas,so_r1_2026,51.62,0.795
+2.0,4,A,alternativa,só top-4,historico,51.4,0.763
+2.0,4,A,alternativa,só top-4,so_r1_2026,51.71,0.807
+2.0,4,B,padrao,todas,historico,51.15,0.728
+2.0,4,B,padrao,todas,so_r1_2026,51.5,0.78
+2.0,4,B,padrao,só top-4,historico,51.01,0.7
+2.0,4,B,padrao,só top-4,so_r1_2026,51.5,0.78
+2.0,4,B,alternativa,todas,historico,51.16,0.732
+2.0,4,B,alternativa,todas,so_r1_2026,51.67,0.8
+2.0,4,B,alternativa,só top-4,historico,51.02,0.7
+2.0,4,B,alternativa,só top-4,so_r1_2026,51.7,0.803
+2.0,7,A,padrao,todas,historico,51.18,0.734
+2.0,7,A,padrao,todas,so_r1_2026,51.49,0.775
+2.0,7,A,padrao,só top-4,historico,51.38,0.757
+2.0,7,A,padrao,só top-4,so_r1_2026,51.55,0.782
+2.0,7,A,alternativa,todas,historico,51.18,0.733
+2.0,7,A,alternativa,todas,so_r1_2026,51.62,0.791
+2.0,7,A,alternativa,só top-4,historico,51.38,0.754
+2.0,7,A,alternativa,só top-4,so_r1_2026,51.72,0.799
+2.0,7,B,padrao,todas,historico,51.2,0.736
+2.0,7,B,padrao,todas,so_r1_2026,51.51,0.78
+2.0,7,B,padrao,só top-4,historico,51.0,0.695
+2.0,7,B,padrao,só top-4,so_r1_2026,51.51,0.776
+2.0,7,B,alternativa,todas,historico,51.21,0.737
+2.0,7,B,alternativa,todas,so_r1_2026,51.69,0.802
+2.0,7,B,alternativa,só top-4,historico,51.01,0.696
+2.0,7,B,alternativa,só top-4,so_r1_2026,51.71,0.8
+2.5,3,A,padrao,todas,historico,51.16,0.699
+2.5,3,A,padrao,todas,so_r1_2026,51.51,0.747
+2.5,3,A,padrao,só top-4,historico,51.42,0.73
+2.5,3,A,padrao,só top-4,so_r1_2026,51.57,0.753
+2.5,3,A,alternativa,todas,historico,51.16,0.699
+2.5,3,A,alternativa,todas,so_r1_2026,51.63,0.761
+2.5,3,A,alternativa,só top-4,historico,51.42,0.732
+2.5,3,A,alternativa,só top-4,so_r1_2026,51.72,0.772
+2.5,3,B,padrao,todas,historico,51.14,0.697
+2.5,3,B,padrao,todas,so_r1_2026,51.51,0.745
+2.5,3,B,padrao,só top-4,historico,51.03,0.677
+2.5,3,B,padrao,só top-4,so_r1_2026,51.52,0.749
+2.5,3,B,alternativa,todas,historico,51.14,0.697
+2.5,3,B,alternativa,todas,so_r1_2026,51.67,0.766
+2.5,3,B,alternativa,só top-4,historico,51.04,0.677
+2.5,3,B,alternativa,só top-4,so_r1_2026,51.7,0.771
+2.5,4,A,padrao,todas,historico,51.16,0.699
+2.5,4,A,padrao,todas,so_r1_2026,51.49,0.742
+2.5,4,A,padrao,só top-4,historico,51.4,0.729
+2.5,4,A,padrao,só top-4,so_r1_2026,51.55,0.749
+2.5,4,A,alternativa,todas,historico,51.16,0.698
+2.5,4,A,alternativa,todas,so_r1_2026,51.62,0.756
+2.5,4,A,alternativa,só top-4,historico,51.4,0.727
+2.5,4,A,alternativa,só top-4,so_r1_2026,51.71,0.767
+2.5,4,B,padrao,todas,historico,51.15,0.697
+2.5,4,B,padrao,todas,so_r1_2026,51.5,0.742
+2.5,4,B,padrao,só top-4,historico,51.01,0.673
+2.5,4,B,padrao,só top-4,so_r1_2026,51.5,0.743
 2.5,4,B,alternativa,todas,historico,51.16,0.698
-2.5,4,B,alternativa,todas,so_r1_2026,51.69,0.763
-2.5,4,B,alternativa,só top-4,historico,51.02,0.67
-2.5,4,B,alternativa,só top-4,so_r1_2026,51.72,0.767
-2.5,7,A,padrao,todas,historico,51.19,0.701
-2.5,7,A,padrao,todas,so_r1_2026,51.51,0.743
-2.5,7,A,padrao,só top-4,historico,51.4,0.724
-2.5,7,A,padrao,só top-4,so_r1_2026,51.58,0.747
-2.5,7,A,alternativa,todas,historico,51.19,0.701
-2.5,7,A,alternativa,todas,so_r1_2026,51.65,0.757
-2.5,7,A,alternativa,só top-4,historico,51.4,0.723
-2.5,7,A,alternativa,só top-4,so_r1_2026,51.75,0.768
-2.5,7,B,padrao,todas,historico,51.21,0.703
-2.5,7,B,padrao,todas,so_r1_2026,51.54,0.744
-2.5,7,B,padrao,só top-4,historico,51.02,0.67
-2.5,7,B,padrao,só top-4,so_r1_2026,51.53,0.744
-2.5,7,B,alternativa,todas,historico,51.22,0.703
-2.5,7,B,alternativa,todas,so_r1_2026,51.72,0.765
-2.5,7,B,alternativa,só top-4,historico,51.03,0.671
-2.5,7,B,alternativa,só top-4,so_r1_2026,51.74,0.769
+2.5,4,B,alternativa,todas,so_r1_2026,51.67,0.763
+2.5,4,B,alternativa,só top-4,historico,51.02,0.672
+2.5,4,B,alternativa,só top-4,so_r1_2026,51.7,0.767
+2.5,7,A,padrao,todas,historico,51.18,0.701
+2.5,7,A,padrao,todas,so_r1_2026,51.49,0.742
+2.5,7,A,padrao,só top-4,historico,51.38,0.723
+2.5,7,A,padrao,só top-4,so_r1_2026,51.55,0.745
+2.5,7,A,alternativa,todas,historico,51.18,0.701
+2.5,7,A,alternativa,todas,so_r1_2026,51.62,0.755
+2.5,7,A,alternativa,só top-4,historico,51.38,0.722
+2.5,7,A,alternativa,só top-4,so_r1_2026,51.72,0.765
+2.5,7,B,padrao,todas,historico,51.2,0.702
+2.5,7,B,padrao,todas,so_r1_2026,51.51,0.742
+2.5,7,B,padrao,só top-4,historico,51.0,0.668
+2.5,7,B,padrao,só top-4,so_r1_2026,51.51,0.743
+2.5,7,B,alternativa,todas,historico,51.21,0.703
+2.5,7,B,alternativa,todas,so_r1_2026,51.69,0.763
+2.5,7,B,alternativa,só top-4,historico,51.01,0.67
+2.5,7,B,alternativa,só top-4,so_r1_2026,51.71,0.766

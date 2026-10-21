@@ -19,7 +19,7 @@ Saídas em `output/`:
 
 ## Acrescentar uma pesquisa nova
 
-`python atualizar_r2.py <wikitext>` reconstrói `polls_r2.csv` inteiro a partir da Wikipedia (instruções no topo do script). Pesquisa que ainda não está na Wikipedia vai em `polls_r2_manual.csv` (mesmo formato), que não é sobrescrito. Formato:
+`python atualizar_r2.py <wikitext>` reconstrói `polls_r2.csv` inteiro a partir da Wikipedia (instruções no topo do script). Pesquisa que ainda não está na Wikipedia vai em `polls_r2_manual.csv` (mesmo formato), que não é sobrescrito; linha da Wikipedia errada ou duplicada vai em `polls_r2_excluir.csv` (instituto, campo_inicio, campo_fim, motivo). Formato:
 
 Adicione uma linha em `polls_r2.csv`:
 

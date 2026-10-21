@@ -66,6 +66,13 @@ def load_r2():
     if manual.exists():
         m = pd.read_csv(manual, parse_dates=["campo_inicio", "campo_fim"])
         r2 = pd.concat([m, r2]).drop_duplicates(["instituto", "campo_inicio", "campo_fim"])
+    # Linhas da Wikipedia sabidamente erradas ou duplicadas (motivo em polls_r2_excluir.csv)
+    excluir = BASE / "polls_r2_excluir.csv"
+    if excluir.exists():
+        x = pd.read_csv(excluir, parse_dates=["campo_inicio", "campo_fim"])
+        k = ["instituto", "campo_inicio", "campo_fim"]
+        r2 = r2.merge(x[k], on=k, how="left", indicator=True)
+        r2 = r2[r2._merge == "left_only"].drop(columns="_merge")
     r2["share"] = share(r2.flavio, r2.lula)
     r2["n_imputado"] = r2.n.isna()
     r2["n"] = r2.n.fillna(r2.n.median())
