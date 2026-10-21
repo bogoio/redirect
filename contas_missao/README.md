@@ -31,7 +31,9 @@ Somente dados publicados pelo TSE. CPFs são usados só internamente para cruzar
 ## Pendências
 - Julgamento (DataJud, 21/10/2026): Alex Macedo, contas **aprovadas com ressalvas** (16/10/2025) e depois
   cumprimento de sentença; Felippe Lourenço, contas **aprovadas** (19/11/2024). Ver `output/relatorio.md`.
-- Falta ler o acórdão de Alex (motivo das ressalvas e valor cobrado). A `comunicaapi.pje.jus.br` responde 403
-  (CloudFront) mesmo liberada. A consulta pública do PJe exige captcha.
+- Falta ler o acórdão de Alex (motivo das ressalvas e valor cobrado). A `comunicaapi.pje.jus.br` bloqueia
+  acessos de fora do Brasil (geobloqueio do CloudFront), e a consulta pública do PJe tem um desafio anti-robô que
+  não deve ser contornado. Ainda não liberados: `dje-consulta.tse.jus.br` (acórdão publicado no DJE em
+  20/10/2025), `jurisprudencia.tse.jus.br`, `sjur-servicos.tse.jus.br` e `pje2g.tre-sp.jus.br`.
 - Res. 23.607: conferida no texto oficial (`output/res_23607_artigos.md`).
 - `www.tse.jus.br` e `divulgacandcontas.tse.jus.br` só funcionam por navegador (Playwright), não por curl.
