@@ -1,0 +1,12 @@
+grupo,n,brier,log_loss,corte
+<100 mil,130,0.0903,0.2883,volume
+100 mil-1 mi,16,0.2319,0.7079,volume
+1-10 mi,14,0.1165,0.3668,volume
+24h,52,0.0857,0.2965,prazo
+30d,21,0.2161,0.6206,prazo
+3d,48,0.082,0.2647,prazo
+7d,39,0.1066,0.3277,prazo
+outros,101,0.102,0.3218,categoria
+política,59,0.115,0.3632,categoria
+2024 em diante,12,0.1735,0.5119,periodo
+antes de 2024,148,0.1014,0.3229,periodo

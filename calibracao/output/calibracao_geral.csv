@@ -1,0 +1,15 @@
+versao,faixa,n,acerto,preco_medio,ic95_inf,ic95_sup,dif_pp
+favorito por evento,50-60,28,0.25,0.5435,0.1268,0.4336,-29.35
+favorito por evento,60-70,10,0.5,0.6485,0.2366,0.7634,-14.85
+favorito por evento,70-80,25,0.84,0.7476,0.6535,0.936,9.24
+favorito por evento,80-85,5,0.8,0.8145,0.3755,0.9638,-1.45
+favorito por evento,85-90,16,0.875,0.874,0.6398,0.965,0.0969
+favorito por evento,90-95,22,1.0,0.9264,0.8513,1.0,7.3568
+favorito por evento,95-99,54,0.9815,0.9658,0.9023,0.9967,1.5648
+todos os contratos,50-60,41,0.3902,0.547,0.2566,0.5427,-15.678
+todos os contratos,60-70,13,0.6154,0.6465,0.3552,0.8229,-3.1154
+todos os contratos,70-80,31,0.871,0.7506,0.7115,0.9487,12.0323
+todos os contratos,80-85,14,0.9286,0.8209,0.6853,0.9873,10.7679
+todos os contratos,85-90,22,0.9091,0.8729,0.7218,0.9747,3.6159
+todos os contratos,90-95,43,0.9767,0.9241,0.8794,0.9959,5.264
+todos os contratos,95-99,109,0.9908,0.9644,0.9499,0.9984,2.645

@@ -21,6 +21,16 @@ CLOB = "https://clob.polymarket.com/prices-history"
 LIMITE_PAGINA = 500
 FIDELIDADE_MIN = 60  # pontos de hora em hora
 PAUSA = 0.25
+# A CLOB só tem histórico de mercados da era do livro de ofertas (mercados de 2022 voltam vazios; corte em fev/2023);
+# mercados abaixo de US$ 1 mil de volume quase não têm negociação.
+FILTRO = {"closed": "true", "end_date_min": "2023-02-01T00:00:00Z", "volume_num_min": 1000,
+          "include_tag": "true", "order": "id", "ascending": "true"}
+# A CLOB recusa janelas startTs/endTs longas (15 dias passa, 30 não): 3 janelas de 14 dias
+# contadas para trás a partir do fechamento cobrem 42 dias, o bastante para o instantâneo de 30.
+JANELA_DIAS, N_JANELAS = 14, 3
+CAMPOS = ["id", "question", "slug", "conditionId", "category", "volumeNum", "startDate", "createdAt",
+          "endDate", "closedTime", "umaResolutionStatus", "outcomes", "outcomePrices",
+          "clobTokenIds", "negRisk", "groupItemTitle"]
 
 sessao = requests.Session()
 
@@ -52,8 +62,7 @@ def listar_mercados(maximo=None):
             pag = json.loads(arq.read_text())
         else:
             lim = LIMITE_PAGINA if maximo is None else min(LIMITE_PAGINA, maximo - total)
-            pag = get(GAMMA, {"closed": "true", "limit": lim, "offset": offset,
-                              "order": "id", "ascending": "true"})
+            pag = [enxugar(m) for m in get(GAMMA, {**FILTRO, "limit": lim, "offset": offset})]
             arq.write_text(json.dumps(pag))
         if not pag:
             break
@@ -61,6 +70,14 @@ def listar_mercados(maximo=None):
         offset += len(pag)
         print(f"mercados: {total}")
     return mercados_em_cache()
+
+
+def enxugar(m):
+    """Guarda só o necessário (o registro completo tem ~90 campos)."""
+    d = {k: m.get(k) for k in CAMPOS}
+    d["events"] = [{k: e.get(k) for k in ("id", "slug", "title", "negRisk")} for e in m.get("events") or []]
+    d["tags"] = sorted({t.get("label") for t in m.get("tags") or [] if t.get("label")})
+    return d
 
 
 def mercados_em_cache():
@@ -75,11 +92,33 @@ def tokens(m):
     return json.loads(t) if isinstance(t, str) else (t or [])
 
 
-def baixar_historico(token_id):
+def fim_ts(m):
+    from datetime import datetime
+    for k in ("closedTime", "endDate"):
+        v = m.get(k)
+        if v:
+            v = v.replace(" ", "T").replace("+00", "+00:00") if "+00:" not in v and v.endswith("+00") else v
+            return int(datetime.fromisoformat(v.replace("Z", "+00:00")).timestamp())
+    return None
+
+
+def baixar_historico(m, token_id):
+    """interval=max volta vazio para mercado encerrado; junta janelas de 14 dias."""
     arq = CACHE_HIST / f"{token_id}.json"
     if arq.exists():
         return json.loads(arq.read_text())
-    h = get(CLOB, {"market": token_id, "interval": "max", "fidelity": FIDELIDADE_MIN})
+    fim = fim_ts(m)
+    pontos = {}
+    if fim:
+        for j in range(N_JANELAS):
+            b = fim + 3600 - j * JANELA_DIAS * 86400
+            h = get(CLOB, {"market": token_id, "startTs": b - JANELA_DIAS * 86400, "endTs": b,
+                           "fidelity": FIDELIDADE_MIN})
+            for p in h.get("history", []):
+                pontos[p["t"]] = p["p"]
+            if j == 0 and not pontos:
+                break  # sem negociação perto do fim: não insiste
+    h = {"history": [{"t": t, "p": pontos[t]} for t in sorted(pontos)]}
     arq.write_text(json.dumps(h))
     return h
 
@@ -113,7 +152,7 @@ def main():
     for i, m in enumerate(mercados):
         tk = tokens(m)
         if tk:
-            baixar_historico(tk[0])  # o primeiro token é o "Yes" (conferir no esquema)
+            baixar_historico(m, tk[0])  # tokens seguem a ordem de outcomes; o 1º é "Yes"
         if i % 100 == 0:
             print(f"históricos: {i}/{len(mercados)}")
     mostrar_esquema(mercados)
