@@ -60,6 +60,12 @@ def erros_historicos(r1):
 
 def load_r2():
     r2 = pd.read_csv(BASE / "polls_r2.csv", parse_dates=["campo_inicio", "campo_fim"])
+    # Pesquisas acrescentadas à mão (ainda fora da Wikipedia); se a mesma rodada chegar
+    # depois pelo atualizar_r2.py, fica a versão manual
+    manual = BASE / "polls_r2_manual.csv"
+    if manual.exists():
+        m = pd.read_csv(manual, parse_dates=["campo_inicio", "campo_fim"])
+        r2 = pd.concat([m, r2]).drop_duplicates(["instituto", "campo_inicio", "campo_fim"])
     r2["share"] = share(r2.flavio, r2.lula)
     r2["n_imputado"] = r2.n.isna()
     r2["n"] = r2.n.fillna(r2.n.median())
