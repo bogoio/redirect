@@ -160,7 +160,7 @@ Estadual do PP. Não há repasse do Missão nem de candidatos do Missão para Be
 | Doações de Kim, Renato, Guto, Amanda e Beraldo a Alex e Felippe (2022) | Res. TSE 23.607/2019, art. 17, § 2º (FEFC) e art. 19, § 7º (Fundo Partidário): vedam repasse a candidato de partido não coligado. | **Não se aplica.** Todos eram do mesmo partido, e a fonte registrada é "Outros Recursos", com doador originário pessoa física. A doação entre candidatos do mesmo partido com recursos próprios da campanha é permitida. |
 | R$ 30.000 de FEFC por aluguel a Cristiano da Silva Lourenço | Res. 23.607, art. 60 (comprovação de gastos por documento fiscal idôneo ou outro meio idôneo de prova) | **Depende do julgamento.** Os dados mostram a despesa e o documento informado ("CONTRATO"), mas não se a locação foi comprovada. Ser ex-candidato de outro partido não torna o pagamento ilegal. |
 | Pagamento de R$ 112.000 à mãe de Felippe | (pagamento a parente) | **Não existe nos dados.** Não há pagamento a "Silene" nem a nenhum fornecedor com sobrenome "Lourenço" nas despesas de Felippe, e nenhum fornecedor dele soma R$ 112 mil. |
-| Contas de Alex "reprovadas" | Res. 23.607, art. 74 | **Não verificado.** A situação do julgamento não está nas bases abertas, e o DivulgaCandContas estava inacessível. A base registra a última versão da prestação final de Alex em **03/06/2025**, compatível com retificação durante o julgamento. |
+| Contas de Alex "reprovadas" | Res. 23.607, art. 74 | **Não verificado.** O DivulgaCandContas (consultado em 21/10/2026) não mostra o resultado do julgamento, só o processo PJe 0605945-18.2022.6.26.0000 e as entregas: final em 01/11/2022 e **retificadora em 03/06/2025**. A consulta pública do PJe exige captcha, e as APIs do CNJ estão bloqueadas neste ambiente. |
 
 ---
 
@@ -214,21 +214,33 @@ Estadual do PP. Não há repasse do Missão nem de candidatos do Missão para Be
 
 ## Regras (Res. TSE 23.607/2019)
 
-O site do TSE estava inacessível deste ambiente. Os trechos abaixo vêm de **transcrições secundárias**
-(acórdãos de TREs e material técnico) e **precisam ser conferidos** no texto compilado oficial antes de
-qualquer uso:
-https://www.tse.jus.br/legislacao/compilada/res/2019/resolucao-no-23-607-de-17-de-dezembro-de-2019
+Texto conferido no compilado oficial do TSE em 21/10/2026. Transcrição literal em
+[`res_23607_artigos.md`](res_23607_artigos.md). Vale a redação vigente na eleição de 2022.
 
-- **Art. 17, § 2º** (redação da Res. 23.665/2021): "É vedado o repasse de recursos do FEFC, dentro ou fora da
+- **Art. 17, § 2º** (redação original): "É vedado o repasse de recursos do FEFC, dentro ou fora da
   circunscrição, por partidos políticos ou candidatas ou candidatos: I - não pertencentes à mesma coligação;
-  e/ou II - não coligados." O STF declarou o dispositivo constitucional na ADI 7214 (30/09/2022).
-- **Art. 19, § 7º:** regra equivalente para o Fundo Partidário (também mantida na ADI 7214).
-- **Art. 60, § 1º e § 3º:** admitem qualquer meio idôneo de prova dos gastos e permitem à Justiça Eleitoral
-  exigir documentação complementar quando houver dúvida sobre a execução do objeto. Há precedente do TSE
-  admitindo exigir prova da propriedade de imóvel locado de pessoa física quando a despesa é paga com recurso
-  público.
-- **Pagamento a parentes:** não localizei vedação expressa na resolução. A questão é de comprovação da
-  efetiva prestação (art. 60).
-- **Eleições 2026:** a Res. 23.607 foi alterada pelas Res. 23.752 (fev/2026) e 23.770 (2026). As mudanças
-  identificadas tratam dos prazos de distribuição do FEFC (art. 17, §§ 9º a 9º-B) e não afetam as regras
-  acima. Para os fatos de 2022 vale a redação vigente naquela eleição.
+  e/ou II - não coligados." O **§ 2º-A** (incluído pela Res. 23.665/2021) diz que descumprir o § 2º "configura
+  irregularidade grave e caracteriza o recebimento de recursos de fonte vedada".
+- **Art. 19, §§ 7º e 7º-A:** mesma regra e mesma consequência para o Fundo Partidário.
+- **Art. 60:** o caput exige documento fiscal idôneo. O § 1º admite "qualquer meio idôneo de prova", como
+  contrato, comprovante de prestação do serviço, comprovante bancário ou GFIP. Pelo § 3º (redação original),
+  "a Justiça Eleitoral poderá exigir a apresentação de elementos probatórios adicionais que comprovem a entrega
+  dos produtos contratados ou a efetiva prestação dos serviços declarados".
+- **Art. 74:** as contas podem ser aprovadas, aprovadas com ressalvas, desaprovadas ou julgadas não prestadas.
+  Pelo § 9º, a sanção ao partido (perda de quota do Fundo Partidário) só se aplica à desaprovação das contas de
+  um candidato se ficar provada a participação do partido.
+- **Pagamento a parentes:** os artigos conferidos não proíbem expressamente. A questão é provar que o serviço
+  foi prestado (art. 60).
+- **Mudanças posteriores a 2022:** a Res. 23.731/2024 incluiu federações no art. 17, § 2º e no art. 19, § 7º.
+  Ela também acrescentou ao § 3º do art. 60 a condição "havendo dúvida sobre a idoneidade do documento ou sobre a
+  execução do objeto". A Res. 23.752/2026 estendeu as vedações a recursos estimáveis em dinheiro e passou a exigir
+  fornecedor com inscrições regulares (art. 60, § 1º).
+
+### Correções em relação à versão anterior deste relatório
+- A versão anterior atribuía o caput do art. 17, § 2º à Res. 23.665/2021. Na verdade é redação original, e a
+  Res. 23.665 incluiu o § 2º-A.
+- A versão anterior apresentava como regra de 2022 a condição de "dúvida" no art. 60, § 3º. Ela só entrou com
+  a Res. 23.731/2024.
+- A versão anterior dizia que as alterações de 2026 não afetavam essas regras. Afetam, conforme o item acima.
+  Para os fatos de 2022, nada muda.
+- A menção à ADI 7214 vinha de fonte secundária e não foi conferida.

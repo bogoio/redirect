@@ -5,10 +5,10 @@
 > representação acusatória.
 >
 > Antes de protocolar:
-> 1. Consultar no DivulgaCandContas ou no PJe do TRE-SP o resultado do julgamento das contas de Alex Macedo
+> 1. Consultar no PJe do TRE-SP (processos 0605945-18.2022.6.26.0000 e 0607025-17.2022.6.26.0000) o resultado do julgamento das contas de Alex Macedo
 >    de Souza e de Felippe Lourenço Oliveira Coelho (eleição de 2022). Se as contas foram desaprovadas, o
 >    acórdão é a prova principal e muda o enquadramento.
-> 2. Conferir os artigos citados no texto compilado oficial da Res. TSE 23.607/2019.
+> 2. Artigos da Res. TSE 23.607/2019 conferidos no texto oficial em 21/10/2026 (`res_23607_artigos.md`).
 > 3. Verificar prazos: a representação do art. 30-A da Lei 9.504/97 tem prazo de 15 dias após a diplomação
 >    e já está esgotada para 2022. Resta a apuração de eventual ilícito penal eleitoral, a critério do MPE.
 
