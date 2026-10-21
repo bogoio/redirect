@@ -16,15 +16,15 @@ import requests
 BASE = Path(__file__).parent
 CACHE_MERC = BASE / "cache" / "mercados"
 CACHE_HIST = BASE / "cache" / "historico"
-GAMMA = "https://gamma-api.polymarket.com/markets"
+GAMMA_KEYSET = "https://gamma-api.polymarket.com/markets/keyset"
 CLOB = "https://clob.polymarket.com/prices-history"
-LIMITE_PAGINA = 500
+LIMITE_PAGINA = 100  # máximo aceito pelo keyset
 FIDELIDADE_MIN = 60  # pontos de hora em hora
 PAUSA = 0.25
 # A CLOB só tem histórico de mercados da era do livro de ofertas (mercados de 2022 voltam vazios; corte em fev/2023);
 # mercados abaixo de US$ 1 mil de volume quase não têm negociação.
 FILTRO = {"closed": "true", "end_date_min": "2023-02-01T00:00:00Z", "volume_num_min": 1000,
-          "include_tag": "true", "order": "id", "ascending": "true"}
+          "include_tag": "true"}
 # A CLOB recusa janelas startTs/endTs longas (15 dias passa, 30 não): 3 janelas de 14 dias
 # contadas para trás a partir do fechamento cobrem 42 dias, o bastante para o instantâneo de 30.
 JANELA_DIAS, N_JANELAS = 14, 3
@@ -54,21 +54,27 @@ def get(url, params, tentativas=6):
 
 
 def listar_mercados(maximo=None):
-    """Pagina /markets?closed=true e guarda uma página por arquivo (retomável)."""
-    offset, total = 0, 0
+    """Pagina /markets/keyset (offset é limitado a <5000; keyset usa after_cursor) e guarda
+    uma página por arquivo junto com o cursor seguinte, para retomar de onde parou."""
+    n, total, cursor = 0, 0, None
     while maximo is None or total < maximo:
-        arq = CACHE_MERC / f"pagina_{offset:07d}.json"
+        arq = CACHE_MERC / f"pagina_{n:06d}.json"
         if arq.exists():
             pag = json.loads(arq.read_text())
         else:
-            lim = LIMITE_PAGINA if maximo is None else min(LIMITE_PAGINA, maximo - total)
-            pag = [enxugar(m) for m in get(GAMMA, {**FILTRO, "limit": lim, "offset": offset})]
+            params = {**FILTRO, "limit": LIMITE_PAGINA}
+            if cursor:
+                params["after_cursor"] = cursor
+            r = get(GAMMA_KEYSET, params)
+            pag = {"markets": [enxugar(m) for m in r.get("markets", [])], "next_cursor": r.get("next_cursor")}
             arq.write_text(json.dumps(pag))
-        if not pag:
+        total += len(pag["markets"])
+        n += 1
+        if n % 20 == 0:
+            print(f"mercados: {total}", flush=True)
+        cursor = pag.get("next_cursor")
+        if not pag["markets"] or not cursor:
             break
-        total += len(pag)
-        offset += len(pag)
-        print(f"mercados: {total}")
     return mercados_em_cache()
 
 
@@ -83,7 +89,7 @@ def enxugar(m):
 def mercados_em_cache():
     out = []
     for arq in sorted(CACHE_MERC.glob("pagina_*.json")):
-        out.extend(json.loads(arq.read_text()))
+        out.extend(json.loads(arq.read_text())["markets"])
     return out
 
 
@@ -141,6 +147,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--amostra", type=int)
     ap.add_argument("--esquema", action="store_true")
+    ap.add_argument("--so-lista", action="store_true", help="só lista os mercados, sem históricos")
     a = ap.parse_args()
     for d in (CACHE_MERC, CACHE_HIST):
         d.mkdir(parents=True, exist_ok=True)
@@ -149,6 +156,8 @@ def main():
     mercados = listar_mercados(a.amostra)
     if a.amostra:
         mercados = mercados[:a.amostra]
+    if a.so_lista:
+        return print(f"{len(mercados)} mercados listados")
     for i, m in enumerate(mercados):
         tk = tokens(m)
         if tk:
