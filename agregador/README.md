@@ -88,3 +88,7 @@ Cruza cada zona já apurada no 2º turno com a mesma zona no 1º turno, mede o d
 - `python projecao.py --backtest`: simula a apuração de 2022 (1º -> 2º turno) em três ordens de chegada (Sul/Sudeste primeiro, aleatória, Nordeste primeiro). Saída em `output/projecao_backtest_2022.csv`. Com 1% das zonas, a projeção errou no máximo 0,45 ponto; o total parcial errou de 2 a 18 pontos.
 - `python projecao.py --parcial parcial.csv`: projeção ao vivo (`sg_uf,cd_municipio,nr_zona,flavio,lula`).
 - O intervalo de 90% vem de um bootstrap bayesiano das zonas e mede só o sorteio: não capta que as primeiras zonas podem diferir das demais. Na prática, some ±0,5 ponto.
+
+## Buscas no Google (`tendencias.py`)
+
+Parte do Flávio nas buscas (Google Trends, "Flávio Bolsonaro" x "Lula"). Não entra no modelo: o nível não diz nada ("Lula" é nome curto de presidente no cargo; a direita teve 22% das buscas no 1º turno de 2026 e 51% dos votos) e a variação nas duas semanas finais acompanhou o movimento das pesquisas em 2018, mas não o erro delas em 2022 (busca da direita estável ou caindo, e Bolsonaro acima das pesquisas nos dois turnos). Serve como termômetro de momento.
