@@ -1,7 +1,7 @@
-Estimativa central (A, bruto): 51.05% para Flávio na participação bipartidária; com ajuste de casa (B): 51.07%.
-Intervalo A: 80% 48.52-53.57 | 95% 46.63-55.43 (dp total 2.22, dispersão entre pesquisas 0.96).
-Intervalo B: 80% 48.49-53.64 | 95% 46.60-55.55.
-P(Flávio vence): A = 71.4% | B = 71.5%; na grade varia de 63.2% a 81.6%.
-Premissa que mais mexe (variando uma de cada vez): sd_eleicao (amplitude de 7.7% em P); meia_vida 0.7%, cenario 0.2%, verita 0.1%, amostra 1.0%, pesos 3.2%.
-Malícia estrutural (sobre A): neutro 51.05% / P 71.5% | equilibrado 51.89% / P 82.1% | direita_forte 52.81% / P 89.6% | governo_forte 50.97% / P 69.2%.
-Mercado (Polymarket, 2026-10-21): preço 78.3% -> calibrado 73.3% (IC95 63.4%-81.4%, 71 eventos); média modelo A + mercado calibrado = 72.4%.
+Estimativa central (A, bruto): 51.15% para Flávio na participação bipartidária; com ajuste de casa (B): 51.16%.
+Intervalo A: 80% 48.59-53.71 | 95% 46.67-55.60 (dp total 2.25, dispersão entre pesquisas 1.03).
+Intervalo B: 80% 48.56-53.73 | 95% 46.65-55.66.
+P(Flávio vence): A = 73.1% | B = 72.9%; na grade varia de 67.0% a 84.8%.
+Premissa que mais mexe (variando uma de cada vez): sd_eleicao (amplitude de 7.9% em P); meia_vida 0.1%, cenario 0.5%, verita 0.1%, amostra 2.6%, pesos 4.5%.
+Malícia estrutural (sobre A): neutro 51.15% / P 73.1% | equilibrado 51.99% / P 83.0% | direita_forte 52.91% / P 90.2% | governo_forte 51.07% / P 70.8%.
+Mercado (Polymarket, 2026-10-21): preço 78.3% -> calibrado 73.3% (IC95 63.4%-81.4%, 71 eventos); média modelo A + mercado calibrado = 73.2%.
