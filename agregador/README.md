@@ -76,3 +76,7 @@ Com `historico=True` (padrão), `model.py` usa esse histórico mais o 1º turno 
 ## Transferência de votos (`transferencia.py`)
 
 Regressão ecológica por município (2014-2022): fração dos votos de cada eliminado do 1º turno que foi para o adversário do PT, aplicada aos eliminados de 2026. Os coeficientes por candidato são instáveis (falácia ecológica); vale o agregado.
+
+## Mercado de previsão calibrado (`mercado.csv`)
+
+O preço do Polymarket entra como segunda estimativa, mas corrigido pela calibração histórica da plataforma (`calibracao/`): em vez do preço, usa a taxa com que favoritos de preço parecido, no mesmo prazo e em mercados de eleição, venceram de fato. Para atualizar, rode `python ../calibracao/calibrar_preco.py --preco <preço> --dias <dias até a eleição>` e acrescente uma linha. O resumo mostra a probabilidade do modelo A, a do mercado calibrado e a média simples das duas.

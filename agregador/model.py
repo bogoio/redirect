@@ -136,6 +136,15 @@ def estrutural(d, rng):
     return pd.DataFrame(linhas)
 
 
+def mercado():
+    """Última linha de mercado.csv: preço de mercado e a probabilidade calibrada pelo
+    histórico de mercados resolvidos (pasta calibracao/)."""
+    arq = BASE / "mercado.csv"
+    if not arq.exists():
+        return None
+    return pd.read_csv(arq).iloc[-1]
+
+
 def check_inputs(r1, r2):
     """Confere os números de entrada contra a lista do pedido."""
     assert len(r2) > 0 and r2.share.between(30, 70).all(), "polls_r2.csv vazio ou com valor fora de faixa"
@@ -238,6 +247,13 @@ def main():
         "Malícia estrutural (sobre A): " + " | ".join(
             f"{r.cenario} {r.media:.2f}% / P {r.p_flavio:.1%}" for r in estr.itertuples()) + ".",
     ]
+    m = mercado()
+    if m is not None:
+        comb = (a["p_flavio"] + m.p_calibrada) / 2
+        resumo.append(
+            f"Mercado ({m.fonte}, {m.data}): preço {m.preco:.1%} -> calibrado {m.p_calibrada:.1%} "
+            f"(IC95 {m.ic95_inf:.1%}-{m.ic95_sup:.1%}, {m.eventos} eventos); "
+            f"média modelo A + mercado calibrado = {comb:.1%}.")
     (OUT / "resumo.txt").write_text("\n".join(resumo) + "\n", encoding="utf-8")
     print(f"Data de referência: {hoje.date()}")
     print("\n".join(resumo))
