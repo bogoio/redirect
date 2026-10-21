@@ -86,7 +86,8 @@ O preço do Polymarket entra como segunda estimativa, mas corrigido pela calibra
 Cruza cada zona já apurada no 2º turno com a mesma zona no 1º turno, mede o deslocamento ("swing") da participação do Flávio (por UF quando a UF tem pelo menos 5 zonas e 3% dos votos apurados; senão pela região; senão nacional) e aplica esse swing às zonas que faltam. Assim a projeção não depende da ordem em que as urnas chegam.
 
 - `python projecao.py --backtest`: simula a apuração de 2022 (1º -> 2º turno) em três ordens de chegada (Sul/Sudeste primeiro, aleatória, Nordeste primeiro). Saída em `output/projecao_backtest_2022.csv`. Com 1% das zonas, a projeção errou no máximo 0,45 ponto; o total parcial errou de 2 a 18 pontos.
-- `python projecao.py --parcial parcial.csv`: projeção ao vivo (`sg_uf,cd_municipio,nr_zona,flavio,lula`).
+- `python projecao.py --parcial parcial.csv`: projeção a partir de um CSV (`sg_uf,cd_municipio,nr_zona,flavio,lula`).
+- **Domingo: `python feed_tse.py --loop 3`** baixa do TSE as ~6.100 zonas (arquivo por município e zona, `resultados.tse.jus.br/oficial/ele2026/6258/dados/...`), estende zonas parcialmente apuradas pela fração de seções (a partir de 10%) e imprime a parcial do TSE e a projeção a cada 3 minutos. Testado no 1º turno (eleição 6257): todas as zonas casam com a base e a projeção reproduz o resultado. Primeira rodada ~3 min; zonas 100% apuradas ficam em cache.
 - O intervalo de 90% vem de um bootstrap bayesiano das zonas e mede só o sorteio: não capta que as primeiras zonas podem diferir das demais. Na prática, some ±0,5 ponto.
 
 ## Buscas no Google (`tendencias.py`)
