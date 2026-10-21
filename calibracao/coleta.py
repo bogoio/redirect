@@ -160,6 +160,7 @@ def main():
     ap.add_argument("--amostra", type=int)
     ap.add_argument("--esquema", action="store_true")
     ap.add_argument("--so-lista", action="store_true", help="só lista os mercados, sem históricos")
+    ap.add_argument("--paralelo", type=int, default=8, help="downloads simultâneos de histórico")
     ap.add_argument("--sem-listar", action="store_true", help="não lista; usa os mercados já em cache")
     ap.add_argument("--volume-min", type=float, default=0, help="só históricos acima deste volume")
     ap.add_argument("--amostra-baixo", type=int, default=10000,
@@ -177,12 +178,18 @@ def main():
     if a.so_lista:
         return print(f"{len(mercados)} mercados listados")
     mercados = [m for m in priorizar(mercados, a.amostra_baixo) if (m.get("volumeNum") or 0) >= a.volume_min]
-    for i, m in enumerate(mercados):
+    from concurrent.futures import ThreadPoolExecutor
+
+    def um(m):
         tk = tokens(m)
         if tk:
             baixar_historico(m, tk[0])  # tokens seguem a ordem de outcomes; o 1º é "Yes"
-        if i % 500 == 0:
-            print(f"históricos: {i}/{len(mercados)} (volume atual US$ {m.get('volumeNum') or 0:,.0f})", flush=True)
+
+    with ThreadPoolExecutor(a.paralelo) as ex:
+        for i, _ in enumerate(ex.map(um, mercados)):
+            if i % 500 == 0:
+                v = mercados[i].get("volumeNum") or 0
+                print(f"históricos: {i}/{len(mercados)} (volume atual US$ {v:,.0f})", flush=True)
     mostrar_esquema(mercados)
 
 
