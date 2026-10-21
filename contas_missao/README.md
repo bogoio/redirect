@@ -33,7 +33,8 @@ Somente dados publicados pelo TSE. CPFs são usados só internamente para cruzar
   cumprimento de sentença; Felippe Lourenço, contas **aprovadas** (19/11/2024). Ver `output/relatorio.md`.
 - Falta ler o acórdão de Alex (motivo das ressalvas e valor cobrado). A `comunicaapi.pje.jus.br` bloqueia
   acessos de fora do Brasil (geobloqueio do CloudFront), e a consulta pública do PJe tem um desafio anti-robô que
-  não deve ser contornado. Ainda não liberados: `dje-consulta.tse.jus.br` (acórdão publicado no DJE em
-  20/10/2025), `jurisprudencia.tse.jus.br`, `sjur-servicos.tse.jus.br` e `pje2g.tre-sp.jus.br`.
+  não deve ser contornado. O `dje-consulta.tse.jus.br` (tentado em 21/10/2026) só lista edições
+  do DJE do próprio TSE e exige captcha (`rest/diario/captcha` = true) para pesquisar. As intimações do TRE-SP
+  de 2025 saem no DJEN (CNJ), o mesmo sistema geobloqueado da comunicaapi. Falta obter o acórdão à mão.
 - Res. 23.607: conferida no texto oficial (`output/res_23607_artigos.md`).
 - `www.tse.jus.br` e `divulgacandcontas.tse.jus.br` só funcionam por navegador (Playwright), não por curl.
