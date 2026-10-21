@@ -29,11 +29,9 @@ python3 scripts/02_fluxos.py && python3 scripts/03_pulverizacao.py && python3 sc
 Somente dados publicados pelo TSE. CPFs são usados só internamente para cruzar bases e nunca aparecem nas saídas.
 
 ## Pendências
-- Resultado do julgamento das contas de 2022. O DivulgaCandContas (consultado em 21/10/2026) não traz o
-  resultado. Ele informa os processos no PJe do TRE-SP: Alex Macedo **0605945-18.2022.6.26.0000** (retificadora
-  entregue em 03/06/2025) e Felippe Lourenço **0607025-17.2022.6.26.0000** (só a entrega final de 01/11/2022).
-  Para consultar: a consulta pública unificada do PJe exige captcha (fazer à mão). Outra opção é liberar na rede
-  do ambiente `comunicaapi.pje.jus.br` ou `api-publica.datajud.cnj.jus.br`.
+- Julgamento (DataJud, 21/10/2026): Alex Macedo, contas **aprovadas com ressalvas** (16/10/2025) e depois
+  cumprimento de sentença; Felippe Lourenço, contas **aprovadas** (19/11/2024). Ver `output/relatorio.md`.
+- Falta ler o acórdão de Alex (motivo das ressalvas e valor cobrado). A `comunicaapi.pje.jus.br` responde 403
+  (CloudFront) mesmo liberada. A consulta pública do PJe exige captcha.
 - Res. 23.607: conferida no texto oficial (`output/res_23607_artigos.md`).
-- Acesso ao TSE: `www.tse.jus.br` e `divulgacandcontas.tse.jus.br` respondem 403 (Akamai) ao curl e só
-  funcionam por navegador (Playwright/Chromium).
+- `www.tse.jus.br` e `divulgacandcontas.tse.jus.br` só funcionam por navegador (Playwright), não por curl.

@@ -160,7 +160,7 @@ Estadual do PP. Não há repasse do Missão nem de candidatos do Missão para Be
 | Doações de Kim, Renato, Guto, Amanda e Beraldo a Alex e Felippe (2022) | Res. TSE 23.607/2019, art. 17, § 2º (FEFC) e art. 19, § 7º (Fundo Partidário): vedam repasse a candidato de partido não coligado. | **Não se aplica.** Todos eram do mesmo partido, e a fonte registrada é "Outros Recursos", com doador originário pessoa física. A doação entre candidatos do mesmo partido com recursos próprios da campanha é permitida. |
 | R$ 30.000 de FEFC por aluguel a Cristiano da Silva Lourenço | Res. 23.607, art. 60 (comprovação de gastos por documento fiscal idôneo ou outro meio idôneo de prova) | **Depende do julgamento.** Os dados mostram a despesa e o documento informado ("CONTRATO"), mas não se a locação foi comprovada. Ser ex-candidato de outro partido não torna o pagamento ilegal. |
 | Pagamento de R$ 112.000 à mãe de Felippe | (pagamento a parente) | **Não existe nos dados.** Não há pagamento a "Silene" nem a nenhum fornecedor com sobrenome "Lourenço" nas despesas de Felippe, e nenhum fornecedor dele soma R$ 112 mil. |
-| Contas de Alex "reprovadas" | Res. 23.607, art. 74 | **Não verificado.** O DivulgaCandContas (consultado em 21/10/2026) não mostra o resultado do julgamento, só o processo PJe 0605945-18.2022.6.26.0000 e as entregas: final em 01/11/2022 e **retificadora em 03/06/2025**. A consulta pública do PJe exige captcha, e as APIs do CNJ estão bloqueadas neste ambiente. |
+| Contas de Alex "reprovadas" | Res. 23.607, art. 74 | **Incorreta.** Segundo o DataJud (CNJ), o TRE-SP julgou o processo 0605945-18.2022.6.26.0000 em 15-16/10/2025, com movimento **"Contas Aprovadas com Ressalvas"** e trânsito em julgado em 24/10/2025. Depois o processo passou à classe "Cumprimento de sentença", com "Execução frustrada" em 21/07/2026. Isso indica cobrança de algum valor fixado no julgamento, provavelmente recolhimento ao Tesouro, mas a decisão em si não foi lida. |
 
 ---
 
@@ -200,7 +200,7 @@ Estadual do PP. Não há repasse do Missão nem de candidatos do Missão para Be
 | Amanda → Alex R$ 36.000 | **R$ 36.600,00** | Confirmada com valor diferente |
 | Guto → Alex R$ 36.000 | **R$ 36.600,00** | Confirmada com valor diferente |
 | Total ~R$ 539.999,99 | R$ 540.000,00 | Confirmada |
-| Contas de Alex reprovadas por não comprovar aluguel | Não verificável nesta coleta. Existe um aluguel de R$ 30 mil pago com FEFC. | **Não verificada** |
+| Contas de Alex reprovadas por não comprovar aluguel | Aprovadas com ressalvas (16/10/2025), trânsito em 24/10/2025, seguido de cumprimento de sentença. O motivo das ressalvas e o valor cobrado não estão nos metadados. | **Incorreta** quanto à reprovação |
 | Pulverização em pagamentos pequenos a PF | 161 pagamentos a PF, 61% do gasto, mediana de R$ 1.500 | **Confirmada** (fato, não ilícito) |
 | R$ 30.000 do fundo eleitoral a "Cristiano da Silva", ligado a candidatura em Embu das Artes | R$ 30.000 de FEFC a Cristiano da Silva Lourenço, candidato a vereador em Embu das Artes em 2020 (CPF) e homônimo em 2024 | **Confirmada** |
 | Felipe Lourenço de Oliveira, dep. estadual, 712 votos | Felippe Lourenço Oliveira Coelho, 712 votos (2022) | **Confirmada** (nome diferente) |
@@ -211,6 +211,19 @@ Estadual do PP. Não há repasse do Missão nem de candidatos do Missão para Be
 | Recursos eram do fundo eleitoral | Os repasses entre candidatos foram "Outros Recursos" (doador originário PF). O FEFC aparece só no aluguel de R$ 30 mil e nos gastos diretos de Alex e Felippe. | **Incorreta** quanto aos repasses |
 
 ---
+
+## Julgamento das contas de 2022 (DataJud/CNJ, consultado em 21/10/2026)
+
+| Candidato | Processo (TRE-SP) | Resultado | Trânsito em julgado | Depois |
+|---|---|---|---|---|
+| Alex Macedo | 0605945-18.2022.6.26.0000 | **Aprovadas com ressalvas** (16/10/2025) | 24/10/2025 | Classe mudou para "Cumprimento de sentença"; "Execução frustrada" em 21/07/2026; último despacho em 03/08/2026 |
+| Felippe Lourenço | 0607025-17.2022.6.26.0000 | **Aprovadas** (19/11/2024) | 28/11/2024 | Baixa definitiva |
+
+No caso de Alex, o julgamento veio depois da retificadora de 03/06/2025 e do parecer de 15/08/2025, e o processo
+foi incluído em pauta em 06/10/2025. O cumprimento de sentença indica que o acórdão mandou pagar algum valor
+(o normal seria recolher ao Tesouro recursos de FEFC com gasto irregular), mas não li o acórdão e não sei o
+valor nem o motivo. Alguns complementos do DataJud são claramente erros de cadastro e foram ignorados, como
+"Requisição de tratamento psiquiátrico" e "TJSC". Movimentos completos em `julgamento_movimentos.csv`.
 
 ## Regras (Res. TSE 23.607/2019)
 

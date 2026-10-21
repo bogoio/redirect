@@ -5,7 +5,9 @@
 > representação acusatória.
 >
 > Antes de protocolar:
-> 1. Consultar no PJe do TRE-SP (processos 0605945-18.2022.6.26.0000 e 0607025-17.2022.6.26.0000) o resultado do julgamento das contas de Alex Macedo
+> 1. **Resultado (DataJud):** contas de Alex aprovadas com ressalvas (16/10/2025, com cumprimento de sentença
+>    posterior) e de Felippe aprovadas (19/11/2024). Ler o acórdão de Alex para saber o motivo das ressalvas e o
+>    valor cobrado. Antes constava aqui: consultar o resultado do julgamento das contas de Alex Macedo
 >    de Souza e de Felippe Lourenço Oliveira Coelho (eleição de 2022). Se as contas foram desaprovadas, o
 >    acórdão é a prova principal e muda o enquadramento.
 > 2. Artigos da Res. TSE 23.607/2019 conferidos no texto oficial em 21/10/2026 (`res_23607_artigos.md`).
