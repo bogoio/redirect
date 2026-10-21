@@ -129,6 +129,18 @@ def baixar_historico(m, token_id):
     return h
 
 
+def priorizar(mercados, amostra_baixo, semente=2026):
+    """Baixa históricos do maior volume para o menor; abaixo de US$ 100 mil (a maioria),
+    só uma amostra aleatória de `amostra_baixo` mercados (semente fixa)."""
+    import random
+    alto = sorted((m for m in mercados if (m.get("volumeNum") or 0) >= 1e5),
+                  key=lambda m: -(m.get("volumeNum") or 0))
+    baixo = [m for m in mercados if (m.get("volumeNum") or 0) < 1e5]
+    if amostra_baixo is not None and len(baixo) > amostra_baixo:
+        baixo = random.Random(semente).sample(baixo, amostra_baixo)
+    return alto + baixo
+
+
 def mostrar_esquema(mercados):
     from collections import Counter
     campos = Counter(k for m in mercados for k in m)
@@ -148,6 +160,8 @@ def main():
     ap.add_argument("--amostra", type=int)
     ap.add_argument("--esquema", action="store_true")
     ap.add_argument("--so-lista", action="store_true", help="só lista os mercados, sem históricos")
+    ap.add_argument("--amostra-baixo", type=int, default=10000,
+                    help="quantos mercados abaixo de US$ 100 mil baixar (amostra aleatória)")
     a = ap.parse_args()
     for d in (CACHE_MERC, CACHE_HIST):
         d.mkdir(parents=True, exist_ok=True)
@@ -158,12 +172,13 @@ def main():
         mercados = mercados[:a.amostra]
     if a.so_lista:
         return print(f"{len(mercados)} mercados listados")
+    mercados = priorizar(mercados, a.amostra_baixo)
     for i, m in enumerate(mercados):
         tk = tokens(m)
         if tk:
             baixar_historico(m, tk[0])  # tokens seguem a ordem de outcomes; o 1º é "Yes"
-        if i % 100 == 0:
-            print(f"históricos: {i}/{len(mercados)}")
+        if i % 500 == 0:
+            print(f"históricos: {i}/{len(mercados)} (volume atual US$ {m.get('volumeNum') or 0:,.0f})", flush=True)
     mostrar_esquema(mercados)
 
 

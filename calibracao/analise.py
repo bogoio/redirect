@@ -57,7 +57,7 @@ def carregar():
             descarta("resolução não 1/0 (inválido, 50/50, cancelado)"); continue
         arq = CACHE_HIST / f"{tk[0]}.json"
         if not arq.exists():
-            descarta("sem histórico baixado"); continue
+            descarta("histórico não baixado (fora da amostra < US$ 100 mil)"); continue
         h = json.loads(arq.read_text())["history"]
         if len(h) < MIN_PONTOS:
             descarta(f"histórico com menos de {MIN_PONTOS} pontos"); continue
