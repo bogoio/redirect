@@ -93,3 +93,7 @@ Cruza cada zona já apurada no 2º turno com a mesma zona no 1º turno, mede o d
 ## Buscas no Google (`tendencias.py`)
 
 Parte do Flávio nas buscas (Google Trends, "Flávio Bolsonaro" x "Lula"). Não entra no modelo: o nível não diz nada ("Lula" é nome curto de presidente no cargo; a direita teve 22% das buscas no 1º turno de 2026 e 51% dos votos) e a variação nas duas semanas finais acompanhou o movimento das pesquisas em 2018, mas não o erro delas em 2022 (busca da direita estável ou caindo, e Bolsonaro acima das pesquisas nos dois turnos). Serve como termômetro de momento.
+
+## Chuva x comparecimento (`chuva.py`)
+
+Chuva no dia de cada turno (NASA POWER, grade de 0,5°; 2014, 2018 e 2022) cruzada com a variação do comparecimento do 1º para o 2º turno em cada município, com efeito fixo de ano x UF e erro-padrão agrupado por UF-ano. Coeficiente: -0,135 ponto de comparecimento por unidade de log(1 + mm) a mais no 2º turno (t = -3,4); 20 mm ou mais no 2º turno e não no 1º: -0,29 ponto. Aplicado à previsão de 25/10 (Open-Meteo, por capital, cada município herda a capital mais próxima): comparecimento cai até 0,44 ponto no Sudeste, mas o efeito na participação do Flávio é de -0,01 a -0,02 ponto, porque quem deixa de votar vota como o próprio município. Não entra no modelo. Os dados da NASA para 2026 ainda são preliminares e vêm com valores impossíveis; por isso o 1º turno de 2026 entra como "seco" ou com a chuva média dos 1º turnos anteriores.
