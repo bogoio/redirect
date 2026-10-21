@@ -1,9 +1,33 @@
 # contas_missao
 
-Verificação, com dados abertos do TSE, de alegações sobre transferências entre campanhas ligadas ao MBL / Partido Missão (SP).
+Verificação, com dados abertos do TSE, de alegações (vídeo) sobre transferências entre campanhas ligadas ao
+MBL / Partido Missão em SP. **Resultado principal:** os fatos são da eleição de **2022** (União Brasil), não de 2026.
 
-- `dados_brutos/` - arquivos baixados de cdn.tse.jus.br (não versionados; ver URLs em `scripts/`)
-- `scripts/01_candidatos.py` - localiza as pessoas citadas na base `consulta_cand_2026`
-- `output/` - resultados
+## Estrutura
+- `dados_brutos/` - arquivos de cdn.tse.jus.br (não versionados; recriar com `scripts/baixar.sh`)
+- `scripts/`
+  - `baixar.sh` - baixa e extrai as bases (candidatos 2020/22/24/26, contas e votação 2022/26, SP)
+  - `comum.py` - leitura das bases, preservando arquivo e linha de origem
+  - `01_candidatos.py` - busca inicial das pessoas na base de 2026
+  - `02_fluxos.py` - pessoas (cargo, partido, votos) e fluxos entre campanhas -> `pessoas.csv`, `fluxos.csv`
+  - `03_pulverizacao.py` - pagamentos a PF, cruzamentos, custo por voto
+  - `04_grafo.py` - `grafo.png`
+- `output/`
+  - `relatorio.md` - seções A (fatos), B (irregularidades objetivas), C (indícios) e tabela alegação × dados
+  - `representacao_rascunho.md` - rascunho de notícia de fato à PRE-SP
+  - `fluxos.csv`, `pessoas.csv`, `pulverizacao_*.csv`, `cruzamentos.csv`, `custo_por_voto.csv`, `grafo.png`
 
-Etapa 1 (coleta e identificação dos candidatos) concluída; demais etapas pendentes.
+## Rodar
+```sh
+cd contas_missao
+sh scripts/baixar.sh          # ~1,7 GB de downloads
+pip install pandas matplotlib networkx
+python3 scripts/02_fluxos.py && python3 scripts/03_pulverizacao.py && python3 scripts/04_grafo.py
+```
+
+## Privacidade
+Somente dados publicados pelo TSE. CPFs são usados só internamente para cruzar bases e nunca aparecem nas saídas.
+
+## Pendências
+- Situação do julgamento das contas (DivulgaCandContas estava inacessível neste ambiente).
+- Conferir o texto oficial da Res. TSE 23.607/2019 (as transcrições do relatório são de fontes secundárias).
