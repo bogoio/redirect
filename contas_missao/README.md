@@ -29,5 +29,8 @@ python3 scripts/02_fluxos.py && python3 scripts/03_pulverizacao.py && python3 sc
 Somente dados publicados pelo TSE. CPFs são usados só internamente para cruzar bases e nunca aparecem nas saídas.
 
 ## Pendências
-- Situação do julgamento das contas (DivulgaCandContas estava inacessível neste ambiente).
-- Conferir o texto oficial da Res. TSE 23.607/2019 (as transcrições do relatório são de fontes secundárias).
+- Situação do julgamento das contas de Alex Macedo (SQ 250001602051) e Felippe Lourenço (SQ 250001602115), 2022.
+- Conferir o texto oficial da Res. TSE 23.607/2019, arts. 17 § 2º, 19 § 7º, 60 e 74 (as transcrições do relatório são de fontes secundárias).
+- Tentativa de 21/10/2026: a rede do ambiente recusa divulgacandcontas.tse.jus.br, www.tse.jus.br, www.tre-sp.jus.br,
+  consultaunificadapje.tse.jus.br e planalto.gov.br (só cdn.tse.jus.br responde). Buscas na web não acharam notícia
+  sobre o julgamento dessas duas contas. Para concluir: liberar esses domínios na configuração de rede do ambiente.
