@@ -1,8 +1,8 @@
-Estimativa central (A, bruto): 51.10% para Flávio na participação bipartidária; com ajuste de casa (B): 51.16%.
-Intervalo A: 80% 48.57-53.62 | 95% 46.68-55.48 (dp total 2.22, dispersão entre pesquisas 0.96).
-Intervalo B: 80% 48.61-53.70 | 95% 46.75-55.57.
-P(Flávio vence): A = 72.4% | B = 73.3%; na grade varia de 66.8% a 85.3%.
-Premissa que mais mexe (variando uma de cada vez): sd_eleicao (amplitude de 8.0% em P); meia_vida 0.1%, cenario 0.7%, verita 0.1%, amostra 3.2%, pesos 4.9%.
-Malícia estrutural (sobre A): neutro 51.10% / P 72.4% | equilibrado 51.94% / P 82.7% | direita_forte 52.86% / P 90.0% | governo_forte 51.02% / P 70.1%.
-Indecisos contra o governo (28% para Lula, mediana de 6.0% de indecisos): desvio +1.34 (faixa +2.67 a -0.06) -> 52.43% / P 88.3%.
-Mercado (Kalshi + Polymarket, 2026-10-23): preço 77.2% -> calibrado 70.0% (IC95 59.8%-78.6%, 71 eventos); média modelo A + mercado calibrado = 71.2%.
+Estimativa central (A, bruto): 51.21% para Flávio na participação bipartidária; com ajuste de casa (B): 51.26%.
+Intervalo A: 80% 48.65-53.77 | 95% 46.73-55.66 (dp total 2.25, dispersão entre pesquisas 1.03).
+Intervalo B: 80% 48.66-53.85 | 95% 46.78-55.76.
+P(Flávio vence): A = 74.1% | B = 74.6%; na grade varia de 62.3% a 82.9%.
+Premissa que mais mexe (variando uma de cada vez): sd_eleicao (amplitude de 8.1% em P); meia_vida 0.8%, cenario 0.2%, verita 0.0%, amostra 3.1%, pesos 1.4%.
+Malícia estrutural (sobre A): neutro 51.21% / P 74.1% | equilibrado 52.05% / P 83.7% | direita_forte 52.97% / P 90.6% | governo_forte 51.13% / P 71.8%.
+Indecisos contra o governo (28% para Lula, mediana de 5.7% de indecisos): desvio +1.29 (faixa +2.58 a -0.06) -> 52.50% / P 88.6%.
+Mercado (Kalshi + Polymarket, 2026-10-23): preço 77.2% -> calibrado 70.0% (IC95 59.8%-78.6%, 71 eventos); média modelo A + mercado calibrado = 72.1%.
