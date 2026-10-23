@@ -11,18 +11,18 @@ historico,só top-4,B,alternativa,7,0.732,0.696,0.669
 historico,só top-4,B,padrao,3,0.742,0.706,0.679
 historico,só top-4,B,padrao,4,0.739,0.699,0.67
 historico,só top-4,B,padrao,7,0.731,0.694,0.668
-historico,todas,A,alternativa,3,0.779,0.735,0.701
-historico,todas,A,alternativa,4,0.777,0.735,0.697
-historico,todas,A,alternativa,7,0.777,0.735,0.702
-historico,todas,A,padrao,3,0.781,0.738,0.701
-historico,todas,A,padrao,4,0.778,0.735,0.698
-historico,todas,A,padrao,7,0.777,0.734,0.702
-historico,todas,B,alternativa,3,0.774,0.731,0.696
-historico,todas,B,alternativa,4,0.777,0.729,0.697
-historico,todas,B,alternativa,7,0.778,0.737,0.702
-historico,todas,B,padrao,3,0.775,0.73,0.695
-historico,todas,B,padrao,4,0.775,0.731,0.697
-historico,todas,B,padrao,7,0.777,0.736,0.701
+historico,todas,A,alternativa,3,0.769,0.725,0.691
+historico,todas,A,alternativa,4,0.768,0.726,0.689
+historico,todas,A,alternativa,7,0.771,0.729,0.696
+historico,todas,A,padrao,3,0.77,0.727,0.69
+historico,todas,A,padrao,4,0.77,0.727,0.69
+historico,todas,A,padrao,7,0.771,0.728,0.696
+historico,todas,B,alternativa,3,0.779,0.734,0.698
+historico,todas,B,alternativa,4,0.781,0.732,0.698
+historico,todas,B,alternativa,7,0.78,0.738,0.703
+historico,todas,B,padrao,3,0.779,0.733,0.697
+historico,todas,B,padrao,4,0.779,0.734,0.699
+historico,todas,B,padrao,7,0.779,0.737,0.701
 so_r1_2026,só top-4,A,alternativa,3,0.852,0.81,0.772
 so_r1_2026,só top-4,A,alternativa,4,0.846,0.804,0.769
 so_r1_2026,só top-4,A,alternativa,7,0.84,0.802,0.763
@@ -35,15 +35,15 @@ so_r1_2026,só top-4,B,alternativa,7,0.842,0.8,0.767
 so_r1_2026,só top-4,B,padrao,3,0.827,0.785,0.747
 so_r1_2026,só top-4,B,padrao,4,0.823,0.781,0.744
 so_r1_2026,só top-4,B,padrao,7,0.821,0.778,0.742
-so_r1_2026,todas,A,alternativa,3,0.842,0.799,0.761
-so_r1_2026,todas,A,alternativa,4,0.835,0.795,0.757
-so_r1_2026,todas,A,alternativa,7,0.83,0.787,0.754
-so_r1_2026,todas,A,padrao,3,0.828,0.781,0.744
-so_r1_2026,todas,A,padrao,4,0.82,0.779,0.743
-so_r1_2026,todas,A,padrao,7,0.818,0.775,0.741
-so_r1_2026,todas,B,alternativa,3,0.85,0.804,0.767
-so_r1_2026,todas,B,alternativa,4,0.844,0.801,0.764
-so_r1_2026,todas,B,alternativa,7,0.842,0.798,0.763
-so_r1_2026,todas,B,padrao,3,0.829,0.784,0.746
-so_r1_2026,todas,B,padrao,4,0.822,0.779,0.745
-so_r1_2026,todas,B,padrao,7,0.821,0.776,0.744
+so_r1_2026,todas,A,alternativa,3,0.839,0.795,0.757
+so_r1_2026,todas,A,alternativa,4,0.832,0.792,0.754
+so_r1_2026,todas,A,alternativa,7,0.828,0.786,0.752
+so_r1_2026,todas,A,padrao,3,0.826,0.779,0.741
+so_r1_2026,todas,A,padrao,4,0.818,0.776,0.741
+so_r1_2026,todas,A,padrao,7,0.816,0.774,0.74
+so_r1_2026,todas,B,alternativa,3,0.853,0.806,0.769
+so_r1_2026,todas,B,alternativa,4,0.846,0.803,0.765
+so_r1_2026,todas,B,alternativa,7,0.844,0.8,0.764
+so_r1_2026,todas,B,padrao,3,0.832,0.787,0.748
+so_r1_2026,todas,B,padrao,4,0.824,0.781,0.747
+so_r1_2026,todas,B,padrao,7,0.823,0.778,0.745
