@@ -60,42 +60,74 @@ import csv
 from collections import Counter
 from datetime import date
 
-# Casos conhecidos ate 23/10/2026. Lista incompleta (faltam ~10 dos 20).
+# Casos conhecidos ate 23/10/2026. Lista ainda incompleta.
+# fonte: m = Metropoles (mapa dos 12), s = SBT News (9 oficiais), t = TMC, a = ABCD Jornal
+# lat/lon = centro aproximado do bairro, NAO o endereco exato.
+def caso(d, local, municipio, zona, metodo, vitima, oficial, obs, fonte, lat, lon):
+    return dict(data=d, local=local, municipio=municipio, zona=zona, metodo=metodo,
+                vitima=vitima, oficial=oficial, obs=obs, fonte=fonte, lat=lat, lon=lon)
+
+
 CASOS = [
-    dict(data=date(2026, 9, 5), local="Jabaquara (R. Contos Gauchescos)", municipio="Sao Paulo",
-         zona="Sul", metodo="amarrado, saco plastico, posicao fetal",
-         vitima="Jose Zito da Conceicao, 55", oficial=True, obs=None),
-    dict(data=date(2026, 9, 10), local="Via publica", municipio="Sao Paulo",
-         zona=None, metodo="amarrada, saco plastico + cobertor",
-         vitima="mulher nao identificada", oficial=True, obs="unica mulher na conta oficial"),
-    dict(data=date(2026, 9, 10), local="Colonia", municipio="Sao Paulo",
-         zona="Leste", metodo="amarrado, cobertor, cabeca em sacos",
-         vitima=None, oficial=True, obs=None),
-    dict(data=date(2026, 9, 19), local="Jacana (R. Antonio Nascente)", municipio="Sao Paulo",
-         zona="Norte", metodo="esquartejado em sacolas",
-         vitima="Murilo Sanches dos Santos, 26", oficial=True, obs=None),
-    dict(data=date(2026, 9, 21), local="Jardim Celeste", municipio="Sao Paulo",
-         zona="Sul", metodo="porta-malas de veiculo",
-         vitima=None, oficial=True, obs=None),
-    dict(data=date(2026, 9, 25), local="Vila Andrade", municipio="Sao Paulo",
-         zona="Sul", metodo="enrolado em lencol",
-         vitima=None, oficial=True, obs=None),
-    dict(data=date(2026, 9, 27), local="Jardim Sao Luis (Av. Guido Caloi)", municipio="Sao Paulo",
-         zona="Sul", metodo="decapitacao; cabeca separada",
-         vitima=None, oficial=True, obs="corpo a ~21 km, em Itapecerica da Serra, enrolado em lencol"),
-    dict(data=date(2026, 10, 2), local="Ciclovia Parque Ecologico do Tiete", municipio="Sao Paulo",
-         zona="Leste", metodo="saco plastico preto",
-         vitima=None, oficial=True, obs="perto do CT do Corinthians"),
-    dict(data=date(2026, 10, 13), local="Belenzinho", municipio="Sao Paulo",
-         zona="Leste", metodo=None, vitima=None, oficial=True, obs=None),
-    dict(data=date(2026, 10, 13), local="Represa Billings, Riacho Grande (Anchieta km 29)",
-         municipio="Sao Bernardo do Campo", zona=None, metodo="na agua",
-         vitima=None, oficial=None, obs=None),
-    dict(data=date(2026, 10, 21), local="Estrada Borba Gato", municipio="Itapecerica da Serra",
-         zona=None, metodo="porta-malas de carro abandonado no mato",
-         vitima="homem, nao divulgado", oficial=None,
-         obs="20o corpo; RG e boletim de ocorrencia dentro do carro"),
+    caso(date(2026, 9, 5), "Jabaquara (R. Contos Gauchescos)", "Sao Paulo", "Sul",
+         "amarrado, saco plastico, posicao fetal", "Jose Zito da Conceicao, 55", True, None,
+         "m,s", -23.646, -46.641),
+    caso(date(2026, 9, 10), "Vila Chuca (R. Osmano Ungaretti, 146)", "Sao Paulo", None,
+         "cobertor dentro de saco plastico; tiros no rosto e cabeca",
+         "Yasmin Dandara Silveira Brisola, 32", True, "unica mulher na conta oficial",
+         "m,s", None, None),
+    caso(date(2026, 9, 10), "Colonia (R. Zenichi Sato, 9)", "Sao Paulo", "Leste",
+         "amarrado, cobertor, saco plastico", "Filipe de Carvalho Cabral, 34", True,
+         "desaparecido desde 6/9", "m,s", -23.553, -46.437),
+    caso(date(2026, 9, 13), "Cidade Nitro Quimica, Sao Miguel Paulista (Av. Eduardo Sabino de Oliveira)",
+         "Sao Paulo", "Leste", "corrego; queimado, amarrado, saco plastico",
+         "Rodrigo Machado de Albuquerque, 35", None, None, "m", -23.505, -46.428),
+    caso(date(2026, 9, 19), "Jacana (R. Antonio Nascentes, 385)", "Sao Paulo", "Norte",
+         "esquartejado em sacolas", "Murilo Sanches dos Santos, 26", True,
+         "desaparecido ha ~10 dias", "m", -23.457, -46.582),
+    caso(date(2026, 9, 21), "Jardim Celeste (R. Herbert Smith, 56)", "Sao Paulo", "Sul",
+         "porta-malas; lencol + saco plastico; decomposicao avancada",
+         "Rafael Zimbarg Francez, 25, motorista de app", True, None, "m", -23.661, -46.617),
+    caso(date(2026, 9, 25), "Vila Andrade (R. Sao Joao do Pernambuco, 37)", "Sao Paulo", "Sul",
+         "lencol, maos e pes amarrados", "homem branco nao identificado", True, None,
+         "m", -23.629, -46.737),
+    caso(date(2026, 9, 27), "Jardim Sao Luis (Av. Guido Caloi, 900)", "Sao Paulo", "Sul",
+         "decapitacao; cabeca numa praca", None, True,
+         "corpo a ~21 km, em Itapecerica da Serra, enrolado em lencol", "m,s", -23.655, -46.733),
+    caso(date(2026, 9, 30), "Colonia (R. Tadao Inoue, 1.200), sob o Rodoanel", "Sao Paulo", "Leste",
+         "cobertor; pulsos amarrados com fio; tiro na cabeca", None, None, None,
+         "m", -23.560, -46.430),
+    caso(date(2026, 10, 2), "Ciclovia Parque Ecologico do Tiete", "Sao Paulo", "Leste",
+         "saco plastico preto; bracos e pernas com fita", "homem nao identificado", True,
+         "perto do CT do Corinthians", "m,s", -23.493, -46.523),
+    caso(date(2026, 10, 8), "Grajau (Av. Paulo Guilguer Reimberg, perto da estacao Varginha)",
+         "Sao Paulo", "Sul", None, "homem", True, None, "s", -23.776, -46.697),
+    caso(date(2026, 10, 8), "Eldorado (R. Botocudos)", "Diadema", None,
+         None, None, None, "'provavel corpo', area de dificil acesso; nao confirmado na serie",
+         "a", -23.708, -46.623),
+    caso(date(2026, 10, 9), "Jardim Lourdes (R. Filinto Elisio)", "Sao Paulo", None, None,
+         "homem nao identificado, 20-25", True, None, "s", None, None),
+    caso(date(2026, 10, 13), "Belenzinho", "Sao Paulo", "Leste", None, None, True,
+         "denuncia de disparos na noite anterior", "s", -23.541, -46.590),
+    caso(date(2026, 10, 13), "Represa Billings, Riacho Grande (Anchieta km 28-29)",
+         "Sao Bernardo do Campo", None, "na agua, 'pacote' boiando", None, True, None,
+         "s", -23.773, -46.537),
+    caso(date(2026, 10, 21), "Vila Guilherme (Marginal Tiete)", "Sao Paulo", "Norte",
+         "esquartejado em 4 sacos", "Lucimara Garcia do Nascimento de Freitas, 35", None,
+         "PM flagrou 2 homens com os sacos; um suspeito morreu no confronto", "m", -23.510, -46.606),
+    caso(date(2026, 10, 21), "Tremembe (Av. Cel. Sezefredo Fagundes, 25.555), mata", "Sao Paulo", "Norte",
+         "trauma na cabeca; sacos plasticos", "Milber Conceicao Paiva, 43", None,
+         "desaparecido desde 19/10", "m", -23.415, -46.596),
+    caso(date(2026, 10, 21), "Estrada Borba Gato", "Itapecerica da Serra", None,
+         "porta-malas de carro abandonado no mato", "homem, nao divulgado", None,
+         "20o corpo; RG e boletim de ocorrencia dentro do carro", "t", -23.718, -46.849),
+    caso(date(2026, 10, 22), "Marginal Tiete (via)", "Sao Paulo", None, None, "homem", None,
+         "~5h30; trecho nao informado", "correiodamanha", None, None),
 ]
+
+# Na contagem da imprensa, mas ainda sem caso individual achado:
+# Lapa / 2a da Zona Oeste, Barueri (1), Santana de Parnaiba (1),
+# Embu das Artes (1), ABC alem de SBC (Santo Andre / Sao Caetano).
 
 
 def salvar_csv(caminho="casos.csv"):
@@ -121,8 +153,31 @@ def resumo():
     print("Por zona (capital):", dict(Counter(c["zona"] for c in casos if c["zona"])))
     ligados_itapecerica = [c for c in casos if "Itapecerica" in (c["municipio"] + (c["obs"] or ""))]
     print(f"Casos ligados a Itapecerica: {len(ligados_itapecerica)}")
+    print("Por mes:", dict(Counter(c["data"].strftime("%Y-%m") for c in casos)))
+
+
+def mapa(caminho="mapa.html"):
+    try:
+        import folium
+    except ImportError:
+        print("folium nao instalado; mapa pulado")
+        return None
+    m = folium.Map(location=[-23.6, -46.65], zoom_start=10, tiles="OpenStreetMap")
+    for c in sorted(CASOS, key=lambda x: x["data"]):
+        if c["lat"] is None:
+            continue
+        cor = "red" if c["oficial"] else "gray"
+        folium.CircleMarker(
+            [c["lat"], c["lon"]], radius=7, color=cor, fill=True, fill_opacity=0.8,
+            popup=f"{c['data']} - {c['local']}<br>{c['metodo'] or ''}<br>{c['vitima'] or ''}",
+        ).add_to(m)
+    # ligacao cabeca/corpo do caso de 27/9
+    folium.PolyLine([[-23.655, -46.733], [-23.716, -46.849]], color="red", dash_array="5").add_to(m)
+    m.save(caminho)
+    return caminho
 
 
 if __name__ == "__main__":
     print("CSV salvo em", salvar_csv())
     resumo()
+    print("Mapa salvo em", mapa())

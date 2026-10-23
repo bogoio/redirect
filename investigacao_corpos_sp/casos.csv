@@ -1,12 +1,20 @@
-data,local,municipio,zona,metodo,vitima,oficial,obs
-2026-09-05,Jabaquara (R. Contos Gauchescos),Sao Paulo,Sul,"amarrado, saco plastico, posicao fetal","Jose Zito da Conceicao, 55",True,
-2026-09-10,Via publica,Sao Paulo,,"amarrada, saco plastico + cobertor",mulher nao identificada,True,unica mulher na conta oficial
-2026-09-10,Colonia,Sao Paulo,Leste,"amarrado, cobertor, cabeca em sacos",,True,
-2026-09-19,Jacana (R. Antonio Nascente),Sao Paulo,Norte,esquartejado em sacolas,"Murilo Sanches dos Santos, 26",True,
-2026-09-21,Jardim Celeste,Sao Paulo,Sul,porta-malas de veiculo,,True,
-2026-09-25,Vila Andrade,Sao Paulo,Sul,enrolado em lencol,,True,
-2026-09-27,Jardim Sao Luis (Av. Guido Caloi),Sao Paulo,Sul,decapitacao; cabeca separada,,True,"corpo a ~21 km, em Itapecerica da Serra, enrolado em lencol"
-2026-10-02,Ciclovia Parque Ecologico do Tiete,Sao Paulo,Leste,saco plastico preto,,True,perto do CT do Corinthians
-2026-10-13,Belenzinho,Sao Paulo,Leste,,,True,
-2026-10-13,"Represa Billings, Riacho Grande (Anchieta km 29)",Sao Bernardo do Campo,,na agua,,,
-2026-10-21,Estrada Borba Gato,Itapecerica da Serra,,porta-malas de carro abandonado no mato,"homem, nao divulgado",,20o corpo; RG e boletim de ocorrencia dentro do carro
+data,local,municipio,zona,metodo,vitima,oficial,obs,fonte,lat,lon
+2026-09-05,Jabaquara (R. Contos Gauchescos),Sao Paulo,Sul,"amarrado, saco plastico, posicao fetal","Jose Zito da Conceicao, 55",True,,"m,s",-23.646,-46.641
+2026-09-10,"Vila Chuca (R. Osmano Ungaretti, 146)",Sao Paulo,,cobertor dentro de saco plastico; tiros no rosto e cabeca,"Yasmin Dandara Silveira Brisola, 32",True,unica mulher na conta oficial,"m,s",,
+2026-09-10,"Colonia (R. Zenichi Sato, 9)",Sao Paulo,Leste,"amarrado, cobertor, saco plastico","Filipe de Carvalho Cabral, 34",True,desaparecido desde 6/9,"m,s",-23.553,-46.437
+2026-09-13,"Cidade Nitro Quimica, Sao Miguel Paulista (Av. Eduardo Sabino de Oliveira)",Sao Paulo,Leste,"corrego; queimado, amarrado, saco plastico","Rodrigo Machado de Albuquerque, 35",,,m,-23.505,-46.428
+2026-09-19,"Jacana (R. Antonio Nascentes, 385)",Sao Paulo,Norte,esquartejado em sacolas,"Murilo Sanches dos Santos, 26",True,desaparecido ha ~10 dias,m,-23.457,-46.582
+2026-09-21,"Jardim Celeste (R. Herbert Smith, 56)",Sao Paulo,Sul,porta-malas; lencol + saco plastico; decomposicao avancada,"Rafael Zimbarg Francez, 25, motorista de app",True,,m,-23.661,-46.617
+2026-09-25,"Vila Andrade (R. Sao Joao do Pernambuco, 37)",Sao Paulo,Sul,"lencol, maos e pes amarrados",homem branco nao identificado,True,,m,-23.629,-46.737
+2026-09-27,"Jardim Sao Luis (Av. Guido Caloi, 900)",Sao Paulo,Sul,decapitacao; cabeca numa praca,,True,"corpo a ~21 km, em Itapecerica da Serra, enrolado em lencol","m,s",-23.655,-46.733
+2026-09-30,"Colonia (R. Tadao Inoue, 1.200), sob o Rodoanel",Sao Paulo,Leste,cobertor; pulsos amarrados com fio; tiro na cabeca,,,,m,-23.56,-46.43
+2026-10-02,Ciclovia Parque Ecologico do Tiete,Sao Paulo,Leste,saco plastico preto; bracos e pernas com fita,homem nao identificado,True,perto do CT do Corinthians,"m,s",-23.493,-46.523
+2026-10-08,"Grajau (Av. Paulo Guilguer Reimberg, perto da estacao Varginha)",Sao Paulo,Sul,,homem,True,,s,-23.776,-46.697
+2026-10-08,Eldorado (R. Botocudos),Diadema,,,,,"'provavel corpo', area de dificil acesso; nao confirmado na serie",a,-23.708,-46.623
+2026-10-09,Jardim Lourdes (R. Filinto Elisio),Sao Paulo,,,"homem nao identificado, 20-25",True,,s,,
+2026-10-13,Belenzinho,Sao Paulo,Leste,,,True,denuncia de disparos na noite anterior,s,-23.541,-46.59
+2026-10-13,"Represa Billings, Riacho Grande (Anchieta km 28-29)",Sao Bernardo do Campo,,"na agua, 'pacote' boiando",,True,,s,-23.773,-46.537
+2026-10-21,Vila Guilherme (Marginal Tiete),Sao Paulo,Norte,esquartejado em 4 sacos,"Lucimara Garcia do Nascimento de Freitas, 35",,PM flagrou 2 homens com os sacos; um suspeito morreu no confronto,m,-23.51,-46.606
+2026-10-21,"Tremembe (Av. Cel. Sezefredo Fagundes, 25.555), mata",Sao Paulo,Norte,trauma na cabeca; sacos plasticos,"Milber Conceicao Paiva, 43",,desaparecido desde 19/10,m,-23.415,-46.596
+2026-10-21,Estrada Borba Gato,Itapecerica da Serra,,porta-malas de carro abandonado no mato,"homem, nao divulgado",,20o corpo; RG e boletim de ocorrencia dentro do carro,t,-23.718,-46.849
+2026-10-22,Marginal Tiete (via),Sao Paulo,,,homem,,~5h30; trecho nao informado,correiodamanha,,

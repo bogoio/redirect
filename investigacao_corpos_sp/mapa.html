@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_57df249228bfc86dd50597cb4cc71e5e {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_57df249228bfc86dd50597cb4cc71e5e" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_57df249228bfc86dd50597cb4cc71e5e = L.map(
+                "map_57df249228bfc86dd50597cb4cc71e5e",
+                {
+                    center: [-23.6, -46.65],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_5d24534f1f1106b354fd3eeaab3a42ae = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_5d24534f1f1106b354fd3eeaab3a42ae.addTo(map_57df249228bfc86dd50597cb4cc71e5e);
+        
+    
+            var circle_marker_4242ee351aad74c097a3934c45af6689 = L.circleMarker(
+                [-23.646, -46.641],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_57df249228bfc86dd50597cb4cc71e5e);
+        
+    
+        var popup_8114cb64e3b161b67c8815a3a4df9015 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9f6e4a5968b1f59217b771662ab5abe0 = $(`<div id="html_9f6e4a5968b1f59217b771662ab5abe0" style="width: 100.0%; height: 100.0%;">2026-09-05 - Jabaquara (R. Contos Gauchescos)<br>amarrado, saco plastico, posicao fetal<br>Jose Zito da Conceicao, 55</div>`)[0];
+                popup_8114cb64e3b161b67c8815a3a4df9015.setContent(html_9f6e4a5968b1f59217b771662ab5abe0);
+            
+        
+
+        circle_marker_4242ee351aad74c097a3934c45af6689.bindPopup(popup_8114cb64e3b161b67c8815a3a4df9015)
+        ;
+
+        
+    
+    
+            var circle_marker_4c54d0108c12957367af9b6202d5e593 = L.circleMarker(
+                [-23.553, -46.437],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_57df249228bfc86dd50597cb4cc71e5e);
+        
+    
+        var popup_5a5017e8191848c685eb32157ca466d9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_18f338639e119bd038d84ee93804c7b5 = $(`<div id="html_18f338639e119bd038d84ee93804c7b5" style="width: 100.0%; height: 100.0%;">2026-09-10 - Colonia (R. Zenichi Sato, 9)<br>amarrado, cobertor, saco plastico<br>Filipe de Carvalho Cabral, 34</div>`)[0];
+                popup_5a5017e8191848c685eb32157ca466d9.setContent(html_18f338639e119bd038d84ee93804c7b5);
+            
+        
+
+        circle_marker_4c54d0108c12957367af9b6202d5e593.bindPopup(popup_5a5017e8191848c685eb32157ca466d9)
+        ;
+
+        
+    
+    
+            var circle_marker_2baa5b301a7335365147795dd31b94e8 = L.circleMarker(
+                [-23.505, -46.428],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "gray", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_57df249228bfc86dd50597cb4cc71e5e);
+        
+    
+        var popup_b09b4e18c6d81078c139461f7d2b6e17 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2abdeedb96cb28edca490cbf73551fb1 = $(`<div id="html_2abdeedb96cb28edca490cbf73551fb1" style="width: 100.0%; height: 100.0%;">2026-09-13 - Cidade Nitro Quimica, Sao Miguel Paulista (Av. Eduardo Sabino de Oliveira)<br>corrego; queimado, amarrado, saco plastico<br>Rodrigo Machado de Albuquerque, 35</div>`)[0];
+                popup_b09b4e18c6d81078c139461f7d2b6e17.setContent(html_2abdeedb96cb28edca490cbf73551fb1);
+            
+        
+
+        circle_marker_2baa5b301a7335365147795dd31b94e8.bindPopup(popup_b09b4e18c6d81078c139461f7d2b6e17)
+        ;
+
+        
+    
+    
+            var circle_marker_06e502d119baa5bdd88c616cf35255df = L.circleMarker(
+                [-23.457, -46.582],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_57df249228bfc86dd50597cb4cc71e5e);
+        
+    
+        var popup_22e032ae4934878b6d60dd8f8163a01b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a300f112b5170dc1d5a784cc2cd9427d = $(`<div id="html_a300f112b5170dc1d5a784cc2cd9427d" style="width: 100.0%; height: 100.0%;">2026-09-19 - Jacana (R. Antonio Nascentes, 385)<br>esquartejado em sacolas<br>Murilo Sanches dos Santos, 26</div>`)[0];
+                popup_22e032ae4934878b6d60dd8f8163a01b.setContent(html_a300f112b5170dc1d5a784cc2cd9427d);
+            
+        
+
+        circle_marker_06e502d119baa5bdd88c616cf35255df.bindPopup(popup_22e032ae4934878b6d60dd8f8163a01b)
+        ;
+
+        
+    
+    
+            var circle_marker_77000c89cfc2e46db980304fb0c18a88 = L.circleMarker(
+                [-23.661, -46.617],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_57df249228bfc86dd50597cb4cc71e5e);
+        
+    
+        var popup_05da685640a63290870b941e181935a8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_824a22480ee59b9504809ba00a3c8cfe = $(`<div id="html_824a22480ee59b9504809ba00a3c8cfe" style="width: 100.0%; height: 100.0%;">2026-09-21 - Jardim Celeste (R. Herbert Smith, 56)<br>porta-malas; lencol + saco plastico; decomposicao avancada<br>Rafael Zimbarg Francez, 25, motorista de app</div>`)[0];
+                popup_05da685640a63290870b941e181935a8.setContent(html_824a22480ee59b9504809ba00a3c8cfe);
+            
+        
+
+        circle_marker_77000c89cfc2e46db980304fb0c18a88.bindPopup(popup_05da685640a63290870b941e181935a8)
+        ;
+
+        
+    
+    
+            var circle_marker_d0c1c336583a3e1c08527e9ebffe872c = L.circleMarker(
+                [-23.629, -46.737],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_57df249228bfc86dd50597cb4cc71e5e);
+        
+    
+        var popup_1e177f8292e632887fbb60e675b4ea11 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_189eda31c8456cefe6273c546c3c8c6a = $(`<div id="html_189eda31c8456cefe6273c546c3c8c6a" style="width: 100.0%; height: 100.0%;">2026-09-25 - Vila Andrade (R. Sao Joao do Pernambuco, 37)<br>lencol, maos e pes amarrados<br>homem branco nao identificado</div>`)[0];
+                popup_1e177f8292e632887fbb60e675b4ea11.setContent(html_189eda31c8456cefe6273c546c3c8c6a);
+            
+        
+
+        circle_marker_d0c1c336583a3e1c08527e9ebffe872c.bindPopup(popup_1e177f8292e632887fbb60e675b4ea11)
+        ;
+
+        
+    
+    
+            var circle_marker_116731957ce2c0fe13c9afaab264bbb0 = L.circleMarker(
+                [-23.655, -46.733],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_57df249228bfc86dd50597cb4cc71e5e);
+        
+    
+        var popup_378437c91babad0e971febe290c81e4d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bbc9db5bdf4b99ed90f081d6c1a093cb = $(`<div id="html_bbc9db5bdf4b99ed90f081d6c1a093cb" style="width: 100.0%; height: 100.0%;">2026-09-27 - Jardim Sao Luis (Av. Guido Caloi, 900)<br>decapitacao; cabeca numa praca<br></div>`)[0];
+                popup_378437c91babad0e971febe290c81e4d.setContent(html_bbc9db5bdf4b99ed90f081d6c1a093cb);
+            
+        
+
+        circle_marker_116731957ce2c0fe13c9afaab264bbb0.bindPopup(popup_378437c91babad0e971febe290c81e4d)
+        ;
+
+        
+    
+    
+            var circle_marker_641de3f65cafc404bb2334c25a3ed31d = L.circleMarker(
+                [-23.56, -46.43],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "gray", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_57df249228bfc86dd50597cb4cc71e5e);
+        
+    
+        var popup_9d451ef6122700d156cbb52f42066518 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_157b88e1fe43a0b4c4630717ef757216 = $(`<div id="html_157b88e1fe43a0b4c4630717ef757216" style="width: 100.0%; height: 100.0%;">2026-09-30 - Colonia (R. Tadao Inoue, 1.200), sob o Rodoanel<br>cobertor; pulsos amarrados com fio; tiro na cabeca<br></div>`)[0];
+                popup_9d451ef6122700d156cbb52f42066518.setContent(html_157b88e1fe43a0b4c4630717ef757216);
+            
+        
+
+        circle_marker_641de3f65cafc404bb2334c25a3ed31d.bindPopup(popup_9d451ef6122700d156cbb52f42066518)
+        ;
+
+        
+    
+    
+            var circle_marker_9c7020b961ada5921c36d6cf9fb33c17 = L.circleMarker(
+                [-23.493, -46.523],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_57df249228bfc86dd50597cb4cc71e5e);
+        
+    
+        var popup_cd7981e624507789605bf5bce19b367a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7f7d8e151ac1408234956b3150b517e2 = $(`<div id="html_7f7d8e151ac1408234956b3150b517e2" style="width: 100.0%; height: 100.0%;">2026-10-02 - Ciclovia Parque Ecologico do Tiete<br>saco plastico preto; bracos e pernas com fita<br>homem nao identificado</div>`)[0];
+                popup_cd7981e624507789605bf5bce19b367a.setContent(html_7f7d8e151ac1408234956b3150b517e2);
+            
+        
+
+        circle_marker_9c7020b961ada5921c36d6cf9fb33c17.bindPopup(popup_cd7981e624507789605bf5bce19b367a)
+        ;
+
+        
+    
+    
+            var circle_marker_2552d7834bf0ab7428afba8674de8b46 = L.circleMarker(
+                [-23.776, -46.697],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_57df249228bfc86dd50597cb4cc71e5e);
+        
+    
+        var popup_06b3384b85cfb42026ac7102bfc636b4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_006e0eb0d4fda04084de771ab28fb0b5 = $(`<div id="html_006e0eb0d4fda04084de771ab28fb0b5" style="width: 100.0%; height: 100.0%;">2026-10-08 - Grajau (Av. Paulo Guilguer Reimberg, perto da estacao Varginha)<br><br>homem</div>`)[0];
+                popup_06b3384b85cfb42026ac7102bfc636b4.setContent(html_006e0eb0d4fda04084de771ab28fb0b5);
+            
+        
+
+        circle_marker_2552d7834bf0ab7428afba8674de8b46.bindPopup(popup_06b3384b85cfb42026ac7102bfc636b4)
+        ;
+
+        
+    
+    
+            var circle_marker_7268c4e2838bb63b215af3e0f82a4b42 = L.circleMarker(
+                [-23.708, -46.623],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "gray", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_57df249228bfc86dd50597cb4cc71e5e);
+        
+    
+        var popup_3dd90a0412d80488559bb3811c2a3bfc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_61fc42afedde780a5f8f6e45c4e2f16a = $(`<div id="html_61fc42afedde780a5f8f6e45c4e2f16a" style="width: 100.0%; height: 100.0%;">2026-10-08 - Eldorado (R. Botocudos)<br><br></div>`)[0];
+                popup_3dd90a0412d80488559bb3811c2a3bfc.setContent(html_61fc42afedde780a5f8f6e45c4e2f16a);
+            
+        
+
+        circle_marker_7268c4e2838bb63b215af3e0f82a4b42.bindPopup(popup_3dd90a0412d80488559bb3811c2a3bfc)
+        ;
+
+        
+    
+    
+            var circle_marker_1bda39fd2b4e09ec94f0ab373afc1eb0 = L.circleMarker(
+                [-23.541, -46.59],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_57df249228bfc86dd50597cb4cc71e5e);
+        
+    
+        var popup_a8264aafb6bfca0d392cfe872ca05821 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a34214696e3ac688c9a5040041ab82f3 = $(`<div id="html_a34214696e3ac688c9a5040041ab82f3" style="width: 100.0%; height: 100.0%;">2026-10-13 - Belenzinho<br><br></div>`)[0];
+                popup_a8264aafb6bfca0d392cfe872ca05821.setContent(html_a34214696e3ac688c9a5040041ab82f3);
+            
+        
+
+        circle_marker_1bda39fd2b4e09ec94f0ab373afc1eb0.bindPopup(popup_a8264aafb6bfca0d392cfe872ca05821)
+        ;
+
+        
+    
+    
+            var circle_marker_7bd23c8bdca41d3e0c435b7624f37d44 = L.circleMarker(
+                [-23.773, -46.537],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_57df249228bfc86dd50597cb4cc71e5e);
+        
+    
+        var popup_5953552cdf6d647781bf2ba0bc77ca39 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b368b52cae11999005df925293f3f3aa = $(`<div id="html_b368b52cae11999005df925293f3f3aa" style="width: 100.0%; height: 100.0%;">2026-10-13 - Represa Billings, Riacho Grande (Anchieta km 28-29)<br>na agua, 'pacote' boiando<br></div>`)[0];
+                popup_5953552cdf6d647781bf2ba0bc77ca39.setContent(html_b368b52cae11999005df925293f3f3aa);
+            
+        
+
+        circle_marker_7bd23c8bdca41d3e0c435b7624f37d44.bindPopup(popup_5953552cdf6d647781bf2ba0bc77ca39)
+        ;
+
+        
+    
+    
+            var circle_marker_ed4305ffdd3a3b079b09ec6609df869e = L.circleMarker(
+                [-23.51, -46.606],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "gray", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_57df249228bfc86dd50597cb4cc71e5e);
+        
+    
+        var popup_cd0459c2daaeb2f0c0c7f2702d22915c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1fa2760be6132424b6470b74ffd91ecd = $(`<div id="html_1fa2760be6132424b6470b74ffd91ecd" style="width: 100.0%; height: 100.0%;">2026-10-21 - Vila Guilherme (Marginal Tiete)<br>esquartejado em 4 sacos<br>Lucimara Garcia do Nascimento de Freitas, 35</div>`)[0];
+                popup_cd0459c2daaeb2f0c0c7f2702d22915c.setContent(html_1fa2760be6132424b6470b74ffd91ecd);
+            
+        
+
+        circle_marker_ed4305ffdd3a3b079b09ec6609df869e.bindPopup(popup_cd0459c2daaeb2f0c0c7f2702d22915c)
+        ;
+
+        
+    
+    
+            var circle_marker_8842c23732a886fc6e0fb22aeddd8a6c = L.circleMarker(
+                [-23.415, -46.596],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "gray", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_57df249228bfc86dd50597cb4cc71e5e);
+        
+    
+        var popup_237cf2a7c09187f73c4c4a6d78ddb4a3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4213b9c675b77fbfffdf2d13dd235b21 = $(`<div id="html_4213b9c675b77fbfffdf2d13dd235b21" style="width: 100.0%; height: 100.0%;">2026-10-21 - Tremembe (Av. Cel. Sezefredo Fagundes, 25.555), mata<br>trauma na cabeca; sacos plasticos<br>Milber Conceicao Paiva, 43</div>`)[0];
+                popup_237cf2a7c09187f73c4c4a6d78ddb4a3.setContent(html_4213b9c675b77fbfffdf2d13dd235b21);
+            
+        
+
+        circle_marker_8842c23732a886fc6e0fb22aeddd8a6c.bindPopup(popup_237cf2a7c09187f73c4c4a6d78ddb4a3)
+        ;
+
+        
+    
+    
+            var circle_marker_e827df29a94aff0d6458b6bb684a9159 = L.circleMarker(
+                [-23.718, -46.849],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "gray", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(map_57df249228bfc86dd50597cb4cc71e5e);
+        
+    
+        var popup_33db8ed09ab30315cacc034643796b0b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f3ba9d204bc303fd6711c57074c8a0f9 = $(`<div id="html_f3ba9d204bc303fd6711c57074c8a0f9" style="width: 100.0%; height: 100.0%;">2026-10-21 - Estrada Borba Gato<br>porta-malas de carro abandonado no mato<br>homem, nao divulgado</div>`)[0];
+                popup_33db8ed09ab30315cacc034643796b0b.setContent(html_f3ba9d204bc303fd6711c57074c8a0f9);
+            
+        
+
+        circle_marker_e827df29a94aff0d6458b6bb684a9159.bindPopup(popup_33db8ed09ab30315cacc034643796b0b)
+        ;
+
+        
+    
+    
+            var poly_line_37f73babfd45491fe34f564af7e1675b = L.polyline(
+                [[-23.655, -46.733], [-23.716, -46.849]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": "5", "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_57df249228bfc86dd50597cb4cc71e5e);
+        
+</script>
+</html>
