@@ -5,4 +5,4 @@ P(Flávio vence): A = 72.4% | B = 73.3%; na grade varia de 66.8% a 85.3%.
 Premissa que mais mexe (variando uma de cada vez): sd_eleicao (amplitude de 8.0% em P); meia_vida 0.1%, cenario 0.7%, verita 0.1%, amostra 3.2%, pesos 4.9%.
 Malícia estrutural (sobre A): neutro 51.10% / P 72.4% | equilibrado 51.94% / P 82.7% | direita_forte 52.86% / P 90.0% | governo_forte 51.02% / P 70.1%.
 Indecisos contra o governo (28% para Lula, mediana de 6.0% de indecisos): desvio +1.34 (faixa +2.67 a -0.06) -> 52.43% / P 88.3%.
-Mercado (Polymarket + Kalshi, 2026-10-21): preço 78.4% -> calibrado 73.3% (IC95 63.4%-81.4%, 71 eventos); média modelo A + mercado calibrado = 72.8%.
+Mercado (Kalshi + Polymarket, 2026-10-23): preço 77.2% -> calibrado 70.0% (IC95 59.8%-78.6%, 71 eventos); média modelo A + mercado calibrado = 71.2%.
