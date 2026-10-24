@@ -20,7 +20,7 @@ DIA_R1 = date(2026, 10, 4)
 MESES = {"set": 9, "out": 10}
 NOMES = {"poderdata": "PoderData", "datafolha": "Datafolha", "nexus": "BTG/Nexus", "vox": "Vox Brasil",
          "verit": "Veritá", "atlas": "AtlasIntel", "real time": "Real Time Big Data",
-         "alfa": "Alfa Inteligência", "mda": "CNT/MDA", "ideia": "Ideia"}
+         "alfa": "Alfa Inteligência", "ifp": "França", "frança": "França", "mda": "CNT/MDA", "ideia": "Ideia"}
 DATA = re.compile(r"(\d{1,2})\s*([a-z]{3})?\s*[–-]\s*(\d{1,2})\s*([a-z]{3})|^(\d{1,2})\s*([a-z]{3})$", re.I)
 
 
