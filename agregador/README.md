@@ -101,3 +101,11 @@ Chuva no dia de cada turno (NASA POWER, grade de 0,5°; 2014, 2018 e 2022) cruza
 ## Cenário: indecisos contra o governo (`indecisos()` em `model.py`)
 
 Teste em `historico/testes_teoria.py`: nos 2º turnos com presidente candidato (2014 e 2022), institutos com mais indecisos superestimaram o governo; a fração dos indecisos que foi para o governo fica entre 0,07 (todas as pesquisas) e 0,28 (sem Gerp, Brasmarket e Veritá), contra 0,5 da divisão proporcional, com evidência fraca (t de 1,0 a 1,8). O cenário redistribui os indecisos de cada pesquisa (100 - Flávio - Lula nos votos totais; pesquisa só em válidos recebe a mediana) com 28% para Lula e 72% para o Flávio, e soma ao erro a incerteza da fração (de 0,07 a 0,5). Aparece no resumo; não altera a estimativa base. O mesmo arquivo testa o voto envergonhado (modo remoto x presencial) e não acha efeito.
+
+## Revisão de outubro (pesos e incerteza)
+
+- **Piso de erro no peso de desempenho (`tau_prior`, padrão 1,25):** `peso_desempenho = 1 / (erro_típico² + tau_prior²)`; antes o piso era 0,5. Entra na grade de sensibilidade (0,5 / 1,25 / 2,0).
+- **Repetição do mesmo instituto:** a k-ésima rodada mais recente de cada instituto entra com peso dividido por √k (`peso_repeticao`), porque os erros de método de um instituto são correlacionados entre rodadas.
+- **Pesos do cenário B:** calculados sobre o erro que sobra depois de descontar metade do viés (parte não-viés + metade do viés) mais a incerteza do próprio viés (`INCERTEZA_VIES` = 1,25).
+- **Deriva até a eleição:** `sd_total` soma `sd_drift = 0,25 × √(idade efetiva)`, em que a idade efetiva é a média, ponderada pelos pesos, de dias entre o meio do campo e `--hoje`. Use `--hoje` = data da eleição para a previsão final.
+- **Diagnóstico no resumo:** N efetivo de Kish (1 / Σ peso²) e participação dos 4 institutos de maior peso.

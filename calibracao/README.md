@@ -74,3 +74,9 @@ Cache em `cache/` (fora do git): `cache/mercados/pagina_NNNNNN.json` (100 mercad
 - **Volume medido depois do fato**: a API só dá o volume total final. Mercados em que o favorito desaba atraem muito volume justamente por causa da surpresa, então cortar por volume final seleciona zebras nas faixas altas. O corte por atividade prévia (só dados até o instantâneo) é o teste mais limpo da hipótese 2.
 - **Cobertura**: a listagem tem 1.083.407 mercados encerrados (fim a partir de fev/2023, volume de pelo menos US$ 1 mil). Históricos baixados: todos acima de US$ 1 milhão; acima de US$ 100 mil, os 37.849 listados até a metade de 2026 (os de 2026 entre 100 mil e 1 milhão ficaram de fora por tempo de coleta); abaixo de US$ 100 mil, uma amostra aleatória de 10 mil (semente 2026).
 - **Preço do histórico** é o preço da série da CLOB (ponto médio/último negócio), não o preço executável com o spread.
+
+## Revisão de outubro
+
+- `momento_evento`: o estado acima de 0,98 (ou abaixo de 0,02) vale como "sustentado" quando o próximo ponto que sai da região ou troca de lado vem mais de 12 h depois; se não houver reversão (o mercado para de negociar depois do desfecho), basta o fim do mercado estar a 12 h ou mais. Antes, mercado que parava de negociar ao chegar a 0,99 tinha o momento jogado para a data de fim. As séries também são ordenadas por tempo ao carregar.
+- `teste_vies`: variância agrupada por evento (o mesmo evento entra até 4 vezes, uma por prazo): usa o maior entre Σ p(1−p) e Σ por evento do quadrado dos resíduos somados. `vies_favorito_azarao.csv` traz também o teste em cada prazo.
+- `metricas`: Brier e log loss só com favoritos a 50% ou mais, a mesma amostra das tabelas de calibração.

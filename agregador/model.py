@@ -21,9 +21,15 @@ R1_FLAVIO, R1_LULA = 47.03, 45.16
 R1_SHARE = 100 * R1_FLAVIO / (R1_FLAVIO + R1_LULA)  # ~51,01
 
 DEFAULTS = dict(sd_eleicao=2.0, meia_vida=4.0, cenario="A", verita="padrao", so_top4=False,
-                historico=True)
+                historico=True, tau_prior=1.25)
 # Pseudo-observações que puxam o erro de cada instituto para a média geral (histórico)
 K_ENCOLHIMENTO = 2
+# tau_prior (em DEFAULTS): piso de erro somado ao erro típico de cada instituto no peso de
+# desempenho, ~ dp amostral de uma pesquisa de 2.000 entrevistas na participação (1,1-1,25).
+# Incerteza do viés de cada instituto, usada nos pesos do cenário B.
+INCERTEZA_VIES = 1.25
+# Deriva da opinião até a eleição, em pontos por raiz de dia de idade do pacote de pesquisas.
+DRIFT_DIA = 0.25
 TOP4 = ["Veritá", "Gerp", "Futura", "Vox Brasil"]
 N_SIM = 100_000
 DF_T = 5
@@ -80,7 +86,7 @@ def load_r2():
     return r2
 
 
-def weigh(r2, r1, hoje, meia_vida, cenario, historico=False):
+def weigh(r2, r1, hoje, meia_vida, cenario, historico=False, tau_prior=DEFAULTS["tau_prior"]):
     he = r1.set_index("instituto").house_error
     he_default = r1.loc[r1.tradicional == 1, "house_error"].median()
     d = r2.copy()
@@ -93,35 +99,57 @@ def weigh(r2, r1, hoje, meia_vida, cenario, historico=False):
     else:
         d["house_error"] = d.instituto.map(he).fillna(he_default)
         erro_tipico = d.house_error.abs()
-    d["peso_desempenho"] = 1 / (erro_tipico ** 2 + 0.5 ** 2)
+    if cenario == "B":
+        # No B metade do viés é descontada da estimativa: o desempenho passa a ser medido pelo
+        # erro que sobra (parte não-viés + metade do viés) mais a incerteza do próprio viés.
+        resto = np.sqrt(np.maximum(erro_tipico ** 2 - d.house_error ** 2, 0)
+                        + (0.5 * d.house_error) ** 2 + INCERTEZA_VIES ** 2)
+        erro_tipico = resto
+    d["peso_desempenho"] = 1 / (erro_tipico ** 2 + tau_prior ** 2)
     d["peso_recencia"] = np.exp(-np.log(2) * d.idade_dias / meia_vida)
+    # Rodadas do mesmo instituto têm erro metodológico correlacionado: a k-ésima mais recente
+    # de cada instituto entra dividida por sqrt(k).
+    k = d.groupby("instituto").meio_campo.rank(method="first", ascending=False)
+    d["peso_repeticao"] = 1 / np.sqrt(k)
     d["peso_amostra"] = np.sqrt(np.minimum(d.n, 5000) / 1000)
-    d["peso"] = d.peso_desempenho * d.peso_recencia * d.peso_amostra
+    d["peso"] = d.peso_desempenho * d.peso_recencia * d.peso_repeticao * d.peso_amostra
     d["peso_norm"] = d.peso / d.peso.sum()
     d["estimativa"] = d.share - (0.5 * d.house_error if cenario == "B" else 0)
     d["contribuicao"] = d.peso_norm * d.estimativa
     return d
 
 
+def diagnostico(d):
+    """Tamanho efetivo da amostra de Kish e participação dos 4 institutos com mais peso."""
+    por_inst = d.groupby("instituto").peso_norm.sum().sort_values(ascending=False)
+    return dict(n_eff=1 / (d.peso_norm ** 2).sum(), n_pesquisas=len(d),
+                top4=por_inst.head(4).sum(), top4_nomes=list(por_inst.head(4).index))
+
+
 def simulate(d, sd_eleicao, rng, desvio=0.0, sd_extra=0.0):
     media_pesq = (d.peso_norm * d.estimativa).sum()
     disp = np.sqrt((d.peso_norm * (d.estimativa - media_pesq) ** 2).sum())
     media = media_pesq + desvio
-    sd_total = np.sqrt(sd_eleicao ** 2 + disp ** 2 + sd_extra ** 2)
+    # Deriva até a eleição: a opinião pode ter andado desde o meio do campo das pesquisas
+    # (passeio aleatório; a variância cresce com a idade efetiva do pacote de pesquisas).
+    idade_efetiva = float((d.peso_norm * d.idade_dias).sum())
+    sd_drift = DRIFT_DIA * np.sqrt(max(0.0, idade_efetiva))
+    sd_total = np.sqrt(sd_eleicao ** 2 + disp ** 2 + sd_extra ** 2 + sd_drift ** 2)
     t = rng.standard_t(DF_T, N_SIM) / np.sqrt(DF_T / (DF_T - 2))  # t com dp = 1
     sims = media + sd_total * t
     q = np.percentile(sims, [2.5, 10, 50, 90, 97.5])
-    return dict(media=media, dispersao=disp, sd_total=sd_total,
-                p_flavio=(sims > 50).mean(), mediana=q[2],
+    return dict(media=media, dispersao=disp, sd_total=sd_total, sd_drift=sd_drift,
+                idade_efetiva=idade_efetiva, p_flavio=(sims > 50).mean(), mediana=q[2],
                 ic80=(q[1], q[3]), ic95=(q[0], q[4]), sims=sims)
 
 
-def run(hoje, sd_eleicao, meia_vida, cenario, verita, so_top4, rng, historico=True):
+def run(hoje, sd_eleicao, meia_vida, cenario, verita, so_top4, rng, historico=True,
+        tau_prior=DEFAULTS["tau_prior"]):
     r1 = house_errors(verita)
     r2 = load_r2()
     if so_top4:
         r2 = r2[r2.instituto.isin(TOP4)]
-    d = weigh(r2, r1, hoje, meia_vida, cenario, historico)
+    d = weigh(r2, r1, hoje, meia_vida, cenario, historico, tau_prior)
     return d, simulate(d, sd_eleicao, rng), r1
 
 
@@ -235,13 +263,13 @@ def main():
     check_inputs(house_errors(), load_r2())
     house_errors().drop(columns="versao").round(3).to_csv(OUT / "house_errors_r1.csv", index=False)
 
-    resultados = {}
+    resultados, diag = {}, {}
     for cen in "AB":
         d, res, _ = run(hoje, **{**DEFAULTS, "cenario": cen}, rng=rng)
-        resultados[cen] = res
+        resultados[cen], diag[cen] = res, diagnostico(d)
         cols = ["instituto", "meio_campo", "n", "n_imputado", "share", "house_error", "estimativa",
-                "idade_dias", "peso_desempenho", "peso_recencia", "peso_amostra", "peso",
-                "peso_norm", "contribuicao", "confianca_dado", "observacao"]
+                "idade_dias", "peso_desempenho", "peso_recencia", "peso_repeticao", "peso_amostra",
+                "peso", "peso_norm", "contribuicao", "confianca_dado", "observacao"]
         d.sort_values("peso_norm", ascending=False)[cols].assign(meio_campo=lambda x: x.meio_campo.dt.date).round(4).to_csv(
             OUT / f"pesquisas_cenario_{cen}.csv", index=False)
         if cen == "A":
@@ -253,25 +281,26 @@ def main():
     # Grade de sensibilidade
     linhas = []
     grade = itertools.product([1.5, 2.0, 2.5], [3, 4, 7], "AB", ["padrao", "alternativa"],
-                              [False, True], [True, False])
-    for sd, mv, cen, ver, top4, hist in grade:
-        _, res, _ = run(hoje, sd, mv, cen, ver, top4, rng, hist)
+                              [False, True], [True, False], [0.5, 1.25, 2.0])
+    for sd, mv, cen, ver, top4, hist, tau in grade:
+        _, res, _ = run(hoje, sd, mv, cen, ver, top4, rng, hist, tau)
         linhas.append(dict(sd_eleicao=sd, meia_vida=mv, cenario=cen, verita=ver,
                            amostra="só top-4" if top4 else "todas",
-                           pesos="historico" if hist else "so_r1_2026",
+                           pesos="historico" if hist else "so_r1_2026", tau_prior=tau,
                            media=round(res["media"], 2), p_flavio=round(res["p_flavio"], 3)))
     sens = pd.DataFrame(linhas)
     sens.to_csv(OUT / "sensibilidade_longa.csv", index=False)
-    piv = sens.pivot_table(index=["pesos", "amostra", "cenario", "verita", "meia_vida"],
+    piv = sens.pivot_table(index=["pesos", "tau_prior", "amostra", "cenario", "verita", "meia_vida"],
                            columns="sd_eleicao", values="p_flavio")
     piv.to_csv(OUT / "sensibilidade_grade.csv")
 
     # Qual premissa mexe mais: amplitude de P ao variar cada fator, demais no padrão
     base = sens[(sens.sd_eleicao == 2.0) & (sens.meia_vida == 4) & (sens.cenario == "A")
-                & (sens.verita == "padrao") & (sens.amostra == "todas") & (sens.pesos == "historico")]
+                & (sens.verita == "padrao") & (sens.amostra == "todas") & (sens.pesos == "historico")
+                & (sens.tau_prior == DEFAULTS["tau_prior"])]
     fatores = {"sd_eleicao": [1.5, 2.0, 2.5], "meia_vida": [3, 4, 7], "cenario": ["A", "B"],
                "verita": ["padrao", "alternativa"], "amostra": ["todas", "só top-4"],
-               "pesos": ["historico", "so_r1_2026"]}
+               "pesos": ["historico", "so_r1_2026"], "tau_prior": [0.5, 1.25, 2.0]}
     padrao = base.iloc[0]
     amp = {}
     for f, vals in fatores.items():
@@ -286,7 +315,7 @@ def main():
     a, b = resultados["A"], resultados["B"]
     resumo = [
         f"Estimativa central (A, bruto): {a['mediana']:.2f}% para Flávio na participação bipartidária; com ajuste de casa (B): {b['mediana']:.2f}%.",
-        f"Intervalo A: 80% {a['ic80'][0]:.2f}-{a['ic80'][1]:.2f} | 95% {a['ic95'][0]:.2f}-{a['ic95'][1]:.2f} (dp total {a['sd_total']:.2f}, dispersão entre pesquisas {a['dispersao']:.2f}).",
+        f"Intervalo A: 80% {a['ic80'][0]:.2f}-{a['ic80'][1]:.2f} | 95% {a['ic95'][0]:.2f}-{a['ic95'][1]:.2f} (dp total {a['sd_total']:.2f}, dispersão entre pesquisas {a['dispersao']:.2f}, deriva {a['sd_drift']:.2f} com idade efetiva de {a['idade_efetiva']:.1f} dias).",
         f"Intervalo B: 80% {b['ic80'][0]:.2f}-{b['ic80'][1]:.2f} | 95% {b['ic95'][0]:.2f}-{b['ic95'][1]:.2f}.",
         f"P(Flávio vence): A = {a['p_flavio']:.1%} | B = {b['p_flavio']:.1%}; na grade varia de {sens.p_flavio.min():.1%} a {sens.p_flavio.max():.1%}.",
         f"Premissa que mais mexe (variando uma de cada vez): {mais} (amplitude de {amp[mais]:.1%} em P); "
@@ -296,6 +325,9 @@ def main():
         f"Indecisos contra o governo ({FRACAO_INDECISOS_GOVERNO:.0%} para Lula, mediana de {ind['u_mediano']:.1f}% "
         f"de indecisos): desvio {ind['desvio']:+.2f} (faixa {ind['faixa'][1]:+.2f} a {ind['faixa'][0]:+.2f}) -> "
         f"{ind['media']:.2f}% / P {ind['p_flavio']:.1%}.",
+        "Concentração dos pesos: " + " | ".join(
+            f"{c}: N efetivo de Kish {diag[c]['n_eff']:.1f} de {diag[c]['n_pesquisas']} pesquisas, top-4 "
+            f"({', '.join(diag[c]['top4_nomes'])}) com {diag[c]['top4']:.1%}" for c in "AB") + ".",
     ]
     m = mercado()
     if m is not None:

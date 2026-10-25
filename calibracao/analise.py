@@ -70,20 +70,37 @@ def carregar():
                            evento_titulo=ev.get("title"), neg_risk=bool(ev.get("negRisk") or m.get("negRisk")),
                            volume=float(m.get("volumeNum") or 0), yes_venceu=pr[0] > 0.99,
                            fim=fim, categoria="política" if politica else "outros",
-                           t=np.array([p["t"] for p in h]), p=np.array([p["p"] for p in h])))
+                           **ordenar(np.array([p["t"] for p in h]), np.array([p["p"] for p in h]))))
     return linhas, motivos
+
+
+def ordenar(t, p):
+    """Garante a série em ordem de tempo (preco_em usa searchsorted)."""
+    o = np.argsort(t, kind="stable")
+    return dict(t=t[o], p=p[o])
 
 
 def momento_evento(t, p, fim):
     """Primeiro instante em que o preço passa de 0,98 (ou fica abaixo de 0,02) e fica
-    assim por SUSTENTADO_H horas; ou a data de fim, o que vier primeiro."""
+    assim por SUSTENTADO_H horas; ou a data de fim, o que vier primeiro.
+
+    'Fica assim' = o próximo ponto que sai da região ou troca de lado vem mais de
+    SUSTENTADO_H horas depois. Se não houver reversão (comum: depois do desfecho o mercado
+    para de negociar e a série acaba), vale desde que o fim do mercado (ou o último ponto)
+    esteja a pelo menos SUSTENTADO_H horas do instante."""
     fora = (p > LIMIAR) | (p < 1 - LIMIAR)
     lado = np.sign(p - 0.5)
+    limite = fim if fim else t[-1]
+    janela = SUSTENTADO_H * 3600
     for i in np.flatnonzero(fora):
-        j = (t >= t[i]) & (t <= t[i] + SUSTENTADO_H * 3600)
-        if t[j][-1] - t[i] >= (SUSTENTADO_H - 2) * 3600 and fora[j].all() and (lado[j] == lado[i]).all():
+        quebra = np.flatnonzero(~fora[i + 1:] | (lado[i + 1:] != lado[i]))
+        if len(quebra):
+            sustentado = t[i + 1 + quebra[0]] - t[i] > janela
+        else:
+            sustentado = limite - t[i] >= janela
+        if sustentado:
             return min(t[i], fim) if fim else t[i]
-    return fim if fim else t[-1]
+    return limite
 
 
 def preco_em(t, p, instante):
@@ -171,6 +188,8 @@ def tabela_faixas(d, por=()):
 
 
 def metricas(d, por):
+    # Mesma amostra das tabelas de calibração: favoritos de negRisk abaixo de 50% ficam de fora
+    d = d[d.preco_fav >= FAIXAS[0]]
     linhas = []
     for chave, g in d.groupby(por, observed=True):
         p = g.preco_fav.clip(1e-4, 1 - 1e-4)
@@ -181,16 +200,22 @@ def metricas(d, por):
 
 
 def teste_vies(d, minimo=0.80):
-    """Acerto x preço acima de 80%: z = (vitórias - soma dos preços) / sqrt(soma p(1-p)),
-    unilateral (H1: favorito vence mais que o preço). Por faixa e agregado."""
+    """Acerto x preço acima de 80%: z = (vitórias - soma dos preços) / sqrt(var), unilateral
+    (H1: favorito vence mais que o preço). Por faixa e agregado, com os prazos somados e em
+    cada prazo. O mesmo evento entra até uma vez por prazo, então var = max(soma p(1-p),
+    soma por evento do quadrado dos resíduos somados no evento) (variância agrupada)."""
     d = d[d.preco_fav >= minimo].assign(faixa=lambda x: faixa(x.preco_fav)).dropna(subset=["faixa"])
     linhas = []
-    for nome, g in list(d.groupby("faixa", observed=True)) + [("80-99 (todas)", d)]:
-        k, esp, var = g.fav_venceu.sum(), g.preco_fav.sum(), (g.preco_fav * (1 - g.preco_fav)).sum()
-        z = (k - esp) / sqrt(var) if var > 0 else np.nan
-        linhas.append(dict(faixa=nome, n=len(g), acerto=k / len(g), preco_medio=esp / len(g),
-                           efeito_pp=100 * (k - esp) / len(g), z=z,
-                           p_valor_unilateral=0.5 * (1 - erf(z / sqrt(2))) if not np.isnan(z) else np.nan))
+    for prazo, dp in [("todos", d)] + list(d.groupby("prazo")):
+        for nome, g in list(dp.groupby("faixa", observed=True)) + [("80-99 (todas)", dp)]:
+            k, esp = g.fav_venceu.sum(), g.preco_fav.sum()
+            var_ind = (g.preco_fav * (1 - g.preco_fav)).sum()
+            var_clu = ((g.fav_venceu - g.preco_fav).groupby(g.evento).sum() ** 2).sum()
+            var = max(var_ind, var_clu)
+            z = (k - esp) / sqrt(var) if var > 0 else np.nan
+            linhas.append(dict(prazo=prazo, faixa=nome, n=len(g), eventos=g.evento.nunique(),
+                               acerto=k / len(g), preco_medio=esp / len(g), efeito_pp=100 * (k - esp) / len(g),
+                               z=z, p_valor_unilateral=0.5 * (1 - erf(z / sqrt(2))) if not np.isnan(z) else np.nan))
     return pd.DataFrame(linhas).round(4)
 
 
@@ -264,7 +289,8 @@ def main():
     print(f"Mercados válidos: {len(linhas)}; descartados: {motivos}")
     print(f"Instantâneos: todos os contratos {len(todos)}, por evento {len(ev)} ({ev.evento.nunique()} eventos)")
     print("\nGeral:\n" + geral.to_string(index=False))
-    print("\nViés favorito-azarão (por evento, faixas >= 80%):\n" + vies.to_string(index=False))
+    print("\nViés favorito-azarão (por evento, faixas >= 80%, prazos somados):\n"
+          + vies[vies.prazo == "todos"].to_string(index=False))
     print("\nVolume > US$ 10 mi, 24 h a 7 dias:\n" + resp.to_string(index=False))
 
 

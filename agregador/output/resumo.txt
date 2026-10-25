@@ -1,8 +1,9 @@
-Estimativa central (A, bruto): 51.06% para Flávio na participação bipartidária; com ajuste de casa (B): 51.15%.
-Intervalo A: 80% 48.54-53.58 | 95% 46.65-55.44 (dp total 2.21, dispersão entre pesquisas 0.95).
-Intervalo B: 80% 48.60-53.69 | 95% 46.75-55.56.
-P(Flávio vence): A = 71.8% | B = 73.2%; na grade varia de 63.9% a 83.2%.
-Premissa que mais mexe (variando uma de cada vez): sd_eleicao (amplitude de 8.0% em P); meia_vida 0.5%, cenario 1.1%, verita 0.1%, amostra 1.1%, pesos 4.0%.
-Malícia estrutural (sobre A): neutro 51.06% / P 71.8% | equilibrado 51.90% / P 82.3% | direita_forte 52.82% / P 89.8% | governo_forte 50.98% / P 69.5%.
-Indecisos contra o governo (28% para Lula, mediana de 6.0% de indecisos): desvio +1.23 (faixa +2.46 a -0.06) -> 52.30% / P 87.3%.
-Mercado (Kalshi + Polymarket, 2026-10-24): preço 79.1% -> calibrado 73.4% (IC95 63.1%-81.7%, 71 eventos); média modelo A + mercado calibrado = 72.6%.
+Estimativa central (A, bruto): 51.02% para Flávio na participação bipartidária; com ajuste de casa (B): 51.12%.
+Intervalo A: 80% 48.44-53.59 | 95% 46.52-55.49 (dp total 2.26, dispersão entre pesquisas 0.92, deriva 0.50 com idade efetiva de 4.0 dias).
+Intervalo B: 80% 48.53-53.72 | 95% 46.64-55.62.
+P(Flávio vence): A = 70.6% | B = 72.5%; na grade varia de 61.4% a 85.7%.
+Premissa que mais mexe (variando uma de cada vez): sd_eleicao (amplitude de 7.0% em P); meia_vida 0.3%, cenario 1.7%, verita 0.0%, amostra 0.9%, pesos 1.0%, tau_prior 0.3%.
+Malícia estrutural (sobre A): neutro 51.02% / P 70.7% | equilibrado 51.86% / P 81.4% | direita_forte 52.78% / P 89.2% | governo_forte 50.94% / P 68.5%.
+Indecisos contra o governo (28% para Lula, mediana de 6.0% de indecisos): desvio +1.24 (faixa +2.47 a -0.05) -> 52.26% / P 86.5%.
+Concentração dos pesos: A: N efetivo de Kish 29.0 de 55 pesquisas, top-4 (Palver, Gerp, Datafolha, Futura) com 37.6% | B: N efetivo de Kish 28.9 de 55 pesquisas, top-4 (Palver, Datafolha, Gerp, Futura) com 37.3%.
+Mercado (Kalshi + Polymarket, 2026-10-24): preço 79.1% -> calibrado 73.4% (IC95 63.2%-81.5%, 73 eventos); média modelo A + mercado calibrado = 72.0%.

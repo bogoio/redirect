@@ -1,7 +1,7 @@
 fonte,data,preco,p_calibrada,ic95_inf,ic95_sup,n,eventos,criterio
 Polymarket,2026-10-20,0.795,0.761,0.664,0.836,92,72,"mercados de eleição resolvidos, favorito entre 74,5% e 84,5%, 3 a 7 dias antes (calibracao/calibrar_preco.py)"
 Polymarket,2026-10-21,0.783,0.733,0.634,0.814,90,71,"mercados de eleição resolvidos, favorito entre 73,3% e 83,3%, 3 a 7 dias antes (calibracao/calibrar_preco.py)"
-Kalshi,2026-10-21,0.785,0.733,0.634,0.814,90,71,"vencedor (KXBRPRES-26-FBOL, média compra/venda); mesma calibração do Polymarket a 78,3%; escada de votos põe a mediana do Flávio em ~52%"
-Polymarket,2026-10-23,0.760,0.667,0.561,0.758,84,62,"mercados de eleição resolvidos, favorito entre 71% e 81%, 24 h a 3 dias antes (calibracao/calibrar_preco.py)"
-Polymarket,2026-10-24,0.770,0.686,0.582,0.774,86,61,"mercados de eleição resolvidos, favorito entre 72% e 82%, 24 h a 3 dias antes (calibracao/calibrar_preco.py)"
-Polymarket,2026-10-24,0.797,0.734,0.628,0.819,79,57,"depois do debate da Globo; favorito entre 74,7% e 84,7%, 24 h a 3 dias antes (calibracao/calibrar_preco.py)"
+Kalshi,2026-10-21,0.785,0.742,0.645,0.82,93,73,"vencedor (KXBRPRES-26-FBOL, média compra/venda); mesma calibração do Polymarket a 78,3%; escada de votos põe a mediana do Flávio em ~52%"
+Polymarket,2026-10-23,0.76,0.667,0.561,0.758,84,62,"mercados de eleição resolvidos, favorito entre 71% e 81%, 24 h a 3 dias antes (calibracao/calibrar_preco.py)"
+Polymarket,2026-10-24,0.77,0.686,0.582,0.774,86,61,"mercados de eleição resolvidos, favorito entre 72% e 82%, 24 h a 3 dias antes (calibracao/calibrar_preco.py)"
+Polymarket,2026-10-24,0.797,0.725,0.619,0.811,80,57,"depois do debate da Globo; favorito entre 74,7% e 84,7%, 24 h a 3 dias antes (calibracao/calibrar_preco.py; recalibrado após a correção de momento_evento)"
