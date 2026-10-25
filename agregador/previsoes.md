@@ -11,3 +11,15 @@ Registradas em 24/10/2026, antes das pesquisas finais de sábado. Participação
 | Usuário (heurística) | Flávio | **≥ 52,5%** | 96% | — |
 
 Balanço depois do resultado: comparar cada linha com o resultado oficial do TSE e rodar o balanço por zona (`projecao.py`, `feed_tse.py`).
+
+## Previsão final (25/10/2026, 13h, antes do fechamento das urnas)
+
+60 pesquisas (últimas: Quaest, AtlasIntel, Futura e PoderData de 23-24/out), `python model.py --hoje 2026-10-25`.
+
+| Fonte | Flávio | Faixa de 80% | Chance do Flávio |
+|---|---|---|---|
+| Modelo A (pesquisas) | 50,9% | 48,4–53,5 | 69% |
+| Modelo B (ajuste de casa) | 51,1% | — | 72% |
+| Polymarket 79,9% / Kalshi 80,5%, calibrados | — | — | ~72,5% |
+| **Aposta final (modelo A + mercados)** | **50,9%** | | **~71%** |
+| Usuário | ≥ 52,5% | | 96% |
