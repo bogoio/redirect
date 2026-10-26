@@ -1,0 +1,17 @@
+grupo,n,brier,log_loss,corte
+<100 mil,7998,0.1704,0.5075,volume
+100 mil-1 mi,22496,0.1844,0.5378,volume
+1-10 mi,12939,0.2034,0.5855,volume
+>10 mi,1156,0.2077,0.6146,volume
+24h,20399,0.1875,0.5458,prazo
+30d,1601,0.194,0.5771,prazo
+3d,14263,0.1885,0.5506,prazo
+7d,8326,0.187,0.5443,prazo
+outros,37087,0.2008,0.5803,categoria
+política,7502,0.1247,0.3893,categoria
+2024 em diante,44238,0.1885,0.5496,periodo
+antes de 2024,351,0.1154,0.3639,periodo
+0-10 h,9834,0.2133,0.6092,atividade
+11-40 h,17673,0.201,0.5803,atividade
+41-100 h,13005,0.1697,0.5036,atividade
+>100 h,4077,0.1287,0.4038,atividade
