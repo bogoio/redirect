@@ -23,10 +23,10 @@ Dados completos: `candidatos.csv`.
 | Popeye 1929 | não pesquisado | - | baixo-médio | domínio público nos EUA desde 2025 (marca não) |
 | Chaves/Chapolin | só Funko/Little People | - | médio | sem estátua oficial |
 | Asterix | Pixi, Plastoy | €130-250 | médio-alto | demanda europeia, escapa da tarifa |
-| Tintin | Pixi/Moulinsart | - | MUITO ALTO | descartar |
+| Tintin | Pixi/Moulinsart | - | takedown sem dado | processo (Peppone) envolveu artista de alta visibilidade; medir takedown no Terapeak |
 
 ## Primeiras conclusões (sem demanda ainda)
-1. **Descartar:** Tintin (há condenação contra esculturas de resina) e Bruce Lee.
+1. **Descartar:** Bruce Lee. Tintin volta para validação (demanda europeia; risco de takedown a medir).
 2. **Scarface:** o mercado de custom é barato e sofre takedown. Fica fora do tier premium.
 3. **Lacunas de estátua oficial:** Taxi Driver, Goodfellas, Pulp Fiction, Lebowski, Wacky Races, Space Ghost/Jonny Quest e Chaves. Esses são os primeiros a validar no Terapeak.
 4. **Oficial barato ($130-155):** Flintstones, Rocky e Heisenberg 1/6 tiram espaço de peça avulsa. Só o diorama diferencia.
